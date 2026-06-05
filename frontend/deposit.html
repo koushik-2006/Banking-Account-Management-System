@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Money | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="deposit.html" class="sidebar-link active"><span class="icon">📥</span> Deposit</a>
+            <a href="withdraw.html" class="sidebar-link"><span class="icon">📤</span> Withdraw</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications</a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Add <span class="text-secondary">Funds</span></h1>
+            </div>
+            <div class="topbar-right">
+                <div class="balance-pill">
+                    <span class="label">Balance:</span>
+                    <span class="value">$12,450.00</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="auth-container" style="max-width: 600px; margin: 0 auto;">
+                <div class="card p-xl">
+                    <h3 class="mb-lg">Cash/Online Deposit</h3>
+                    <form class="contact-form text-left" id="depositForm">
+                        <div class="form-group">
+                            <label>Deposit Source</label>
+                            <select class="filter-select">
+                                <option>UPI / Net Banking</option>
+                                <option>Debit/Credit Card</option>
+                                <option>Branch Cash Deposit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount ($)</label>
+                            <input type="number" placeholder="Enter amount" min="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Notes (Optional)</label>
+                            <textarea rows="2" placeholder="e.g. Monthly Savings"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Proceed to Deposit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('depositForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Deposit Request Submitted Successfully!');
+            location.href = 'dashboard.html';
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>
