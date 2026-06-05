@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policies & Legal | BAMS</title>
+    <title>Privacy & Policies | BAMS</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 </head>
 
@@ -14,155 +16,65 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo-container">
-                <img src="images/logo.png" alt="BAMS Logo">
-                <span>BAMS</span>
-            </a>
+            <a href="index.html" class="logo">BAMS</a>
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="faq.html" class="nav-link">Help</a>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn btn-primary">Login</a>
             </nav>
-            <div class="nav-actions">
-                <a href="#" class="btn btn-outline">Login</a>
-                <a href="#" class="btn btn-primary">Open Account</a>
-            </div>
         </div>
     </header>
 
-    <!-- Policies Hero -->
-    <section class="policies-hero hero section-padding">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1 class="hero-title">Policies & <span class="text-secondary">Security</span></h1>
-                <p class="hero-subtitle">Your trust is our priority. Read about how we protect your data and the
-                    regulations we follow.</p>
+    <main class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">Bank <span class="text-primary">Policies</span></h1>
+            <p class="lead text-muted">Legal foundations and commitment to your financial security.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <h3 class="h4 mb-3">Privacy Policy</h3>
+                    <p class="text-muted small">We value your privacy. This policy outlines how we collect, use, and
+                        protect your personal information in compliance with global standards.</p>
+                    <a href="#" class="text-decoration-none mt-auto">Read More →</a>
+                </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-banner-placeholder bg-primary"></div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <h3 class="h4 mb-3">Terms of Service</h3>
+                    <p class="text-muted small">Use of BAMS services is subject to our terms. This includes account
+                        usage, transaction limits, and user responsibilities.</p>
+                    <a href="#" class="text-decoration-none mt-auto">Read More →</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <h3 class="h4 mb-3">Loan Policies</h3>
+                    <p class="text-muted small">Detailed information on interest rates, eligibility criteria, and
+                        repayment terms for all our loan products.</p>
+                    <a href="#" class="text-decoration-none mt-auto">Read More →</a>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Accordion Section -->
-    <section class="policies-section section-padding">
-        <div class="container">
-            <div class="accordion">
-                <!-- Privacy Policy -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Privacy Policy</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>We are committed to protecting your personal information. This policy explains how we
-                            collect, use, and safeguard your data.</p>
-                        <ul>
-                            <li>Data Encryption: All data is encrypted at rest and in transit.</li>
-                            <li>No Third-Party Sharing: We never sell your personal information.</li>
-                            <li>Access Control: Only authorized personnel have access to sensitive data.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Terms & Conditions -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Terms & Conditions</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>By using our services, you agree to comply with our terms and conditions. These terms govern
-                            the relationship between you and BAMS.</p>
-                    </div>
-                </div>
-
-                <!-- Loan Policy -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Loan & Interest Rate Policy</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Information about interest rates, repayment terms, and eligibility for various loan products.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Grievance Redressal -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Grievance Redressal System</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>We strive for excellence, but if you have any issues, our grievance cell is here to help.</p>
-                    </div>
-                </div>
+        <section class="mt-5 pt-5">
+            <h2 class="mb-4">Commitment to Security</h2>
+            <div class="card bg-light border-0 p-4">
+                <p>BAMS utilizes 256-bit AES encryption and Multi-Factor Authentication (MFA) to ensure that every
+                    transaction is secure. Our security team monitors the system 24/7 for any suspicious activity.</p>
             </div>
-            <div class="text-center mt-xl">
-                <button onclick="window.print()" class="btn btn-outline">Print Policies</button>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col-1">
-                    <a href="#" class="footer-logo">BAMS</a>
-                    <p class="footer-desc">Providing secure and innovative banking solutions since 2026. Your trust is
-                        our foundation.</p>
-                </div>
-                <div class="footer-col-2">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-3">
-                    <h4 class="footer-title">Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="policies.html">Privacy Policy</a></li>
-                        <li><a href="policies.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Branch Locator</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-desc">Subscribe for the latest updates and offers.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email" class="footer-input">
-                        <button type="button" class="btn btn-accent">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
-                <p>Designed with ❤️ for modern banking.</p>
-            </div>
+    <footer class="footer py-5 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2026 BAMS. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <script src="js/app.js"></script>
-    <script>
-        // Simple Accordion Toggle
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                item.classList.toggle('active');
-                const icon = header.querySelector('.icon');
-                icon.textContent = item.classList.contains('active') ? '-' : '+';
-            });
-        });
-    </script>
 </body>
 
 </html>
