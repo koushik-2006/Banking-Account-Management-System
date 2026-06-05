@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link active"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge" id="notifBadge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Top Navbar -->
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Welcome back, <span id="userName">Koushik</span></h1>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-info">
+                    <span class="acc-number">Acc: 00987654321</span>
+                    <span class="acc-balance">$12,450.00</span>
+                </div>
+                <div class="user-profile">
+                    <img src="images/favicon.png" alt="User Avatar" class="avatar-sm">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Metric Cards -->
+            <div class="metrics-grid">
+                <div class="card metric-card">
+                    <div class="metric-info">
+                        <span class="metric-label">Total Balance</span>
+                        <h2 class="metric-value">$12,450.00</h2>
+                        <span class="metric-change text-success">↑ 12% vs last month</span>
+                    </div>
+                    <div class="metric-icon bg-primary-soft">💰</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-info">
+                        <span class="metric-label">Monthly Deposits</span>
+                        <h2 class="metric-value">$3,200.00</h2>
+                        <span class="metric-change text-success">↑ 5% vs last month</span>
+                    </div>
+                    <div class="metric-icon bg-teal-soft">📥</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-info">
+                        <span class="metric-label">Monthly Spending</span>
+                        <h2 class="metric-value">$1,850.40</h2>
+                        <span class="metric-change text-danger">↓ 2% vs last month</span>
+                    </div>
+                    <div class="metric-icon bg-secondary-soft">📤</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-info">
+                        <span class="metric-label">Active Loans</span>
+                        <h2 class="metric-value">0</h2>
+                        <span class="metric-change text-muted">No active loans</span>
+                    </div>
+                    <div class="metric-icon bg-accent-soft">🏦</div>
+                </div>
+            </div>
+
+            <!-- Charts and Activity -->
+            <div class="dashboard-grid">
+                <!-- Spending Chart -->
+                <div class="card chart-card">
+                    <h3 class="card-title">Spending Analytics</h3>
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="card activity-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Transactions</h3>
+                        <a href="transactions.html" class="text-link">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="activity-table">
+                            <thead>
+                                <tr>
+                                    <th>Recipient/Source</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Amazon Prime</td>
+                                    <td>05 Jun 2026</td>
+                                    <td class="amount-out">-$14.99</td>
+                                    <td><span class="status-pill success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Salary Credit</td>
+                                    <td>01 Jun 2026</td>
+                                    <td class="amount-in">+$5,000.00</td>
+                                    <td><span class="status-pill success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Electric Bill</td>
+                                    <td>28 May 2026</td>
+                                    <td class="amount-out">-$120.50</td>
+                                    <td><span class="status-pill warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Netflix</td>
+                                    <td>25 May 2026</td>
+                                    <td class="amount-out">-$19.99</td>
+                                    <td><span class="status-pill success">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Dashboard Chart
+        const ctx = document.getElementById('spendingChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Shopping', 'Bills', 'Entertainment', 'Food', 'Others'],
+                datasets: [{
+                    data: [35, 25, 15, 15, 10],
+                    backgroundColor: ['#2563EB', '#14B8A6', '#F59E0B', '#EF4444', '#64748B']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

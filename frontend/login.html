@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="auth-page section-padding">
+        <div class="container container-narrow">
+            <div class="card login-card">
+                <div class="text-center mb-lg">
+                    <h1 class="section-title">Welcome Back</h1>
+                    <p class="text-muted">Enter your credentials to access your secure account.</p>
+                </div>
+
+                <form id="loginForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="username">Account Number / Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-group">
+                            <input type="password" id="password" name="password" required>
+                            <div class="strength-meter" id="strengthMeter"></div>
+                        </div>
+                        <div class="auth-links">
+                            <label><input type="checkbox"> Remember Me</label>
+                            <a href="#" id="forgotPassword">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login to My Account</button>
+                    <div class="text-center mt-xl">
+                        <p>Don't have an account? <a href="register.html" class="text-link">Open one today</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal (Simplified) -->
+    <div id="forgotModal" class="modal" style="display: none;">
+        <!-- Modal content... -->
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Password Strength Logic
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.getElementById('strengthMeter');
+
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            strengthMeter.className = 'strength-meter';
+            if (val.length > 0) {
+                if (val.length < 6) strengthMeter.classList.add('strength-weak');
+                else if (val.length < 10) strengthMeter.classList.add('strength-medium');
+                else strengthMeter.classList.add('strength-strong');
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate JWT Login
+            localStorage.setItem('bams_token', 'simulated_jwt_token');
+            alert('Login Successful!');
+            window.location.href = 'dashboard.html';
+        });
+
+        document.getElementById('forgotPassword').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Enter your registered email address:');
+            if (email) {
+                alert('OTP sent to ' + email + '. (Simulation)');
+                const otp = prompt('Enter 4-digit OTP:');
+                if (otp) {
+                    const newPass = prompt('Enter new password:');
+                    if (newPass) alert('Password updated successfully!');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

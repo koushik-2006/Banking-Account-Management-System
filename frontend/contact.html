@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Branch Locator | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="faq.html" class="nav-link">Help</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Open Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero hero section-padding">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">We're Here to <span class="text-secondary">Help</span></h1>
+                <p class="hero-subtitle">Have questions? Reach out to our 24/7 support team or visit a branch near you.
+                </p>
+            </div>
+            <div class="hero-image">
+                <div class="hero-banner-placeholder bg-accent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support & Form Section -->
+    <section class="contact-details section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Reach us via email, phone, or visit our headquarters.</p>
+                    <ul class="info-list">
+                        <li><strong>📍 Address:</strong> 123 Banking Plaza, Financial District, NY 10001</li>
+                        <li><strong>📞 Phone:</strong> +1 (800) 123-BAMS</li>
+                        <li><strong>📧 Email:</strong> support@bams.com</li>
+                        <li><strong>🕒 Hours:</strong> 24/7 Digital Support | Mon-Fri 9AM-5PM Branches</li>
+                    </ul>
+                    <div class="social-links-contact">
+                        <!-- Socials -->
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="card contact-form-card">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="general">General Inquiry</option>
+                                <option value="account">Account Support</option>
+                                <option value="loan">Loan Application</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Locator -->
+    <section class="branch-locator section-padding bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Branch Locator</h2>
+                <div class="search-box">
+                    <input type="text" id="branchSearch" placeholder="Search by city or zip code..."
+                        class="branch-input">
+                </div>
+            </div>
+            <div class="branch-results">
+                <!-- Map placeholder -->
+                <div class="map-placeholder">
+                    <p>Google Maps Integration Placeholder</p>
+                </div>
+                <div class="branch-directory">
+                    <table class="branch-table">
+                        <thead>
+                            <tr>
+                                <th>Branch Name</th>
+                                <th>City</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody id="branchTableBody">
+                            <tr>
+                                <td>Main Plaza</td>
+                                <td>New York</td>
+                                <td>+1 (212) 555-0199</td>
+                            </tr>
+                            <tr>
+                                <td>Silicon Valley</td>
+                                <td>San Francisco</td>
+                                <td>+1 (415) 555-0123</td>
+                            </tr>
+                            <tr>
+                                <td>Biscayne Blvd</td>
+                                <td>Miami</td>
+                                <td>+1 (305) 555-0456</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col-1">
+                    <a href="#" class="footer-logo">BAMS</a>
+                    <p class="footer-desc">Providing secure and innovative banking solutions since 2026. Your trust is
+                        our foundation.</p>
+                </div>
+                <div class="footer-col-2">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="policies.html">Privacy Policy</a></li>
+                        <li><a href="policies.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Branch Locator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p class="footer-desc">Subscribe for the latest updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="footer-input">
+                        <button type="button" class="btn btn-accent">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
+                <p>Designed with ❤️ for modern banking.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

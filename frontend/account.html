@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Overview | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- jsPDF for statements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar (Same as dashboard) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link active"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Account <span class="text-secondary">Details</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button id="downloadStatement" class="btn btn-outline">Download Statement</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Account Info Card -->
+            <div class="card account-info-card mb-lg">
+                <div class="account-details-grid">
+                    <div class="detail-item">
+                        <span class="label">Account Number</span>
+                        <span class="value">00987654321</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Account Type</span>
+                        <span class="value">Premium Savings</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">IFSC Code</span>
+                        <span class="value">BAMS0001234</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Branch</span>
+                        <span class="value">Main Plaza, NY</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Status</span>
+                        <span class="value text-success">● Active</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Current Balance</span>
+                        <span class="value">$12,450.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Detailed Transaction History</h3>
+                    <div class="table-filters">
+                        <input type="text" placeholder="Search transactions..." class="search-input-sm">
+                        <select class="filter-select">
+                            <option>All Types</option>
+                            <option>Debit</option>
+                            <option>Credit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="activity-table" id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Transaction ID</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05 Jun 2026</td>
+                                <td>Amazon Prime Subscription</td>
+                                <td>TXN987654</td>
+                                <td>Entertainment</td>
+                                <td class="amount-out">-$14.99</td>
+                            </tr>
+                            <tr>
+                                <td>01 Jun 2026</td>
+                                <td>Monthly Salary Credit</td>
+                                <td>TXN987653</td>
+                                <td>Salary</td>
+                                <td class="amount-in">+$5,000.00</td>
+                            </tr>
+                            <tr>
+                                <td>28 May 2026</td>
+                                <td>Con Ed Electric</td>
+                                <td>TXN987652</td>
+                                <td>Bills</td>
+                                <td class="amount-out">-$120.50</td>
+                            </tr>
+                            <tr>
+                                <td>25 May 2026</td>
+                                <td>Netflix</td>
+                                <td>TXN987651</td>
+                                <td>Entertainment</td>
+                                <td class="amount-out">-$19.99</td>
+                            </tr>
+                            <tr>
+                                <td>20 May 2026</td>
+                                <td>Transfer to Alice</td>
+                                <td>TXN987650</td>
+                                <td>Transfer</td>
+                                <td class="amount-out">-$250.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Statement Download 
+        document.getElementById('downloadStatement').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(18);
+            doc.text('BAMS - Account Statement', 14, 22);
+            doc.setFontSize(11);
+            doc.text('Acc Number: 00987654321', 14, 30);
+            doc.text('Date: ' + new Date().toLocaleDateString(), 14, 38);
+
+            doc.autoTable({
+                startY: 45,
+                html: '#transactionTable',
+                headStyles: { fillColor: [15, 23, 42] }
+            });
+
+            doc.save('BAMS_Statement.pdf');
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

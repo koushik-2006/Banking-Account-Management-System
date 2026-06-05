@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ & Help Center | BAMS</title>
+    <title>Policies & Legal | BAMS</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -23,7 +23,7 @@
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-                <a href="faq.html" class="nav-link active">Help</a>
+                <a href="faq.html" class="nav-link">Help</a>
             </nav>
             <div class="nav-actions">
                 <a href="#" class="btn btn-outline">Login</a>
@@ -32,108 +32,78 @@
         </div>
     </header>
 
-    <!-- FAQ Hero -->
-    <section class="faq-hero hero section-padding">
+    <!-- Policies Hero -->
+    <section class="policies-hero hero section-padding">
         <div class="container hero-grid">
             <div class="hero-content">
-                <h1 class="hero-title">How Can We <span class="text-secondary">Help?</span></h1>
-                <p class="hero-subtitle">Search our help center or browse categories to find the answers you need.</p>
-                <div class="search-box">
-                    <input type="text" id="faqSearch" placeholder="Search for questions..." class="branch-input">
-                </div>
+                <h1 class="hero-title">Policies & <span class="text-secondary">Security</span></h1>
+                <p class="hero-subtitle">Your trust is our priority. Read about how we protect your data and the
+                    regulations we follow.</p>
             </div>
             <div class="hero-image">
-                <div class="hero-banner-placeholder bg-accent"></div>
+                <div class="hero-banner-placeholder bg-primary"></div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Categories -->
-    <section class="faq-categories section-padding">
+    <!-- Accordion Section -->
+    <section class="policies-section section-padding">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Browse by Category</h2>
-            </div>
-            <div class="categories-grid">
-                <div class="card category-btn" data-category="accounts">
-                    <div class="icon">🏦</div>
-                    <h3>Accounts</h3>
+            <div class="accordion">
+                <!-- Privacy Policy -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Privacy Policy</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>We are committed to protecting your personal information. This policy explains how we
+                            collect, use, and safeguard your data.</p>
+                        <ul>
+                            <li>Data Encryption: All data is encrypted at rest and in transit.</li>
+                            <li>No Third-Party Sharing: We never sell your personal information.</li>
+                            <li>Access Control: Only authorized personnel have access to sensitive data.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card category-btn" data-category="loans">
-                    <div class="icon">💰</div>
-                    <h3>Loans</h3>
-                </div>
-                <div class="card category-btn" data-category="transfers">
-                    <div class="icon">💸</div>
-                    <h3>Transfers</h3>
-                </div>
-                <div class="card category-btn" data-category="security">
-                    <div class="icon">🔒</div>
-                    <h3>Security</h3>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- FAQ Content -->
-    <section class="faq-content section-padding bg-light">
-        <div class="container">
-            <div id="faqResults" class="accordion">
-                <!-- FAQs will be here -->
-                <div class="accordion-item" data-category="accounts">
+                <!-- Terms & Conditions -->
+                <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>How do I open a new account?</span>
+                        <span>Terms & Conditions</span>
                         <span class="icon">+</span>
                     </button>
                     <div class="accordion-content">
-                        <p>You can open a new account online by clicking the "Open Account" button in the navigation bar
-                            and following the instructions.</p>
+                        <p>By using our services, you agree to comply with our terms and conditions. These terms govern
+                            the relationship between you and BAMS.</p>
                     </div>
                 </div>
-                <div class="accordion-item" data-category="loans">
+
+                <!-- Loan Policy -->
+                <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>What are the interest rates for personal loans?</span>
+                        <span>Loan & Interest Rate Policy</span>
                         <span class="icon">+</span>
                     </button>
                     <div class="accordion-content">
-                        <p>Our personal loan interest rates start at 10.5% per annum, depending on your credit profile
-                            and tenure.</p>
+                        <p>Information about interest rates, repayment terms, and eligibility for various loan products.
+                        </p>
                     </div>
                 </div>
-                <div class="accordion-item" data-category="security">
+
+                <!-- Grievance Redressal -->
+                <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>Is my data secure with BAMS?</span>
+                        <span>Grievance Redressal System</span>
                         <span class="icon">+</span>
                     </button>
                     <div class="accordion-content">
-                        <p>Yes, we use military-grade 256-bit AES encryption to protect your data and all transactions
-                            are monitored for suspicious activity.</p>
+                        <p>We strive for excellence, but if you have any issues, our grievance cell is here to help.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Help Ticket -->
-    <section class="help-ticket section-padding">
-        <div class="container">
-            <div class="card help-ticket-card">
-                <div class="text-center">
-                    <h2 class="section-title">Still Need Help?</h2>
-                    <p class="section-subtitle">Submit a help ticket and our team will get back to you within 24 hours.
-                    </p>
-                </div>
-                <form id="helpTicketForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="ticket-subject">Subject</label>
-                        <input type="text" id="ticket-subject" placeholder="Briefly describe your issue" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-desc">Description</label>
-                        <textarea id="ticket-desc" rows="4" placeholder="Detailed explanation" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
-                </form>
+            <div class="text-center mt-xl">
+                <button onclick="window.print()" class="btn btn-outline">Print Policies</button>
             </div>
         </div>
     </section>
@@ -183,19 +153,7 @@
 
     <script src="js/app.js"></script>
     <script>
-        // Simple FAQ Search
-        const searchInput = document.getElementById('faqSearch');
-        const faqItems = document.querySelectorAll('.accordion-item');
-
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            faqItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(term) ? 'block' : 'none';
-            });
-        });
-
-        // Accordion Toggle
+        // Simple Accordion Toggle
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 const item = header.parentElement;

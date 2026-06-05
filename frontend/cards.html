@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Management | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link active"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Card <span class="text-secondary">Management</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-primary">Request New Card</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-grid">
+                <!-- Card Visual -->
+                <div class="card-display-section">
+                    <div class="credit-card" id="bankCard">
+                        <div class="card-inner">
+                            <!-- Front -->
+                            <div class="card-front bg-primary">
+                                <div class="card-header-flex">
+                                    <span class="bank-name">BAMS GOLD</span>
+                                    <img src="images/logo.png" alt="Chip" width="40"
+                                        style="filter: brightness(0) invert(1);">
+                                </div>
+                                <div class="card-number" id="cardNumber">**** **** **** 4321</div>
+                                <div class="card-footer-flex">
+                                    <div class="card-holder">
+                                        <span class="label">CARD HOLDER</span>
+                                        <span class="name">KOUSHIK USER</span>
+                                    </div>
+                                    <div class="card-expiry">
+                                        <span class="label">EXPIRES</span>
+                                        <span class="date">12/29</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-back">
+                                <div class="mag-stripe"></div>
+                                <div class="cvv-section">
+                                    <span class="label">CVV</span>
+                                    <div class="cvv-box">***</div>
+                                </div>
+                                <p class="card-info-text">This card is property of BAMS. If found, please return to any
+                                    BAMS branch.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-muted mt-md">Click card to flip</p>
+                </div>
+
+                <!-- Card Controls -->
+                <div class="card p-xl">
+                    <h3 class="mb-lg">Card Settings</h3>
+                    <div class="form-group flex-between">
+                        <div>
+                            <h4>Block Card</h4>
+                            <p class="text-muted">Temporarily disable all transactions</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="blockToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <hr class="sidebar-divider">
+                    <div class="form-group">
+                        <div class="flex-between">
+                            <h4>Online Transactions</h4>
+                            <span class="text-secondary" id="onlineVal">$5,000</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="10000" step="500" value="5000" id="onlineRange">
+                    </div>
+                    <div class="form-group">
+                        <div class="flex-between">
+                            <h4>International Usage</h4>
+                            <span class="text-secondary" id="intVal">$0</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="5000" step="500" value="0" id="intRange">
+                    </div>
+                    <button class="btn btn-secondary btn-full mt-lg">Update Limits</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        const bankCard = document.getElementById('bankCard');
+        bankCard.addEventListener('click', () => {
+            bankCard.classList.toggle('flipped');
+        });
+
+        // Limit range displays
+        document.getElementById('onlineRange').addEventListener('input', (e) => {
+            document.getElementById('onlineVal').innerText = '$' + parseInt(e.target.value).toLocaleString();
+        });
+        document.getElementById('intRange').addEventListener('input', (e) => {
+            document.getElementById('intVal').innerText = '$' + parseInt(e.target.value).toLocaleString();
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

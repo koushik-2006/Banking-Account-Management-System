@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Audit | BAMS Admin</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo-container">
+                <img src="../images/logo.png" alt="BAMS Logo">
+                <span>Admin Panel</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link"><span class="icon">📊</span> Admin Home</a>
+            <a href="customers.html" class="sidebar-link"><span class="icon">👥</span> Customers</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loan Processing</a>
+            <a href="transactions.html" class="sidebar-link active"><span class="icon">🔍</span> Global Audit</a>
+            <a href="reports.html" class="sidebar-link"><span class="icon">📑</span> Business Reports</a>
+            <hr class="sidebar-divider">
+            <a href="../login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Exit Admin</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <h1 class="welcome-text">Global <span class="text-secondary">Audit Feed</span></h1>
+            </div>
+            <div class="topbar-right">
+                <input type="text" placeholder="Search Txn ID..." class="search-input-sm">
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Table Hub -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All System Transactions</h3>
+                    <div class="table-filters">
+                        <select class="filter-select">
+                            <option>Today</option>
+                            <option>Last 7 Days</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Txn ID</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05 Jun 2026</td>
+                                <td>#TXN123456</td>
+                                <td>Acc *4321</td>
+                                <td>Acc *9988</td>
+                                <td class="amount-out">-$1,200.00</td>
+                                <td><span class="status-pill success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>05 Jun 2026</td>
+                                <td>#TXN123455</td>
+                                <td>Acc *8877</td>
+                                <td>Acc *1122</td>
+                                <td class="amount-out">-$50.00</td>
+                                <td><span class="status-pill warning">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>05 Jun 2026</td>
+                                <td>#TXN123454</td>
+                                <td>ATM Cash</td>
+                                <td>Acc *4321</td>
+                                <td class="amount-out">-$200.00</td>
+                                <td><span class="status-pill success">Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

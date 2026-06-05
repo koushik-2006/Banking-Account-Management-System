@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Portal | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link active"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Loans & <span class="text-secondary">Financing</span></h1>
+            </div>
+            <div class="topbar-right">
+                <a href="emi-calculator.html" class="btn btn-outline">EMI Calculator</a>
+                <button class="btn btn-primary" id="applyLoanBtn">Apply for Loan</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Active Loans -->
+            <div class="card mb-lg">
+                <h3 class="card-title">My Active Loans</h3>
+                <div class="no-loans text-center py-xl">
+                    <div class="metric-icon bg-primary-soft mx-auto mb-md">🏦</div>
+                    <p class="text-muted">You have no active loans with BAMS.</p>
+                </div>
+            </div>
+
+            <!-- Loan Products -->
+            <h3 class="mb-lg">Loan Products</h3>
+            <div class="beneficiary-grid">
+                <div class="card beneficiary-card">
+                    <div class="metric-icon bg-secondary-soft">🏠</div>
+                    <h3>Home Loan</h3>
+                    <p class="text-muted">Interest rates starting at 8.5% P.A.</p>
+                    <ul class="loan-features">
+                        <li>Tenure up to 30 years</li>
+                        <li>Zero Preprocessing Fees</li>
+                    </ul>
+                    <button class="btn btn-primary mt-md">Apply Now</button>
+                </div>
+                <div class="card beneficiary-card">
+                    <div class="metric-icon bg-teal-soft">🚗</div>
+                    <h3>Car Loan</h3>
+                    <p class="text-muted">Quick approval, rates from 9.0% P.A.</p>
+                    <ul class="loan-features">
+                        <li>100% On-road funding</li>
+                        <li>Minimal Documentation</li>
+                    </ul>
+                    <button class="btn btn-primary mt-md">Apply Now</button>
+                </div>
+                <div class="card beneficiary-card">
+                    <div class="metric-icon bg-accent-soft">🎓</div>
+                    <h3>Education Loan</h3>
+                    <p class="text-muted">Focus on studies, starting at 10.5% P.A.</p>
+                    <ul class="loan-features">
+                        <li>Moratorium Period</li>
+                        <li>Tax Benefits (Sec 80E)</li>
+                    </ul>
+                    <button class="btn btn-primary mt-md">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Application Modal -->
+    <div id="loanModal" class="modal-overlay" style="display: none;">
+        <div class="card modal-card" style="max-width: 600px;">
+            <h3>Loan Application</h3>
+            <form class="contact-form text-left" style="margin-top: var(--space-md);">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Loan Type</label>
+                        <select class="filter-select">
+                            <option>Home Loan</option>
+                            <option>Car Loan</option>
+                            <option>Education Loan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Required Amount ($)</label>
+                        <input type="number" placeholder="50000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Purpose of Loan</label>
+                    <textarea rows="2"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" id="closeLoan">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        const applyLoanBtn = document.getElementById('applyLoanBtn');
+        const loanModal = document.getElementById('loanModal');
+        const closeLoan = document.getElementById('closeLoan');
+
+        applyLoanBtn.addEventListener('click', () => loanModal.style.display = 'flex');
+        closeLoan.addEventListener('click', () => loanModal.style.display = 'none');
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

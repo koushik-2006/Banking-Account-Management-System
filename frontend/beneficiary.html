@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiary Management | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link active"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Manage <span class="text-secondary">Beneficiaries</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-primary" id="addBenBtn">Add New Payee</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Search & Filters -->
+            <div class="card mb-lg">
+                <div class="table-filters">
+                    <input type="text" placeholder="Search by name or account..." class="branch-input"
+                        style="margin-bottom: 0;">
+                </div>
+            </div>
+
+            <!-- Beneficiary List -->
+            <div class="beneficiary-grid">
+                <div class="card beneficiary-card">
+                    <div class="metric-icon bg-primary-soft">AJ</div>
+                    <h3>Alice Johnson</h3>
+                    <p class="text-muted">Acc: ****3210 | BAMS Bank</p>
+                    <div class="ben-actions">
+                        <a href="transfer.html" class="btn btn-outline btn-full">Transfer</a>
+                        <button class="btn btn-outline">Edit</button>
+                    </div>
+                </div>
+                <div class="card beneficiary-card">
+                    <div class="metric-icon bg-teal-soft">BS</div>
+                    <h3>Bob Smith</h3>
+                    <p class="text-muted">Acc: ****2109 | Chase Bank</p>
+                    <div class="ben-actions">
+                        <a href="transfer.html" class="btn btn-outline btn-full">Transfer</a>
+                        <button class="btn btn-outline">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Beneficiary Modal -->
+    <div id="benModal" class="modal-overlay" style="display: none;">
+        <div class="card modal-card" style="max-width: 500px;">
+            <h3>Add New Beneficiary</h3>
+            <form class="contact-form text-left" style="margin-top: var(--space-md);">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Account Number</label>
+                    <input type="text" placeholder="000123456789">
+                </div>
+                <div class="form-group">
+                    <label>Bank Name</label>
+                    <input type="text" placeholder="e.g. HDFC, Chase">
+                </div>
+                <div class="form-group">
+                    <label>IFSC Code</label>
+                    <input type="text" placeholder="BANK0001234">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" id="closeBen">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Beneficiary</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        const addBenBtn = document.getElementById('addBenBtn');
+        const benModal = document.getElementById('benModal');
+        const closeBen = document.getElementById('closeBen');
+
+        addBenBtn.addEventListener('click', () => benModal.style.display = 'flex');
+        closeBen.addEventListener('click', () => benModal.style.display = 'none');
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

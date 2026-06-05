@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link active"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Transaction <span class="text-secondary">Analytics</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-outline">Export CSV</button>
+                <button class="btn btn-primary" id="downloadStat">Download PDF</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Filter Section -->
+            <div class="card mb-lg">
+                <div class="filter-panel">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Date Range</label>
+                        <input type="date" class="search-input-sm">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Transaction Type</label>
+                        <select class="filter-select">
+                            <option>All Transactions</option>
+                            <option>Credits</option>
+                            <option>Debits</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Category</label>
+                        <select class="filter-select">
+                            <option>All Categories</option>
+                            <option>Shopping</option>
+                            <option>Bills</option>
+                            <option>Transfers</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="dashboard-grid mb-lg">
+                <div class="card">
+                    <h3 class="card-title">Monthly Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="monthlyTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Category Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Table -->
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction ID</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Mock Data -->
+                            <tr>
+                                <td>05 Jun 2026</td>
+                                <td>#TXN987654</td>
+                                <td>Transfer to Alice</td>
+                                <td>Transfer</td>
+                                <td><span class="status-pill success">Success</span></td>
+                                <td class="amount-out">-$250.00</td>
+                            </tr>
+                            <tr>
+                                <td>01 Jun 2026</td>
+                                <td>#TXN987653</td>
+                                <td>Monthly Salary</td>
+                                <td>Salary</td>
+                                <td><span class="status-pill success">Success</span></td>
+                                <td class="amount-in">+$5,000.00</td>
+                            </tr>
+                            <tr>
+                                <td>28 May 2026</td>
+                                <td>#TXN987652</td>
+                                <td>Electric Bill</td>
+                                <td>Bills</td>
+                                <td><span class="status-pill success">Success</span></td>
+                                <td class="amount-out">-$120.50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Line Chart
+        const trendCtx = document.getElementById('monthlyTrendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Spent',
+                    data: [1200, 1900, 1500, 2100, 1800, 2450],
+                    borderColor: '#2563EB',
+                    fill: false
+                }, {
+                    label: 'Received',
+                    data: [5000, 5000, 5000, 5200, 5000, 5000],
+                    borderColor: '#14B8A6',
+                    fill: false
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Pie Chart
+        const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Shopping', 'Bills', 'Food', 'Travel'],
+                datasets: [{
+                    data: [30, 25, 20, 25],
+                    backgroundColor: ['#2563EB', '#14B8A6', '#F59E0B', '#EF4444']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

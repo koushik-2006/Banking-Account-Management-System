@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link active"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">Recent <span class="text-secondary">Alerts</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-outline" id="markRead">Mark All as Read</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="notif-feed">
+                <!-- Transaction Alert -->
+                <div class="notif-item unread">
+                    <div class="notif-icon bg-teal-soft">💸</div>
+                    <div class="notif-content">
+                        <h4>Transaction Successful</h4>
+                        <p>You have successfully transferred $250.00 to Alice Johnson. Ref: TXN987650.</p>
+                        <span class="notif-time">2 hours ago</span>
+                    </div>
+                </div>
+
+                <!-- Security Alert -->
+                <div class="notif-item unread">
+                    <div class="notif-icon bg-secondary-soft">🔒</div>
+                    <div class="notif-content">
+                        <h4>Security Alert</h4>
+                        <p>A new login was detected from a Chrome browser on Windows 11.</p>
+                        <span class="notif-time">5 hours ago</span>
+                    </div>
+                </div>
+
+                <!-- Loan Reminder -->
+                <div class="notif-item unread">
+                    <div class="notif-icon bg-accent-soft">🏦</div>
+                    <div class="notif-content">
+                        <h4>Upcoming Loan Due</h4>
+                        <p>Your Personal Loan EMI of $450.00 is due on 10th June 2026.</p>
+                        <span class="notif-time">Yesterday</span>
+                    </div>
+                </div>
+
+                <!-- System Message -->
+                <div class="notif-item">
+                    <div class="notif-icon bg-primary-soft">📢</div>
+                    <div class="notif-content">
+                        <h4>System Maintenance</h4>
+                        <p>Routine system maintenance is scheduled for Sunday, 7th June from 2 AM to 4 AM UTC.</p>
+                        <span class="notif-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Mark all as read logic
+        document.getElementById('markRead').addEventListener('click', () => {
+            document.querySelectorAll('.notif-item').forEach(item => {
+                item.classList.remove('unread');
+            });
+            alert('All notifications marked as read.');
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

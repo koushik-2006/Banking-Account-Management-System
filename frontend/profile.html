@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Management | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="BAMS Logo">
+                <span>BAMS</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
+            <a href="account.html" class="sidebar-link"><span class="icon">💳</span> Account Overview</a>
+            <a href="transactions.html" class="sidebar-link"><span class="icon">💸</span> Transactions</a>
+            <a href="transfer.html" class="sidebar-link"><span class="icon">🔄</span> Transfer Money</a>
+            <a href="loans.html" class="sidebar-link"><span class="icon">🏦</span> Loans</a>
+            <a href="cards.html" class="sidebar-link"><span class="icon">🃏</span> My Cards</a>
+            <hr class="sidebar-divider">
+            <a href="profile.html" class="sidebar-link active"><span class="icon">👤</span> Profile</a>
+            <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
+                    class="badge">3</span></a>
+            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 class="welcome-text">My <span class="text-secondary">Profile</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-primary">Save Changes</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="card profile-card">
+                <div class="profile-header">
+                    <img src="images/favicon.png" alt="User Avatar" class="profile-avatar-large">
+                    <h2>Koushik</h2>
+                    <p class="text-muted">Member since Jan 2026</p>
+                </div>
+
+                <div class="profile-tabs">
+                    <div class="tab-link active" data-tab="personal">Personal Info</div>
+                    <div class="tab-link" data-tab="security">Security</div>
+                    <div class="tab-link" data-tab="preferences">Preferences</div>
+                </div>
+
+                <div class="tab-content" id="personal">
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" value="Koushik" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" value="User" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" value="koushik@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" value="+1 234 567 890">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Residential Address</label>
+                            <textarea rows="2">123 Banking Street, Financial District, New York, NY 10001</textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="security" style="display: none;">
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label><input type="checkbox" checked> Enable Two-Factor Authentication (2FA)</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const targetId = tab.getAttribute('data-tab');
+                contents.forEach(content => {
+                    content.style.display = content.id === targetId ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>
