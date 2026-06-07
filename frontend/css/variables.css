@@ -53,3 +53,25 @@
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
 }
+
+:root {
+  --bg-page: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-navbar: #0A2342;
+  --text-primary: #1A1A2E;
+  --text-secondary: #4B5563;
+  --input-bg: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --bg-page: #0D1117;
+  --bg-card: #161B22;
+  --bg-navbar: #010409;
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --border-color: #30363D;
+  --input-bg: #21262D;
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+  --accent: #C9A84C;
+  --accent-light: #F0C040;
+}

@@ -1,0 +1,26 @@
+# Remaining Tasks Execution
+
+- [x] **Prompt 4: Global Logo Fix**
+  - [x] Replace broken `<img src="images/logo.png">` with the SVG fallback across all HTML files.
+  - [x] Handle relative paths (`../index.html` vs `index.html`) appropriately for files in subdirectories.
+- [x] **Prompt 5: Application Flow Pages (6 files)**
+  - [x] `apply-savings.html` (3 steps)
+  - [x] `apply-current.html` (3 steps)
+  - [x] `apply-fd.html` (2 steps, live calculator)
+  - [ ] `apply-personal-loan.html` (4 steps, live calculator)
+  - [ ] `apply-home-loan.html` (4 steps, auto-calculation)
+  - [ ] `apply-credit-card.html` (3 steps)
+  - [ ] Ensure all 6 files have validation, progress bars, Next/Back logic, and save to `localStorage`.
+- [ ] **Prompt 6: Admin Panel**
+  - [ ] Create `admin/setup.html` (First-time setup with secret key).
+  - [ ] Create `admin/login.html` (Authentication check).
+  - [ ] Create `admin/dashboard.html` (Metric cards, recent activity).
+  - [ ] Create `admin/customers.html` (List all `bams_user_*` keys, search, CSV export).
+  - [ ] Create `admin/applications.html` (Tabs for loans, FDs, cards with Approve/Reject actions).
+  - [ ] Modify `register.html` to integrate with Admin Portal.
+- [ ] **Prompt 7: Final Link Audit**
+  - [ ] `services.html`: Update Apply Now and Learn More links.
+  - [ ] `index.html`: Update Hero buttons and add stats counter animation.
+  - [ ] `dashboard.html` & Portal pages: Ensure sidebar links are correct.
+  - [ ] `apply-*.html`: Add top breadcrumbs.
+  - [ ] All pages: Update footer links (Home, Services, About, Contact, FAQ, Policies, Branch Locator) and add hidden Admin link.

@@ -14,10 +14,16 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo-container">
-                <img src="images/logo.png" alt="BAMS Logo">
-                <span>BAMS</span>
-            </a>
+            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="36" height="36" rx="8" fill="#0A2342"/>
+    <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
+    <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
+    <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
+    <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
+  </svg>
+  <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
+</a>
         </div>
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a>
@@ -30,7 +36,7 @@
             <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
             <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
                     class="badge">3</span></a>
-            <a href="login.html" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+            <a href="#" onclick="localStorage.removeItem(\'bams_user\');window.location.href=\'index.html\'" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
         </nav>
     </aside>
 
@@ -121,6 +127,37 @@
         </div>
     </div>
 
+    <script>
+
+function loadUserSession() {
+  const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
+  if (!user) {
+    window.location.href = 'login.html';
+    return;
+  }
+  const firstName = user.name ? user.name.split(' ')[0] : 'User';
+  const welcomeEls = document.querySelectorAll('.user-welcome-name, .sidebar-user-name, #welcome-name');
+  welcomeEls.forEach(el => el.textContent = firstName);
+  const fullNameEls = document.querySelectorAll('.user-full-name, #user-full-name');
+  fullNameEls.forEach(el => {
+    if (el.tagName === 'INPUT') el.value = user.name || 'Account Holder';
+    else el.textContent = user.name || 'Account Holder';
+  });
+  const emailEls = document.querySelectorAll('.user-email, #user-email');
+  emailEls.forEach(el => {
+    if (el.tagName === 'INPUT') el.value = user.email || '';
+    else el.textContent = user.email || '';
+  });
+  if (user.picture) {
+    const avatarEls = document.querySelectorAll('.user-avatar, #user-avatar');
+    avatarEls.forEach(el => { if(el.tagName === 'IMG') el.src = user.picture; });
+  }
+  const accountNo = user.accountNumber || 'BAMS2026' + Math.floor(1000 + Math.random()*9000);
+  const accEls = document.querySelectorAll('.user-account-no, #user-account-no');
+  accEls.forEach(el => el.textContent = accountNo);
+}
+loadUserSession();
+</script>
     <script src="js/app.js"></script>
     <script>
         const modeTabs = document.querySelectorAll('.tab-link');
@@ -159,6 +196,7 @@
             }
         });
     </script>
+<script src="js/theme.js"></script>
 </body>
 
 </html>

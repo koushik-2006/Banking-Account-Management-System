@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Current Account | BAMS</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <style>
+        .breadcrumb { padding: 15px 0; font-size: 14px; color: var(--text-muted); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .checklist-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 6px; }
+        .checklist-item input { width: 20px; height: 20px; accent-color: var(--primary); }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="36" rx="8" fill="#0A2342"/>
+                <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
+                <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
+                <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
+                <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
+              </svg>
+              <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
+            </a>
+            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+  <span id="theme-icon">🌙</span>
+  <span id="theme-label">Dark</span>
+</button>
+            <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+                <a href="login.html" class="btn btn-outline-nav">Login</a>
+                <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-padding" style="min-height: 80vh;">
+        <div class="container container-narrow">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> &rarr; <a href="services.html">Services</a> &rarr; Current Account
+            </div>
+            <div class="card registration-card">
+                <div class="text-center mb-lg">
+                    <h1 class="section-title">Apply for Current Account</h1>
+                    <p class="text-muted">Power your business with BAMS.</p>
+                </div>
+
+                <div class="progress-bar-container">
+                    <p class="text-center mb-md" style="font-weight: 600; color: var(--primary);">Step <span id="currentStepText">1</span> of 3</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar" style="background-color: var(--accent); width: 0%;"></div>
+                        <div class="progress-steps">
+                            <div class="step active" data-step="1">1</div>
+                            <div class="step" data-step="2">2</div>
+                            <div class="step" data-step="3">3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="applyForm" class="multi-step-form">
+                    <!-- Step 1: Business Details -->
+                    <div class="form-step active" id="step1">
+                        <h2 class="form-step-title">Step 1: Business Details</h2>
+                        <div class="form-group">
+                            <label>Business Name</label>
+                            <input type="text" id="businessName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Business Type</label>
+                            <select id="businessType" required>
+                                <option value="">Select Type</option>
+                                <option value="Proprietorship">Proprietorship</option>
+                                <option value="Partnership">Partnership</option>
+                                <option value="Pvt Ltd">Pvt Ltd</option>
+                                <option value="LLP">LLP</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>GST Number (Optional)</label>
+                            <input type="text" id="gstNumber" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" title="Enter valid GST number">
+                        </div>
+                        <label>Annual Turnover Range</label>
+                        <div class="radio-cards mb-md">
+                            <label class="radio-card">
+                                <input type="radio" name="turnover" value="< 10L" required>
+                                <div class="card-content"><strong>< 10L</strong></div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="turnover" value="10L - 50L">
+                                <div class="card-content"><strong>10L - 50L</strong></div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="turnover" value="50L+">
+                                <div class="card-content"><strong>50L+</strong></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Overdraft Facility -->
+                    <div class="form-step" id="step2">
+                        <h2 class="form-step-title">Step 2: Overdraft Facility</h2>
+                        <div class="form-group">
+                            <label style="font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 10px;">
+                                <input type="checkbox" id="odToggle" style="width:20px;height:20px;accent-color:var(--primary);">
+                                Do you need an Overdraft Facility?
+                            </label>
+                        </div>
+                        <div id="odSection" style="display:none; margin-top:20px; padding: 15px; border-left: 4px solid var(--accent); background: #f9f9f9;">
+                            <label>Requested Limit</label>
+                            <div class="radio-cards mb-md">
+                                <label class="radio-card">
+                                    <input type="radio" name="odLimit" value="₹50K">
+                                    <div class="card-content"><strong>₹50K</strong></div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="odLimit" value="₹1L">
+                                    <div class="card-content"><strong>₹1L</strong></div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="odLimit" value="₹5L">
+                                    <div class="card-content"><strong>₹5L</strong></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Purpose of Overdraft</label>
+                                <input type="text" id="odPurpose">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Documents Checklist -->
+                    <div class="form-step" id="step3">
+                        <h2 class="form-step-title">Step 3: Documents Checklist</h2>
+                        <p class="text-muted mb-md">Please confirm you have these documents ready for branch verification.</p>
+                        
+                        <label class="checklist-item">
+                            <input type="checkbox" required> Business PAN
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" required> GST Certificate
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" required> Address Proof
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" required> Latest ITR
+                        </label>
+
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation mt-xl">
+                        <button type="button" class="btn btn-outline" id="prevBtn" style="visibility: hidden;">Back</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                        <button type="submit" class="btn btn-accent" id="submitBtn" style="display: none;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-icon">✅</div>
+            <h2 class="mb-md">Application Submitted!</h2>
+            <p class="text-muted mb-lg">Your Current Account application has been received successfully.</p>
+            <p style="font-size: 0.9rem; color: var(--accent);">Redirecting to dashboard...</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div style="margin-bottom: 10px;">
+                <a href="index.html" style="color:white; margin:0 10px; text-decoration:none;">Home</a> |
+                <a href="services.html" style="color:white; margin:0 10px; text-decoration:none;">Services</a> |
+                <a href="about.html" style="color:white; margin:0 10px; text-decoration:none;">About</a> |
+                <a href="contact.html" style="color:white; margin:0 10px; text-decoration:none;">Contact</a> |
+                <a href="faq.html" style="color:white; margin:0 10px; text-decoration:none;">FAQ</a> |
+                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Privacy Policy</a> |
+                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Terms & Conditions</a>
+            </div>
+            <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
+            <a href="admin/login.html" style="font-size:11px;color:#555;opacity:0.4;text-decoration:none;">Admin</a>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('applyForm');
+        const steps = document.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.step');
+        const progressBar = document.getElementById('progressBar');
+        const currentStepText = document.getElementById('currentStepText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        let currentStep = 0;
+
+        document.getElementById('odToggle').addEventListener('change', function() {
+            document.getElementById('odSection').style.display = this.checked ? 'block' : 'none';
+            if(this.checked) {
+                document.querySelectorAll('input[name="odLimit"]').forEach(r => r.required = true);
+                document.getElementById('odPurpose').required = true;
+            } else {
+                document.querySelectorAll('input[name="odLimit"]').forEach(r => r.required = false);
+                document.getElementById('odPurpose').required = false;
+            }
+        });
+
+        function checkValidation() {
+            const inputs = steps[currentStep].querySelectorAll('input, select');
+            let valid = true;
+            inputs.forEach(input => {
+                if(!input.checkValidity()) {
+                    input.reportValidity();
+                    valid = false;
+                }
+            });
+            return valid;
+        }
+
+        function updateForm() {
+            steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
+            progressSteps.forEach((step, index) => step.classList.toggle('active', index <= currentStep));
+            progressBar.style.width = ((currentStep / (steps.length - 1)) * 100) + '%';
+            currentStepText.textContent = currentStep + 1;
+
+            prevBtn.style.visibility = (currentStep === 0) ? 'hidden' : 'visible';
+            if (currentStep === steps.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (checkValidation()) {
+                currentStep++;
+                updateForm();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            updateForm();
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if(!checkValidation()) return;
+            
+            const applicationData = {
+                type: 'Current Account',
+                businessName: document.getElementById('businessName').value,
+                turnover: document.querySelector('input[name="turnover"]:checked').value,
+                odRequested: document.getElementById('odToggle').checked,
+                dateApplied: new Date().toISOString(),
+                status: 'Pending'
+            };
+            
+            const user = JSON.parse(localStorage.getItem('bams_user'));
+            const applicant = user ? user.name : document.getElementById('businessName').value;
+            
+            const apps = JSON.parse(localStorage.getItem('bams_savings_apps') || '[]');
+            apps.push({...applicationData, applicant: applicant});
+            localStorage.setItem('bams_savings_apps', JSON.stringify(apps)); // Shared generic queue
+            
+            document.getElementById('successModal').style.display = 'flex';
+            setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
+            if (user) {
+                const navAuth = document.querySelector('.nav-auth-buttons');
+                if (navAuth) {
+                    navAuth.innerHTML = `<a href="dashboard.html" class="btn btn-outline-nav">Dashboard</a>`;
+                }
+            }
+        });
+    </script>
+<script src="js/theme.js"></script>
+</body>
+</html>
