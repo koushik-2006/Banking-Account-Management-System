@@ -81,6 +81,36 @@ img {
 .section-title {
     font-size: 2.5rem;
     margin-bottom: var(--space-md);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    /* Gold underline bar */
+    border-radius: 2px;
+}
+
+.text-center .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* For non-centered section titles */
+.section-title:not(.text-center) {
+    text-align: left;
+}
+
+.section-title:not(.text-center)::after {
+    left: 0;
+    transform: none;
 }
 
 .section-subtitle {
@@ -89,6 +119,7 @@ img {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--text-muted);
 }
 
 /* Buttons */
@@ -97,7 +128,8 @@ img {
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
+    border-radius: 8px;
+    /* Rounded corners as requested */
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -107,42 +139,44 @@ img {
 }
 
 .btn-primary {
-    background-color: var(--secondary);
-    color: var(--bg-white);
+    background-color: var(--accent);
+    color: var(--primary);
 }
 
 .btn-primary:hover {
-    background-color: var(--secondary-dark);
+    background-color: var(--accent-light);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+    color: var(--primary);
 }
 
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--secondary);
-    color: var(--secondary);
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 
 .btn-outline:hover {
-    background-color: var(--secondary);
+    background-color: var(--primary);
     color: var(--bg-white);
 }
 
 .btn-accent {
     background-color: var(--accent);
-    color: var(--bg-white);
+    color: var(--primary);
 }
 
 .btn-accent:hover {
-    background-color: var(--accent-dark);
+    background-color: var(--accent-light);
     box-shadow: var(--shadow-md);
 }
 
 /* Navbar */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border-color);
+    background-color: var(--primary);
+    /* Deep navy background */
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    /* Subtle gold border */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -164,12 +198,15 @@ img {
     gap: var(--space-sm);
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--primary);
+    color: var(--accent);
+    /* Gold logo text */
     font-family: var(--font-heading);
 }
 
 .logo-container img {
     height: 40px;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(21%) saturate(1048%) hue-rotate(6deg) brightness(89%) contrast(85%);
+    /* Attempt to tint logo to gold if it's an icon, otherwise it's just an img */
 }
 
 .nav-links {
@@ -179,12 +216,13 @@ img {
 
 .nav-link {
     font-weight: 500;
-    color: var(--text-main);
+    color: var(--bg-white);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--secondary);
+    color: var(--accent);
+    /* Gold hover */
 }
 
 .nav-actions {
@@ -204,12 +242,14 @@ img {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 25px -5px rgba(10, 35, 66, 0.15);
+    /* Navy hover shadow */
 }
 
 /* Footer */
 .footer {
     background-color: var(--primary);
+    /* Deep navy background */
     color: var(--bg-white);
     padding: var(--space-xl) 0 var(--space-md);
 }
@@ -226,17 +266,21 @@ img {
     font-size: 1.5rem;
     font-weight: 700;
     display: block;
+    color: var(--accent);
+    /* Gold footer logo */
 }
 
 .footer-desc {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
+    /* Light grey text */
     margin-bottom: var(--space-md);
 }
 
 .footer-title {
     font-size: 1.2rem;
     margin-bottom: var(--space-lg);
-    color: var(--bg-white);
+    color: var(--accent);
+    /* Gold section headings */
 }
 
 .footer-links li {
@@ -244,7 +288,8 @@ img {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
+    /* Light grey text */
 }
 
 .footer-links a:hover {
@@ -295,6 +340,24 @@ img {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: var(--space-md);
+    color: var(--primary);
+}
+
+.hero-title .accent-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title .accent-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(201, 168, 76, 0.3);
+    /* Transparent gold underline */
+    z-index: -1;
 }
 
 .hero-subtitle {
@@ -318,6 +381,7 @@ img {
 /* Statistics */
 .stats-section {
     background-color: var(--primary);
+    /* Deep navy background */
     color: var(--bg-white);
     padding: var(--space-xl) 0;
 }
@@ -332,7 +396,9 @@ img {
 .stat-number {
     font-size: 2.5rem;
     color: var(--accent);
+    /* Gold numbers */
     margin-bottom: var(--space-xs);
+    font-weight: 700;
 }
 
 .stat-label {
@@ -349,11 +415,15 @@ img {
 
 .service-card {
     text-align: center;
+    border: 1px solid rgba(10, 35, 66, 0.1);
+    /* Thin navy border */
 }
 
 .service-icon {
     font-size: 3rem;
     margin-bottom: var(--space-md);
+    color: var(--accent);
+    /* Gold icon color */
 }
 
 .service-card h3 {
@@ -708,8 +778,10 @@ img {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--secondary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--primary);
+    /* Navy border on focus */
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+    /* Gold focus ring */
 }
 
 /* Branch Locator */
@@ -844,7 +916,8 @@ img {
     top: 50%;
     left: 0;
     height: 4px;
-    background-color: var(--secondary);
+    background-color: var(--accent);
+    /* Gold progress bar */
     width: 0%;
     transition: var(--transition-normal);
     z-index: 1;
@@ -883,8 +956,8 @@ img {
 }
 
 .step.active {
-    border-color: var(--secondary);
-    color: var(--secondary);
+    border-color: var(--accent);
+    color: var(--accent);
     background-color: var(--bg-white);
     transform: scale(1.1);
 }
@@ -930,7 +1003,8 @@ img {
     background-color: var(--bg-main);
     padding: var(--space-md);
     border-radius: var(--radius-md);
-    border-left: 4px solid var(--secondary);
+    border-left: 4px solid var(--accent);
+    /* Gold border */
 }
 
 /* Login Specific */
@@ -977,11 +1051,35 @@ img {
 }
 
 .auth-links a {
-    color: var(--secondary);
+    color: var(--accent);
+    /* Gold links for auth */
 }
 
 .mb-lg {
     margin-bottom: var(--space-lg);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-muted);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .5em;
 }
 
 @media (max-width: 600px) {
@@ -1042,8 +1140,11 @@ img {
 }
 
 .sidebar-link.active {
-    border-left: 4px solid var(--secondary);
-    background-color: rgba(37, 99, 235, 0.1);
+    border-left: 4px solid var(--accent);
+    /* Gold active indicator */
+    background-color: rgba(201, 168, 76, 0.1);
+    /* Subtle gold tint */
+    color: var(--accent);
 }
 
 .sidebar-divider {
@@ -1701,5 +1802,86 @@ input:checked+.toggle-slider:before {
 
     .metrics-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Service Details Additions */
+.eligibility-section {
+    padding: var(--space-xl) 0;
+}
+
+.eligibility-table {
+    width: 100%;
+    max-width: 800px;
+    margin: var(--space-lg) auto 0;
+    border-collapse: collapse;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.eligibility-table th,
+.eligibility-table td {
+    padding: 1.25rem var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.eligibility-table th {
+    background-color: var(--primary);
+    color: var(--bg-white);
+    font-weight: 600;
+}
+
+.eligibility-table tr:last-child td {
+    border-bottom: none;
+}
+
+.eligibility-table tr:nth-child(even) {
+    background-color: rgba(10, 35, 66, 0.02);
+}
+
+/* FAQ Accordion in Service Pages */
+.faq-section {
+    padding: var(--space-xl) 0;
+}
+
+/* Floating Sticky Apply Now Button */
+.sticky-apply-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-full);
+    padding: 0.85rem 1.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background-color: var(--accent);
+    color: var(--primary);
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    transition: var(--transition-normal);
+    animation: sticky-bounce 3s infinite;
+}
+
+.sticky-apply-btn:hover {
+    background-color: var(--primary);
+    color: var(--bg-white);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+@keyframes sticky-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-4px);
     }
 }

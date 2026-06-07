@@ -41,7 +41,7 @@
         <header class="dashboard-topbar">
             <div class="topbar-left">
                 <button class="menu-toggle" id="menuToggle">☰</button>
-                <h1 class="welcome-text">Transaction <span class="text-secondary">Analytics</span></h1>
+                <h1 class="welcome-text">Transaction <span class="accent-underline">Analytics</span></h1>
             </div>
             <div class="topbar-right">
                 <button class="btn btn-outline">Export CSV</button>
@@ -152,12 +152,12 @@
                 datasets: [{
                     label: 'Spent',
                     data: [1200, 1900, 1500, 2100, 1800, 2450],
-                    borderColor: '#2563EB',
+                    borderColor: '#0A2342', /* Navy */
                     fill: false
                 }, {
                     label: 'Received',
                     data: [5000, 5000, 5000, 5200, 5000, 5000],
-                    borderColor: '#14B8A6',
+                    borderColor: '#C9A84C', /* Gold */
                     fill: false
                 }]
             },
@@ -172,7 +172,7 @@
                 labels: ['Shopping', 'Bills', 'Food', 'Travel'],
                 datasets: [{
                     data: [30, 25, 20, 25],
-                    backgroundColor: ['#2563EB', '#14B8A6', '#F59E0B', '#EF4444']
+                    backgroundColor: ['#0A2342', '#C9A84C', '#1B3D6E', '#F0C040']
                 }]
             },
             options: { responsive: true, maintainAspectRatio: false }

@@ -1,30 +1,30 @@
 :root {
     /* Primary Colors */
-    --primary: #0F172A;
-    --primary-light: #1E293B;
-    --primary-dark: #020617;
+    --primary: #0A2342;
+    --primary-light: #1B3D6E;
+    --primary-dark: #05162B;
 
     /* Secondary Colors */
-    --secondary: #2563EB;
-    --secondary-light: #3B82F6;
-    --secondary-dark: #1D4ED8;
+    --secondary: #0A2342;
+    --secondary-light: #1B3D6E;
+    --secondary-dark: #05162B;
 
     /* Accent Colors */
-    --accent: #14B8A6;
-    --accent-light: #2DD4BF;
-    --accent-dark: #0F766E;
+    --accent: #C9A84C;
+    --accent-light: #F0C040;
+    --accent-dark: #A68A3E;
 
     /* Semantic Colors */
-    --success: #22C55E;
+    --success: #10B981;
     --warning: #F59E0B;
     --danger: #EF4444;
-    --info: #3B82F6;
+    --info: #1B3D6E;
 
     /* Neutral Colors */
-    --bg-main: #F8FAFC;
+    --bg-main: #F5F7FA;
     --bg-white: #FFFFFF;
-    --text-main: #1E293B;
-    --text-muted: #64748B;
+    --text-main: #1A1A2E;
+    --text-muted: #6B7280;
     --border-color: #E2E8F0;
 
     /* Typography */
@@ -34,9 +34,9 @@
     /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 2rem;
-    --space-xl: 4rem;
+    --space-md: 1.0rem;
+    --space-lg: 2.0rem;
+    --space-xl: 4.0rem;
 
     /* Shadow */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

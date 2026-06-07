@@ -162,7 +162,7 @@
                 labels: ['Shopping', 'Bills', 'Entertainment', 'Food', 'Others'],
                 datasets: [{
                     data: [35, 25, 15, 15, 10],
-                    backgroundColor: ['#2563EB', '#14B8A6', '#F59E0B', '#EF4444', '#64748B']
+                    backgroundColor: ['#0A2342', '#C9A84C', '#1B3D6E', '#F0C040', '#6B7280']
                 }]
             },
             options: {
@@ -179,6 +179,18 @@
         const sidebar = document.getElementById('sidebar');
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
+        });
+
+        // Load User Profile from LocalStorage (Google Login)
+        window.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('bams_user'));
+            if (user && user.loginType === 'google') {
+                document.getElementById('userName').textContent = user.name.split(' ')[0];
+                const avatars = document.querySelectorAll('.avatar-sm, .sidebar-header img');
+                avatars.forEach(img => {
+                    if (user.picture) img.src = user.picture;
+                });
+            }
         });
     </script>
 </body>

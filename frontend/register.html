@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -34,14 +36,17 @@
                 </div>
 
                 <!-- Progress Bar -->
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                    <div class="progress-steps">
-                        <div class="step active" data-step="1">1</div>
-                        <div class="step" data-step="2">2</div>
-                        <div class="step" data-step="3">3</div>
-                        <div class="step" data-step="4">4</div>
-                        <div class="step" data-step="5">5</div>
+                <div class="progress-bar-container">
+                    <p class="text-center mb-md" style="font-weight: 600; color: var(--primary);">Step <span
+                            id="currentStepText">1</span> of 3</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar" style="background-color: var(--accent); width: 0%;">
+                        </div>
+                        <div class="progress-steps">
+                            <div class="step active" data-step="1">1</div>
+                            <div class="step" data-step="2">2</div>
+                            <div class="step" data-step="3">3</div>
+                        </div>
                     </div>
                 </div>
 
@@ -51,89 +56,104 @@
                         <h2 class="form-step-title">Step 1: Personal Details</h2>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" required>
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
                                 <input type="date" id="dob" name="dob" required>
                             </div>
                             <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select id="gender" name="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <label>Gender</label>
+                                <div style="display: flex; gap: var(--space-md); margin-top: 5px;">
+                                    <label style="font-weight: 400;"><input type="radio" name="gender" value="male"
+                                            checked> Male</label>
+                                    <label style="font-weight: 400;"><input type="radio" name="gender" value="female">
+                                        Female</label>
+                                    <label style="font-weight: 400;"><input type="radio" name="gender" value="other">
+                                        Other</label>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number</label>
+                                <input type="tel" id="mobile" name="mobile" placeholder="+91 XXXX XXXX" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: var(--space-md);">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
                         </div>
                     </div>
 
-                    <!-- Step 2: Address Details -->
+                    <!-- Step 2: Account Details -->
                     <div class="form-step" id="step2">
-                        <h2 class="form-step-title">Step 2: Address Information</h2>
-                        <div class="form-group">
-                            <label for="address">Street Address</label>
-                            <input type="text" id="address" name="address" required>
+                        <h2 class="form-step-title">Step 2: Account Information</h2>
+                        <label>Select Account Type</label>
+                        <div class="radio-cards">
+                            <label class="radio-card">
+                                <input type="radio" name="accountType" value="savings" checked>
+                                <div class="card-content">
+                                    <span class="icon">💰</span>
+                                    <strong>Savings</strong>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted);">High interest rates</p>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="accountType" value="current">
+                                <div class="card-content">
+                                    <span class="icon">💼</span>
+                                    <strong>Current</strong>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted);">For businesses</p>
+                                </div>
+                            </label>
                         </div>
-                        <div class="form-grid">
+                        <div class="form-grid mt-xl">
                             <div class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" id="city" name="city" required>
+                                <label for="nomineeName">Nominee Full Name</label>
+                                <input type="text" id="nomineeName" name="nomineeName" required>
                             </div>
                             <div class="form-group">
-                                <label for="zip">Zip Code</label>
-                                <input type="text" id="zip" name="zip" required>
+                                <label for="nomineeRelation">Relationship</label>
+                                <input type="text" id="nomineeRelation" name="nomineeRelation" required>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 3: Account Type & Identification -->
+                    <!-- Step 3: Security Setup -->
                     <div class="form-step" id="step3">
-                        <h2 class="form-step-title">Step 3: Account & Identity</h2>
+                        <h2 class="form-step-title">Step 3: Security Setup</h2>
                         <div class="form-group">
-                            <label for="accountType">Account Type</label>
-                            <select id="accountType" name="accountType">
-                                <option value="savings">Savings Account</option>
-                                <option value="current">Current Account</option>
-                            </select>
+                            <label for="regPassword">Create Password</label>
+                            <div class="password-group">
+                                <input type="password" id="regPassword" name="regPassword" required>
+                                <div class="strength-meter" id="strengthMeter"></div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="identityType">Identification Type (Aadhaar/PAN)</label>
-                            <input type="text" id="identityId" name="identityId" placeholder="Enter ID Number" required>
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <div class="form-group" style="margin-top: var(--space-md);">
+                            <label style="font-weight: 400; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" required> I agree to the <a href="policies.html" class="text-link">Terms &
+                                    Conditions</a>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Step 4: Nominee Details -->
-                    <div class="form-step" id="step4">
-                        <h2 class="form-step-title">Step 4: Nominee Details</h2>
-                        <div class="form-group">
-                            <label for="nomineeName">Nominee Full Name</label>
-                            <input type="text" id="nomineeName" name="nomineeName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nomineeRelation">Relationship</label>
-                            <input type="text" id="nomineeRelation" name="nomineeRelation" required>
-                        </div>
+                    <!-- Google Sign-In -->
+                    <div class="divider"><span>OR</span></div>
+                    <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-callback="handleGoogleLogin"
+                        data-auto_prompt="false"></div>
+                    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                        data-text="signup_with" data-shape="rectangular" data-logo_alignment="left" data-width="100%">
                     </div>
-
-                    <!-- Step 5: Review & Submit -->
-                    <div class="form-step" id="step5">
-                        <h2 class="form-step-title">Step 5: Review & Submit</h2>
-                        <div class="review-section">
-                            <p>Please review your details before submitting. By clicking "Complete Registration", you
-                                agree to our Terms & Conditions.</p>
-                        </div>
-                    </div>
+                    <br>
 
                     <!-- Navigation Buttons -->
                     <div class="form-navigation mt-xl">
                         <button type="button" class="btn btn-outline" id="prevBtn"
-                            style="display: none;">Previous</button>
+                            style="visibility: hidden;">Previous</button>
                         <button type="button" class="btn btn-primary" id="nextBtn">Next Step</button>
                         <button type="submit" class="btn btn-accent" id="submitBtn" style="display: none;">Complete
                             Registration</button>
@@ -142,6 +162,21 @@
             </div>
         </div>
     </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-icon">✅</div>
+            <h2 class="mb-md">Account Created Successfully!</h2>
+            <p class="text-muted mb-lg">Welcome to BAMS. Your account has been initialized and is ready for use.</p>
+            <div
+                style="background: var(--bg-main); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
+                <p style="font-size: 0.9rem; margin-bottom: 5px;">Your Account Number:</p>
+                <strong style="font-size: 1.5rem; color: var(--primary);" id="accNumberDisplay">BAMS2026XXXX</strong>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--accent);">Redirecting to login in 3s...</p>
+        </div>
+    </div>
 
     <!-- Footer (Minimal) -->
     <footer class="footer">
@@ -152,10 +187,24 @@
 
     <script src="js/app.js"></script>
     <script>
+        // Google Sign-In Handler
+        function handleGoogleLogin(response) {
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            localStorage.setItem('bams_user', JSON.stringify({
+                name: payload.name,
+                email: payload.email,
+                picture: payload.picture,
+                loginType: 'google'
+            }));
+            localStorage.setItem('bams_token', 'google_verified_session');
+            window.location.href = 'dashboard.html';
+        }
+
         // Multi-Step Form Logic
         const steps = document.querySelectorAll('.form-step');
         const progressSteps = document.querySelectorAll('.step');
         const progressBar = document.getElementById('progressBar');
+        const currentStepText = document.getElementById('currentStepText');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const submitBtn = document.getElementById('submitBtn');
@@ -171,8 +220,9 @@
 
             const progress = (currentStep / (steps.length - 1)) * 100;
             progressBar.style.width = progress + '%';
+            if (currentStepText) currentStepText.textContent = currentStep + 1;
 
-            prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-block';
+            prevBtn.style.visibility = (currentStep === 0) ? 'hidden' : 'visible';
             if (currentStep === steps.length - 1) {
                 nextBtn.style.display = 'none';
                 submitBtn.style.display = 'inline-block';
@@ -196,10 +246,52 @@
             }
         });
 
+        // Password Strength
+        const regPassword = document.getElementById('regPassword');
+        const strengthMeter = document.getElementById('strengthMeter');
+        if (regPassword && strengthMeter) {
+            regPassword.addEventListener('input', () => {
+                const val = regPassword.value;
+                strengthMeter.className = 'strength-meter';
+                if (val.length > 0) {
+                    if (val.length < 6) strengthMeter.classList.add('strength-weak');
+                    else if (val.length < 10) strengthMeter.classList.add('strength-medium');
+                    else strengthMeter.classList.add('strength-strong');
+                }
+            });
+        }
+
         document.getElementById('registrationForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Registration Successful! Your account is being processed.');
-            window.location.href = 'login.html';
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Generate Random Account Number
+            const randomDigits = Math.floor(1000 + Math.random() * 9000);
+            const accNo = `BAMS2026${randomDigits}`;
+
+            // Save to localStorage
+            const userData = {
+                fullName: document.getElementById('fullName') ? document.getElementById('fullName').value : 'New User',
+                email: document.getElementById('email') ? document.getElementById('email').value : '',
+                accountNumber: accNo,
+                registrationDate: new Date().toISOString()
+            };
+            localStorage.setItem('bams_registered_user', JSON.stringify(userData));
+
+            // Show Success Modal
+            document.getElementById('accNumberDisplay').textContent = accNo;
+            document.getElementById('successModal').style.display = 'flex';
+
+            // Redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 3000);
         });
 
         updateForm();

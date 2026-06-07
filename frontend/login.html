@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -44,12 +46,22 @@
                             <a href="forgot-password.html" id="forgotPassword">Forgot Password?</a>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">Login to My Account</button>
-                    <div class="text-center mt-xl">
-                        <p>Don't have an account? <a href="register.html" class="text-link">Open one today</a></p>
-                    </div>
-                </form>
             </div>
+
+            <!-- Google Sign-In -->
+            <div class="divider"><span>OR</span></div>
+            <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-callback="handleGoogleLogin"
+                data-auto_prompt="false"></div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with"
+                data-shape="rectangular" data-logo_alignment="left" data-width="100%"></div>
+            <br>
+
+            <button type="submit" class="btn btn-primary btn-full">Login to My Account</button>
+            <div class="text-center mt-xl">
+                <p>Don't have an account? <a href="register.html" class="text-link">Open one today</a></p>
+            </div>
+            </form>
+        </div>
         </div>
     </main>
 
@@ -66,6 +78,19 @@
 
     <script src="js/app.js"></script>
     <script>
+        // Google Sign-In Handler
+        function handleGoogleLogin(response) {
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            localStorage.setItem('bams_user', JSON.stringify({
+                name: payload.name,
+                email: payload.email,
+                picture: payload.picture,
+                loginType: 'google'
+            }));
+            localStorage.setItem('bams_token', 'google_verified_session');
+            window.location.href = 'dashboard.html';
+        }
+
         // Password Strength Logic
         const passwordInput = document.getElementById('password');
         const strengthMeter = document.getElementById('strengthMeter');
