@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -127,7 +125,9 @@
 
     <div style="display: grid; grid-template-columns: 1fr 380px; gap: 24px; align-items: start;">
 
-      <div id="branch-map" style="height: 420px; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; z-index: 1;"></div>
+      <div id="branch-map" style="height: 420px; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; z-index: 1; background: #E5E7EB;">
+        <iframe id="gmap-iframe" width="100%" height="100%" frameborder="0" style="border:0;" src="" allowfullscreen="" loading="lazy"></iframe>
+      </div>
 
       <div id="branch-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
 
@@ -202,58 +202,34 @@ const branches = [
   { name: "Easy pAy — Hyderabad",        city: "Hyderabad",  address: "5 Banjara Hills Road, Hyderabad, TS 500034",  lat: 17.4126,  lng: 78.4483,  phone: "+91 40 7777 8888",  hours: "Mon–Sat 9AM–4PM" },
 ];
 
-let map, markers = [], allBranches = branches;
+let allBranches = branches;
 
 function initMap() {
-  map = L.map('branch-map').setView([17.5, 78.5], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors',
-    maxZoom: 18
-  }).addTo(map);
-
-  const goldIcon = L.divIcon({
-    className: '',
-    html: '<div style="width:32px;height:32px;background:#C9A84C;border:3px solid #0A0A0A;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -36]
-  });
-
-  branches.forEach((b, i) => {
-    const marker = L.marker([b.lat, b.lng], { icon: goldIcon })
-      .addTo(map)
-      .bindPopup(
-        '<div style="font-family:sans-serif;min-width:200px">' +
-        '<strong style="color:#0A0A0A;font-size:14px">' + b.name + '</strong><br>' +
-        '<span style="font-size:12px;color:#6B7280">' + b.address + '</span><br><br>' +
-        '<span style="font-size:12px">📞 ' + b.phone + '</span><br>' +
-        '<span style="font-size:12px">🕐 ' + b.hours + '</span><br><br>' +
-        '<a href="https://www.openstreetmap.org/?mlat=' + b.lat + '&mlon=' + b.lng + '" target="_blank" style="color:#C9A84C;font-size:12px;font-weight:600">Get Directions →</a>' +
-        '</div>'
-      );
-    markers.push({ marker, branch: b });
-  });
-
   renderBranchList(branches);
+  if (branches.length > 0) {
+    focusBranch(0); // Show the first branch initially
+  }
 }
 
 function renderBranchList(list) {
   const container = document.getElementById('branch-list');
-  container.innerHTML = list.map((b, i) =>
-    '<div onclick="focusBranch(' + branches.indexOf(b) + ')" style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s" onmouseover="this.style.borderColor=\\'#C9A84C\\'" onmouseout="this.style.borderColor=\\'#E5E7EB\\'">' +
+  container.innerHTML = list.map((b, i) => {
+    const originalIndex = branches.indexOf(b);
+    return '<div onclick="focusBranch(' + originalIndex + ')" style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s" onmouseover="this.style.borderColor=\\'#C9A84C\\'" onmouseout="this.style.borderColor=\\'#E5E7EB\\'">' +
     '<div style="font-size:13px;font-weight:600;color:#0A0A0A;margin-bottom:4px">' + b.name + '</div>' +
     '<div style="font-size:12px;color:#6B7280;margin-bottom:6px">' + b.address + '</div>' +
     '<div style="display:flex;gap:12px">' +
     '<span style="font-size:11px;color:#C9A84C;font-weight:500">📞 ' + b.phone + '</span>' +
     '<span style="font-size:11px;color:#6B7280">🕐 ' + b.hours + '</span>' +
-    '</div></div>'
-  ).join('');
+    '</div></div>';
+  }).join('');
 }
 
 function focusBranch(i) {
   const b = branches[i];
-  map.setView([b.lat, b.lng], 14);
-  markers[i].marker.openPopup();
+  const iframe = document.getElementById('gmap-iframe');
+  // Use the exact lat and lng for precise Google Maps placement
+  iframe.src = `https://maps.google.com/maps?q=${b.lat},${b.lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 }
 
 function filterBranches(query) {
@@ -262,7 +238,9 @@ function filterBranches(query) {
     b.city.toLowerCase().includes(q) || b.name.toLowerCase().includes(q) || b.address.toLowerCase().includes(q)
   );
   renderBranchList(filtered);
-  if (filtered.length === 1) focusBranch(branches.indexOf(filtered[0]));
+  if (filtered.length > 0) {
+    focusBranch(branches.indexOf(filtered[0]));
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initMap);
