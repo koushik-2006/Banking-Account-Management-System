@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Personal Loan | Easy pAy</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
+            </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+        </div>
+    </div>
+</header>
+
+<main class="section-padding bg-light">
+    <div class="container container-narrow">
+        <div id="auth-bar" style="background:var(--bg-main); padding:15px; border-radius:8px; margin-bottom:20px; font-weight:bold; color:var(--text-main); border:1px solid var(--border-color); display:flex; justify-content:space-between; flex-wrap:wrap;">
+            <span>Account: <span id="bar_acc" style="color:var(--primary);"></span></span>
+            <span>Holder: <span id="bar_name"></span></span>
+        </div>
+
+        <div class="card" id="application-form-card">
+            <h2 class="text-center mb-md">Apply for Personal Loan</h2>
+            
+            <div class="step-bar mb-xl">
+                <div class="step-item active" id="step-btn-1">1. Loan Details</div>
+                <div class="step-item" id="step-btn-2">2. Employment</div>
+                <div class="step-item" id="step-btn-3">3. Documents</div>
+                <div class="step-item" id="step-btn-4">4. Review</div>
+            </div>
+
+            <form id="plForm">
+                <!-- STEP 1 -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group text-center">
+                        <label>Loan Amount Required</label>
+                        <h2 id="slider_val" style="color:var(--primary);margin:10px 0;">₹5,00,000</h2>
+                        <input type="range" id="pl_amt" min="50000" max="2500000" step="10000" value="500000" style="width:100%;" oninput="calcEMI()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Purpose of Loan</label>
+                        <select id="pl_purpose">
+                            <option value="Medical Emergency">Medical Emergency</option>
+                            <option value="Home Renovation">Home Renovation</option>
+                            <option value="Education">Education</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Debt Consolidation">Debt Consolidation</option>
+                            <option value="Business">Business</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-lg">
+                        <label>Loan Tenure</label>
+                        <div class="radio-card-grid mt-sm">
+                            <label class="radio-card-label"><input type="radio" name="pl_tenure" value="12" onchange="calcEMI()"><div class="radio-card-content"><h4>1 Year</h4></div></label>
+                            <label class="radio-card-label"><input type="radio" name="pl_tenure" value="24" onchange="calcEMI()"><div class="radio-card-content"><h4>2 Years</h4></div></label>
+                            <label class="radio-card-label"><input type="radio" name="pl_tenure" value="36" onchange="calcEMI()" checked><div class="radio-card-content"><h4>3 Years</h4></div></label>
+                            <label class="radio-card-label"><input type="radio" name="pl_tenure" value="48" onchange="calcEMI()"><div class="radio-card-content"><h4>4 Years</h4></div></label>
+                            <label class="radio-card-label"><input type="radio" name="pl_tenure" value="60" onchange="calcEMI()"><div class="radio-card-content"><h4>5 Years</h4></div></label>
+                        </div>
+                    </div>
+
+                    <div class="calc-box">
+                        <h3 class="mb-sm text-center">Live EMI Calculator</h3>
+                        <div class="calc-row"><span>Interest Rate:</span> <strong id="calc_rate"></strong></div>
+                        <div class="calc-row"><span>Monthly EMI:</span> <strong id="calc_emi" style="color:var(--accent);font-size:1.5rem;"></strong></div>
+                        <hr style="border-color:var(--accent);">
+                        <div class="calc-row"><span>Total Interest:</span> <strong id="calc_int"></strong></div>
+                        <div class="calc-row"><span>Processing Fee:</span> <strong id="calc_fee"></strong></div>
+                        <div class="calc-row"><span>Total Repayment:</span> <strong id="calc_tot"></strong></div>
+                    </div>
+                    <div class="text-right mt-lg"><button type="button" class="btn btn-primary next-btn" onclick="nextStep(2)">Next &rarr;</button></div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="form-step" id="step2" style="display:none;">
+                    <div class="form-group">
+                        <label>Employment Type</label>
+                        <div style="display:flex;gap:15px;margin-top:10px;">
+                            <label><input type="radio" name="pl_emp" value="Salaried" checked> Salaried</label>
+                            <label><input type="radio" name="pl_emp" value="Self-Employed"> Self-Employed</label>
+                            <label><input type="radio" name="pl_emp" value="Business Owner"> Business Owner</label>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Company / Business Name</label><input type="text" id="pl_comp" required></div>
+                    <div class="form-group"><label>Designation</label><input type="text" id="pl_desig"></div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Monthly Income (₹)</label>
+                            <input type="number" id="pl_inc" required>
+                            <small id="inc-warn" style="color:red;display:none;">Minimum income required is ₹20,000/month</small>
+                        </div>
+                        <div class="form-group"><label>Years at Current Job</label><input type="number" id="pl_yrs" min="1" required></div>
+                    </div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(1)">&larr; Back</button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextStep(3)">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="form-step" id="step3" style="display:none;">
+                    <p class="text-muted text-center mb-md">Documents are stored locally for demo. In production, these are securely uploaded.</p>
+                    <div id="doc-list" style="display:flex;flex-direction:column;gap:15px;">
+                        <!-- JS populated -->
+                    </div>
+                    <p class="text-center mt-md"><strong id="doc-count">0 of 5 documents uploaded</strong></p>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(2)">&larr; Back</button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextStep(4)">Review &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="form-step" id="step4" style="display:none;">
+                    <div class="calc-box">
+                        <h3 class="mb-sm">Loan Summary</h3>
+                        <div class="calc-row"><span>Amount:</span> <strong id="rev_amt" style="color:var(--accent);"></strong></div>
+                        <div class="calc-row"><span>EMI:</span> <strong id="rev_emi"></strong></div>
+                        <div class="calc-row"><span>Tenure:</span> <strong id="rev_ten"></strong></div>
+                        <div class="calc-row"><span>Rate:</span> <strong id="rev_rate"></strong></div>
+                        <div class="calc-row"><span>Income:</span> <strong id="rev_inc"></strong></div>
+                    </div>
+                    <h3 class="mt-lg mb-sm">EMI Schedule (First 3 Months)</h3>
+                    <table class="rates-table" style="font-size:0.85rem;" id="amort_table">
+                        <thead><tr><th>Month</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+
+                    <div class="form-group mt-md">
+                        <label style="font-weight:normal; display:flex; gap:10px;">
+                            <input type="checkbox" id="pl_agree" required>
+                            <span>I declare all information is correct and authorize CIBIL check.</span>
+                        </label>
+                    </div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(3)">&larr; Back</button>
+                        <button type="submit" class="btn btn-accent" id="submitBtn">Apply for Loan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script>
+requireLogin('Personal Loan', 'apply-personal-loan.html');
+const user = getUser();
+if(user) {
+    document.getElementById('bar_acc').textContent = user.accountNumber;
+    document.getElementById('bar_name').textContent = user.name;
+}
+
+const docs = ["Latest Salary Slip", "3 Months Bank Statement", "Aadhaar Card (Front/Back)", "PAN Card", "Passport Photo"];
+const docList = document.getElementById('doc-list');
+docs.forEach((doc, idx) => {
+    docList.innerHTML += `
+        <div style="padding:15px; border:1px solid var(--border-color); border-radius:8px; display:flex; justify-content:space-between; align-items:center; background:#fff;">
+            <div>
+                <strong>${doc}</strong>
+                <div id="stat_${idx}" style="font-size:0.8rem;color:var(--text-muted);margin-top:5px;">Not uploaded</div>
+            </div>
+            <input type="file" onchange="updDoc(${idx}, this)" style="max-width:200px;">
+        </div>
+    `;
+});
+let upCount = 0;
+function updDoc(idx, input) {
+    if(input.files.length > 0) {
+        document.getElementById(`stat_${idx}`).innerHTML = `<span style="color:green;">✓ Uploaded</span> (${input.files[0].name})`;
+        upCount++;
+    } else {
+        document.getElementById(`stat_${idx}`).textContent = 'Not uploaded';
+        upCount--;
+    }
+    document.getElementById('doc-count').textContent = `${upCount} of 5 documents uploaded`;
+}
+
+let c = {};
+function calcEMI() {
+    const p = Number(document.getElementById('pl_amt').value);
+    document.getElementById('slider_val').textContent = '₹' + p.toLocaleString('en-IN');
+    const m = Number(document.querySelector('input[name="pl_tenure"]:checked').value);
+    
+    let rate = 12.0, feeP = 2.0;
+    if(p <= 200000) { rate = 10.5; feeP = 1.0; }
+    else if(p <= 500000) { rate = 11.0; feeP = 1.0; }
+    else if(p <= 1000000) { rate = 11.5; feeP = 1.5; }
+    
+    const r = rate / 12 / 100;
+    const emi = p * r * Math.pow(1+r, m) / (Math.pow(1+r, m) - 1);
+    const total = emi * m;
+    const interest = total - p;
+    const fee = p * (feeP/100);
+    
+    c = { p, m, rate, emi, total, interest, fee };
+    document.getElementById('calc_rate').textContent = rate + '% p.a';
+    document.getElementById('calc_emi').textContent = '₹' + Math.round(emi).toLocaleString('en-IN');
+    document.getElementById('calc_int').textContent = '₹' + Math.round(interest).toLocaleString('en-IN');
+    document.getElementById('calc_fee').textContent = '₹' + Math.round(fee).toLocaleString('en-IN') + ` (${feeP}%)`;
+    document.getElementById('calc_tot').textContent = '₹' + Math.round(total).toLocaleString('en-IN');
+}
+
+function nextStep(step) {
+    if(step === 3) {
+        const inc = document.getElementById('pl_inc').value;
+        if(!inc) return alert('Enter income');
+        if(inc < 20000) { document.getElementById('inc-warn').style.display='block'; return; }
+        document.getElementById('inc-warn').style.display='none';
+    }
+    if(step === 4) {
+        document.getElementById('rev_amt').textContent = '₹' + c.p.toLocaleString('en-IN');
+        document.getElementById('rev_emi').textContent = '₹' + Math.round(c.emi).toLocaleString('en-IN');
+        document.getElementById('rev_ten').textContent = c.m + ' Months';
+        document.getElementById('rev_rate').textContent = c.rate + '%';
+        document.getElementById('rev_inc').textContent = '₹' + Number(document.getElementById('pl_inc').value).toLocaleString();
+        
+        const tb = document.querySelector('#amort_table tbody');
+        tb.innerHTML = '';
+        let bal = c.p;
+        const r = c.rate/12/100;
+        for(let i=1; i<=3; i++) {
+            let intP = bal * r;
+            let prinP = c.emi - intP;
+            bal -= prinP;
+            tb.innerHTML += `<tr><td>${i}</td><td>₹${Math.round(c.emi).toLocaleString()}</td><td>₹${Math.round(prinP).toLocaleString()}</td><td>₹${Math.round(intP).toLocaleString()}</td><td>₹${Math.round(bal).toLocaleString()}</td></tr>`;
+        }
+    }
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+function prevStep(step) {
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+document.getElementById('plForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!document.getElementById('pl_agree').checked) return alert('Please agree');
+    
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+    
+    const loanRef = generateRef('LN');
+    saveApplication('loan', {
+        loanRef,
+        accNo: user.accountNumber,
+        amount: c.p,
+        emi: Math.round(c.emi),
+        tenure: c.m,
+        rate: c.rate,
+        status: 'Applied'
+    });
+    
+    setTimeout(() => {
+        window.location.href = `loan-success.html?ref=${loanRef}`;
+    }, 1500);
+});
+calcEMI();
+</script>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
+
+<script src="js/theme.js"></script>
+</body></html>

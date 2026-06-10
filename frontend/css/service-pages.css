@@ -1,0 +1,175 @@
+/* --- Service Pages Shared CSS --- */
+
+/* Hero Banner */
+.service-hero {
+    background: var(--bg-card);
+    padding: var(--space-xl) var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+.service-hero h1 {
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin-bottom: var(--space-sm);
+}
+.service-hero .tagline {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+.breadcrumb {
+    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Feature Cards */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+.feature-card {
+    background: var(--bg-card);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+.feature-card .icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+/* Rate Tables */
+.rates-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-lg) 0;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+.rates-table th, .rates-table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.rates-table th {
+    background: rgba(201, 168, 76, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Step Progress Bar */
+.step-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+    position: relative;
+}
+.step-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border-color);
+    z-index: 1;
+}
+.step-item {
+    background: var(--bg-card);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    z-index: 2;
+    color: var(--text-muted);
+}
+.step-item.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* Radio Cards */
+.radio-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+.radio-card-label {
+    cursor: pointer;
+    position: relative;
+}
+.radio-card-label input {
+    position: absolute;
+    opacity: 0;
+}
+.radio-card-content {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    transition: all 0.2s;
+    background: var(--bg-card);
+    text-align: center;
+}
+.radio-card-label input:checked + .radio-card-content {
+    border-color: var(--accent);
+    background: rgba(201, 168, 76, 0.05);
+}
+
+/* Calculator Box */
+.calc-box {
+    background: rgba(201, 168, 76, 0.05);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-sm);
+    font-size: 0.95rem;
+}
+.calc-highlight {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: var(--space-md) 0;
+    text-align: center;
+}
+
+/* Success Pages */
+.success-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--space-xxl) 0;
+}
+.success-icon {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+}
+.ref-box {
+    background: var(--bg-main);
+    border: 2px dashed var(--accent);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin: var(--space-lg) 0;
+}
+.status-stepper {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space-xl) 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}

@@ -1,250 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Loan | BAMS</title>
+    <title>Home Loan | Easy pAy</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="36" height="36" rx="8" fill="#0A2342"/>
-    <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
-    <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
-    <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
-    <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
-  </svg>
-  <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
-</a>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="services.html" class="nav-link active">Services</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="faq.html" class="nav-link">Help</a>
-            </nav>
-            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
-  <span id="theme-icon">🌙</span>
-  <span id="theme-label">Dark</span>
-</button>
-            <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
-                <a href="login.html" class="btn btn-outline-nav">Login</a>
-                <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
             </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero section-padding">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1 class="hero-title">Home <span class="accent-underline">Loan</span></h1>
-                <p class="hero-subtitle">Build or buy your dream home with low rates and long repayment options. Enjoy a
-                    seamless home buying process with end-to-end support.</p>
-                <div class="hero-actions">
-                    <a href="register.html" class="btn btn-primary">Apply Now</a>
-                    <a href="emi-calculator.html" class="btn btn-outline">Calculate EMI</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-banner-placeholder bg-accent"
-                    style="height: 300px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-lg); color: white; font-size: 5rem;">
-                    🏠</div>
-            </div>
+<main>
+    <section class="service-hero" style="background:#064E3B;color:#fff;">
+        <div class="container">
+            <div class="breadcrumb" style="color:#A7F3D0;"><a href="index.html" style="color:#C9A84C;">Home</a> &rarr; <a href="services.html" style="color:#C9A84C;">Services</a> &rarr; Home Loan</div>
+            <h1 style="color:#C9A84C;">Home Loan</h1>
+            <p class="tagline" style="color:#D1FAE5;">Finance your dream home with rates starting at 8.5%</p>
         </div>
     </section>
-
-    <!-- Features Section -->
+    
     <section class="section-padding bg-light">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Key Features & Benefits</h2>
-                <p class="section-subtitle">Flexible and pocket-friendly loan solutions to help you purchase your dream
-                    property.</p>
+            <div class="features-grid">
+                <div class="feature-card text-center"><h3>Up to ₹5 Crore</h3></div>
+                <div class="feature-card text-center"><h3>30-Year Tenure</h3></div>
+                <div class="feature-card text-center"><h3>Tax Benefits</h3></div>
+                <div class="feature-card text-center"><h3>Balance Transfer</h3></div>
             </div>
-            <div class="services-grid">
-                <div class="card service-card">
-                    <div class="service-icon">🏡</div>
-                    <h3>Up to ₹5 Crores</h3>
-                    <p>Get generous credit thresholds up to ₹5 crores to build, extend, or purchase apartments and
-                        plots.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>8.5% Interest Rate</h3>
-                    <p>Avail floating interest rates starting at an affordable 8.5% per annum, aligned with RBI
-                        benchmarks.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">📅</div>
-                    <h3>30-Year Tenure</h3>
-                    <p>Optimize your monthly budgets with prolonged repayment tenures spanning up to 30 years.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">💸</div>
-                    <h3>Tax Benefits</h3>
-                    <p>Enjoy tax exemption benefits of up to ₹2 lakhs on interest (Sec 24b) and ₹1.5 lakhs on principal
-                        (Sec 80C).</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Eligibility Section -->
-    <section class="eligibility-section section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Eligibility Criteria & Documents</h2>
-                <p class="section-subtitle">Review the eligibility requirements before initiating your home loan
-                    application.</p>
-            </div>
-            <table class="eligibility-table">
-                <thead>
-                    <tr>
-                        <th>Criteria</th>
-                        <th>Details Required</th>
-                    </tr>
-                </thead>
+            
+            <table class="rates-table mb-xl mt-xl">
+                <thead><tr><th>Category</th><th>Interest Rate (p.a.)</th></tr></thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Age Requirement</strong></td>
-                        <td>18 to 70 years (At the time of loan maturity).</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Minimum Income</strong></td>
-                        <td>Salaried: ₹35,000 net per month. Self-employed: Minimum ₹5 lakhs annual taxable income.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Required Documents</strong></td>
-                        <td>PAN, Aadhaar, 3 months salary slips, 2 years ITR (Self-employed), Property Deeds, Sale
-                            Agreement, NOC and building plan approvals.</td>
-                    </tr>
+                    <tr><td>Salaried</td><td>8.50% - 9.25%</td></tr>
+                    <tr><td>Self-employed</td><td>8.75% - 9.50%</td></tr>
+                    <tr><td>Pre-approved</td><td>8.40%</td></tr>
                 </tbody>
             </table>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section section-padding bg-light">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Read information regarding property vetting, co-applicants, and home loan
-                    closure rules.</p>
-            </div>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>What property documents are required for the loan approval?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>You will need the builder's allotment letter, sale agreement, NOC from the society or local
-                            authority, and title deeds of the property.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Can I apply for a home loan jointly?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Yes, you can co-apply with immediate family members (spouse, parents, children) to enhance
-                            your home loan eligibility.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Are there pre-closure charges on home loans?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>No, there are zero pre-closure or prepayment charges on floating-rate home loans as per
-                            regulatory directives.</p>
-                    </div>
-                </div>
+            
+            <div class="card bg-light text-center">
+                <h3 style="color:var(--primary);">Tax Benefits</h3>
+                <p class="text-muted mt-sm">Deduction up to ₹2 Lakhs on interest (Sec 24) + ₹1.5 Lakhs on principal (Sec 80C).</p>
             </div>
         </div>
     </section>
 
-    <!-- Sticky Apply Now Button -->
-    <a href="register.html" class="sticky-apply-btn">Apply Now &rarr;</a>
+    <section class="section-padding text-center">
+        <a href="apply-home-loan.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">Apply Now</a>
+    </section>
+</main>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col-1">
-                    <a href="index.html" class="footer-logo">BAMS</a>
-                    <p class="footer-desc">Providing secure and innovative banking solutions since 2026. Your trust is
-                        our foundation.</p>
-                </div>
-                <div class="footer-col-2">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-3">
-                    <h4 class="footer-title">Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="policies.html">Privacy Policy</a></li>
-                        <li><a href="policies.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Branch Locator</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-desc">Subscribe for the latest updates and offers.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email" class="footer-input">
-                        <button type="button" class="btn btn-accent">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
-                <p>Designed with ❤️ for modern banking.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/app.js"></script>
-    <script>
-        // Accordion Toggle logic
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                item.classList.toggle('active');
-                const icon = header.querySelector('.icon');
-                icon.textContent = item.classList.contains('active') ? '-' : '+';
-            });
-        });
-    </script>
-    <script>
-        const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-        if (user) {
-            const navAuth = document.querySelector('.nav-auth-buttons');
-            if(navAuth) {
-                navAuth.innerHTML =
-                    '<span style="font-size:13px;color:#C9A84C">👤 ' + user.name + '</span>' +
-                    '<a href="dashboard.html" class="btn-primary-nav">Dashboard</a>';
-            }
-        }
-    </script>
 <script src="js/theme.js"></script>
-</body>
-
-</html>
+</body></html>

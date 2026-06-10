@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Applications | Admin | Easy pAy</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/service-pages.css">
+</head>
+<body class="dashboard-body">
+    <aside class="sidebar" id="sidebar" style="background:#000;">
+        <div class="sidebar-header">
+            <h2 style="color:var(--primary);">Admin Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link">📊 Overview</a>
+            <a href="applications.html" class="sidebar-link active">📄 Applications</a>
+            <a href="../login.html" class="sidebar-link logout-link">🚪 Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main" style="padding:20px;">
+        <h1 class="mb-md">Manage Applications</h1>
+        <div class="card" style="padding:0;">
+            <div style="background:var(--bg-main); padding:15px; display:flex; gap:10px; border-bottom:1px solid var(--border-color);">
+                <button class="btn btn-outline active" onclick="loadTab('bams_savings_apps', this)">Savings</button>
+                <button class="btn btn-outline" onclick="loadTab('bams_current_apps', this)">Current</button>
+                <button class="btn btn-outline" onclick="loadTab('bams_fd_apps', this)">Fixed Deposits</button>
+                <button class="btn btn-outline" onclick="loadTab('bams_loan_apps', this)">Personal Loans</button>
+                <button class="btn btn-outline" onclick="loadTab('bams_homeloan_apps', this)">Home Loans</button>
+                <button class="btn btn-outline" onclick="loadTab('bams_card_apps', this)">Credit Cards</button>
+            </div>
+            <div class="table-responsive" style="padding:20px;">
+                <table class="rates-table" style="margin:0;">
+                    <thead><tr><th>Ref No</th><th>Applicant</th><th>Details</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="adminBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+    let currentKey = 'bams_savings_apps';
+    function loadTab(key, btn) {
+        document.querySelectorAll('.btn-outline').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentKey = key;
+        renderAdmin();
+    }
+    
+    function renderAdmin() {
+        const apps = JSON.parse(localStorage.getItem(currentKey) || '[]');
+        const tb = document.getElementById('adminBody');
+        tb.innerHTML = '';
+        apps.reverse().forEach((app, index) => {
+            const ref = app.accNo || app.fdRef || app.loanRef || app.hlRef || app.ccRef || 'Unknown';
+            const name = app.name || app.bizName || app.authName || 'User';
+            const det = app.deposit ? '₹'+app.deposit : (app.amount ? '₹'+app.amount : (app.cardType || 'N/A'));
+            const d = new Date(app.date || new Date()).toLocaleDateString();
+            const stat = app.status || 'Pending';
+            
+            let badge = 'status-pending';
+            if(stat.includes('Approv') || stat.includes('Active')) badge = 'status-active';
+            if(stat.includes('Reject')) badge = 'status-blocked';
+            
+            let btnHtml = '';
+            if(!stat.includes('Approv') && !stat.includes('Active')) {
+                // Reverse index because we reversed the array to show newest first.
+                const origIdx = apps.length - 1 - index;
+                btnHtml = `<button class="btn btn-accent" style="padding:4px 8px;font-size:0.8rem;" onclick="approveApp('${currentKey}', ${origIdx})">Approve</button>`;
+            }
+            
+            tb.innerHTML += `<tr>
+                <td><strong>${ref}</strong></td>
+                <td>${name}</td>
+                <td>${det}</td>
+                <td>${d}</td>
+                <td><span class="status-badge ${badge}">${stat}</span></td>
+                <td>${btnHtml}</td>
+            </tr>`;
+        });
+    }
+    
+    function approveApp(key, index) {
+        const apps = JSON.parse(localStorage.getItem(key) || '[]');
+        const app = apps[index];
+        app.status = 'Approved';
+        localStorage.setItem(key, JSON.stringify(apps));
+        
+        // If savings/current, activate account
+        if(key === 'bams_savings_apps' || key === 'bams_current_apps') {
+            const users = JSON.parse(localStorage.getItem('bams_users') || '[]');
+            // Try to find the user in DB - for demo we just update the logged in user if it matches
+            const u = JSON.parse(localStorage.getItem('bams_user'));
+            if(u && u.accountNumber === app.accNo) {
+                u.accountStatus = 'Active';
+                localStorage.setItem('bams_user', JSON.stringify(u));
+            }
+        }
+        renderAdmin();
+    }
+    renderAdmin();
+    </script>
+</body>
+</html>

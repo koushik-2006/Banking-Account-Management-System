@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Submitted | Easy pAy</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
+            </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+        </div>
+    </div>
+</header>
+
+<main class="section-padding bg-light">
+    <div class="success-container card">
+        <div class="success-icon" style="color:var(--accent);">📄</div>
+        <h1 class="mb-sm" style="color:var(--text-main);">Application Submitted!</h1>
+        <div class="ref-box" style="display:inline-block; margin: 20px auto;">
+            <p style="font-size:0.9rem; color:var(--text-muted); font-family:Inter,sans-serif; margin-bottom:5px;">Loan Reference Number</p>
+            <div id="succ_ref"></div>
+        </div>
+
+        <div class="status-stepper text-left mt-lg" style="flex-wrap:wrap;">
+            <div style="color:var(--accent);font-weight:bold;flex:1;">1. Applied<br>✓</div>
+            <div style="flex:1;">2. Under Review</div>
+            <div style="flex:1;">3. Verification</div>
+            <div style="flex:1;">4. Approved</div>
+        </div>
+
+        <p class="text-muted mt-xl">Our loan officer will contact you within 24-48 hours.</p>
+
+        <div style="display:flex; gap:15px; justify-content:center; margin-top:30px;">
+            <button class="btn btn-primary" onclick="alert('Status tracker coming soon.')">Track Application</button>
+            <a href="dashboard.html" class="btn btn-outline">Go to Dashboard</a>
+        </div>
+    </div>
+</main>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('succ_ref').textContent = params.get('ref') || 'LN202600000';
+</script>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
+
+<script src="js/theme.js"></script>
+</body></html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Account | BAMS</title>
+    <title>Open Account | Easy pAy</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -16,15 +16,16 @@
     <!-- Navbar (Minimal for Registration) -->
     <header class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="36" height="36" rx="8" fill="#0A2342"/>
-    <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
-    <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
-    <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
-    <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
-  </svg>
-  <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
+            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+  <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+      <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+      <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+      <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+    </svg>
+  </div>
+  <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
 </a>
             <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
   <span id="theme-icon">🌙</span>
@@ -61,6 +62,7 @@
                 </div>
 
                 <form id="registrationForm" class="multi-step-form">
+                    <div id="register-message"></div>
                     <!-- Step 1: Personal Details -->
                     <div class="form-step active" id="step1">
                         <h2 class="form-step-title">Step 1: Personal Details</h2>
@@ -178,11 +180,13 @@
         <div class="modal-card">
             <div class="modal-icon">✅</div>
             <h2 class="mb-md">Account Created Successfully!</h2>
-            <p class="text-muted mb-lg">Welcome to BAMS. Your account has been initialized and is ready for use.</p>
+            <p class="text-muted mb-lg">Welcome to Easy pAy. Your account has been initialized and is ready for use.</p>
             <div
-                style="background: var(--bg-main); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
-                <p style="font-size: 0.9rem; margin-bottom: 5px;">Your Account Number:</p>
+                style="background: var(--bg-main); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border: 2px solid var(--accent); position: relative;">
+                <p style="font-size: 0.9rem; margin-bottom: 5px; font-weight: 600;">Your Account Number is:</p>
                 <strong style="font-size: 1.5rem; color: var(--primary);" id="accNumberDisplay">BAMS2026XXXX</strong>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: var(--text-secondary); font-weight: 500;">Save this number — you need it to login.</p>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('accNumberDisplay').textContent); this.textContent='Copied!';" style="position:absolute; right:10px; top:10px; background:var(--accent); color:#fff; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:12px;">Copy</button>
             </div>
             <p style="font-size: 0.9rem; color: var(--accent);">Redirecting to login in 3s...</p>
         </div>
@@ -191,7 +195,7 @@
     <!-- Footer (Minimal) -->
     <footer class="footer">
         <div class="container text-center">
-            <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
+            <p>&copy; 2026 Easy pAy. All rights reserved.</p>
         </div>
     </footer>
 
@@ -271,38 +275,64 @@
             });
         }
 
-        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+        document.getElementById('registrationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const password = document.getElementById('regPassword').value;
             const confirm = document.getElementById('confirmPassword').value;
 
             if (password !== confirm) {
-                alert('Passwords do not match!');
+                showMsg('error', 'Passwords do not match!');
                 return;
             }
 
-            // Generate Random Account Number
-            const randomDigits = Math.floor(1000 + Math.random() * 9000);
-            const accNo = `BAMS2026${randomDigits}`;
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('mobile').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const dateOfBirth = document.getElementById('dob').value;
+            const accountType = document.querySelector('input[name="accountType"]:checked').value;
+            const address = '';
 
-            // Save to localStorage
-            const userData = {
-                fullName: document.getElementById('fullName') ? document.getElementById('fullName').value : 'New User',
-                email: document.getElementById('email') ? document.getElementById('email').value : '',
-                accountNumber: accNo,
-                registrationDate: new Date().toISOString()
-            };
-            localStorage.setItem('bams_registered_user', JSON.stringify(userData));
+            const payload = { fullName, email, phone, password, gender, dateOfBirth, address, accountType };
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
 
-            // Show Success Modal
+            try {
+                const res = await fetch('http://localhost:8080/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('accNumberDisplay').textContent = data.accountNumber;
+                    document.getElementById('successModal').style.display = 'flex';
+                    setTimeout(() => window.location.href = 'login.html', 5000);
+                } else {
+                    showMsg('error', data.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Complete Registration';
+                }
+            } catch (err) {
+                showMsg('error', 'Server connection failed. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Complete Registration';
+            }
+        });
+
+        function showMsg(type, text) {
+            const box = document.getElementById('register-message');
+            box.textContent = text;
+            box.style.display = 'block';
+            box.className = 'msg-box msg-' + type;
+        }
+
+        function showSuccessModal(accNo, name) {
             document.getElementById('accNumberDisplay').textContent = accNo;
             document.getElementById('successModal').style.display = 'flex';
-
-            // Redirect after 3 seconds
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 3000);
-        });
+            setTimeout(() => window.location.href = 'login.html', 5000);
+        }
 
         updateForm();
     </script>

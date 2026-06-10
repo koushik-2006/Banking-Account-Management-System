@@ -1,4 +1,4 @@
-# BAMS Database Setup Instructions
+# BAMS Database Setup
 
 1. Install MySQL 8.0
 2. Open MySQL Workbench or terminal
@@ -8,5 +8,3 @@
    USE bams_db;
    SHOW TABLES;
    ```
-
-The Spring Boot `application.properties` should connect to this DB.

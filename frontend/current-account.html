@@ -1,236 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Current Account | BAMS</title>
+    <title>Current Account | Easy pAy</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="36" height="36" rx="8" fill="#0A2342"/>
-    <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
-    <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
-    <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
-    <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
-  </svg>
-  <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
-</a>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="services.html" class="nav-link active">Services</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="faq.html" class="nav-link">Help</a>
-            </nav>
-            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
-  <span id="theme-icon">🌙</span>
-  <span id="theme-label">Dark</span>
-</button>
-            <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
-                <a href="login.html" class="btn btn-outline-nav">Login</a>
-                <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
             </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero section-padding">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1 class="hero-title">Current <span class="accent-underline">Account</span></h1>
-                <p class="hero-subtitle">Empower your business with unlimited transactions and professional tools. Seamlessly run your operations with digital-first current accounts.</p>
-                <div class="hero-actions">
-                    <a href="register.html" class="btn btn-primary">Apply Now</a>
-                    <a href="emi-calculator.html" class="btn btn-outline">Calculate EMI</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-banner-placeholder bg-secondary" style="height: 300px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-lg); color: white; font-size: 5rem;">💼</div>
-            </div>
+<main>
+    <section class="service-hero" style="background:#0A0A0A;color:#fff;">
+        <div class="container">
+            <div class="breadcrumb" style="color:#8B949E;"><a href="index.html" style="color:#C9A84C;">Home</a> &rarr; <a href="services.html" style="color:#C9A84C;">Services</a> &rarr; Current Account</div>
+            <h1 style="color:#C9A84C;">Current Account</h1>
+            <p class="tagline" style="color:#ccc;">Power your business with unlimited transactions</p>
         </div>
     </section>
-
-    <!-- Features Section -->
+    
     <section class="section-padding bg-light">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Key Features & Benefits</h2>
-                <p class="section-subtitle">Specially tailored to match the demands of expanding businesses and high transaction volumes.</p>
-            </div>
-            <div class="services-grid">
-                <div class="card service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>Unlimited Transactions</h3>
-                    <p>Make unlimited deposits and withdrawals. Keep your operations running smoothly without additional transaction fees.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>Overdraft Facility</h3>
-                    <p>Avail instant overdraft facilities to meet short-term credit requirements and manage cash flows efficiently.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">🛠️</div>
-                    <h3>Business Tools API</h3>
-                    <p>Integrate banking with your existing ERP, accounting, and billing systems via secure open API protocols.</p>
-                </div>
-                <div class="card service-card">
-                    <div class="service-icon">👤</div>
-                    <h3>Dedicated RM</h3>
-                    <p>Benefit from a dedicated Relationship Manager to help you with banking products and quick queries.</p>
-                </div>
+            <h2 class="text-center mb-xl">Business Features</h2>
+            <div class="features-grid">
+                <div class="feature-card text-center"><h3>Unlimited Transactions</h3><p class="text-muted">No cap on the number of monthly transactions.</p></div>
+                <div class="feature-card text-center"><h3>Overdraft Facility</h3><p class="text-muted">Easy access to credit lines when you need working capital.</p></div>
+                <div class="feature-card text-center"><h3>Business Net Banking</h3><p class="text-muted">Advanced corporate dashboard with role-based access.</p></div>
+                <div class="feature-card text-center"><h3>Relationship Manager</h3><p class="text-muted">Dedicated RM for all your corporate banking needs.</p></div>
+                <div class="feature-card text-center"><h3>GST Invoice Integration</h3><p class="text-muted">Automated GST billing and seamless accounting sync.</p></div>
+                <div class="feature-card text-center"><h3>Bulk Payment Support</h3><p class="text-muted">Upload CSVs to process salaries and vendor payments instantly.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Eligibility Section -->
-    <section class="eligibility-section section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Eligibility Criteria & Documents</h2>
-                <p class="section-subtitle">Requirements to open a BAMS Current Account for business entities.</p>
-            </div>
-            <table class="eligibility-table">
-                <thead>
-                    <tr>
-                        <th>Criteria</th>
-                        <th>Details Required</th>
-                    </tr>
-                </thead>
+    <section class="section-padding">
+        <div class="container" style="max-width: 900px;">
+            <h2 class="text-center mb-lg">Account Variants</h2>
+            <table class="rates-table mb-xl">
+                <thead><tr><th>Feature</th><th>Basic</th><th>Business Pro</th><th>Corporate</th></tr></thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Entity Types</strong></td>
-                        <td>Sole Proprietorship, Partnership, LLPs, Private and Public Limited Companies.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Age of Applicant</strong></td>
-                        <td>21 years and above for account signatories.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Required Documents</strong></td>
-                        <td>GST Certificate, Entity PAN Card, Partnership Deed/MOA & AOA, KYC of partners/directors, and Address Proof of business.</td>
-                    </tr>
+                    <tr><td>Monthly Limit</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+                    <tr><td>Overdraft</td><td>Upto ₹5L</td><td>Upto ₹25L</td><td>Upto ₹1Cr</td></tr>
+                    <tr><td>Min Balance</td><td>₹10,000</td><td>₹25,000</td><td>₹1,00,000</td></tr>
+                    <tr><td>Annual Fee</td><td>₹500</td><td>₹1500</td><td>₹5000</td></tr>
                 </tbody>
             </table>
-        </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section section-padding bg-light">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Got questions about business banking? Find answers here.</p>
-            </div>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>What is the minimum average quarterly balance?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>The minimum average quarterly balance required for our Standard Current Account is ₹10,000, which can vary based on business type.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Can I link third-party payment gateways?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Yes, our Current Accounts fully support integration with all major payment gateways and offer a robust business tools API.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>What is the limit on daily transfers?</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>There are no limits on digital transfers (NEFT/RTGS/IMPS) initiated through the portal, making it perfect for high-volume operations.</p>
-                    </div>
-                </div>
+            <h2 class="text-center mb-lg mt-xl">Eligibility</h2>
+            <div class="card bg-light">
+                <ul style="line-height:2;color:var(--text-muted);font-size:1.05rem;">
+                    <li>Available for Sole Proprietorships, Partnerships, LLPs, Private and Public Limited Companies.</li>
+                    <li>Valid business registration documents and PAN required.</li>
+                    <li>Minimum age of authorized signatory must be 21 years.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Sticky Apply Now Button -->
-    <a href="register.html" class="sticky-apply-btn">Apply Now &rarr;</a>
-
-    <!-- Footer -->
-    <footer class="footer">
+    <section class="section-padding text-center bg-light">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col-1">
-                    <a href="index.html" class="footer-logo">BAMS</a>
-                    <p class="footer-desc">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
-                </div>
-                <div class="footer-col-2">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-3">
-                    <h4 class="footer-title">Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="policies.html">Privacy Policy</a></li>
-                        <li><a href="policies.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Branch Locator</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-desc">Subscribe for the latest updates and offers.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email" class="footer-input">
-                        <button type="button" class="btn btn-accent">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
-                <p>Designed with ❤️ for modern banking.</p>
-            </div>
+            <h2 class="mb-md">Ready to Scale Your Business?</h2>
+            <a href="apply-current.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">Apply Now</a>
         </div>
-    </footer>
+    </section>
+</main>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
 
-    <script src="js/app.js"></script>
-    <script>
-        // Accordion Toggle logic
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                item.classList.toggle('active');
-                const icon = header.querySelector('.icon');
-                icon.textContent = item.classList.contains('active') ? '-' : '+';
-            });
-        });
-    </script>
-    <script>
-        const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-        if (user) {
-            const navAuth = document.querySelector('.nav-auth-buttons');
-            if(navAuth) {
-                navAuth.innerHTML =
-                    '<span style="font-size:13px;color:#C9A84C">👤 ' + user.name + '</span>' +
-                    '<a href="dashboard.html" class="btn-primary-nav">Dashboard</a>';
-            }
-        }
-    </script>
 <script src="js/theme.js"></script>
-</body>
-
-</html>
+</body></html>

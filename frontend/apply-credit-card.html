@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Credit Card | Easy pAy</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
+            </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+        </div>
+    </div>
+</header>
+
+<main class="section-padding bg-light">
+    <div class="container container-narrow">
+        <div class="card" id="application-form-card">
+            <h2 class="text-center mb-md">Apply for Credit Card</h2>
+            
+            <div class="step-bar mb-xl">
+                <div class="step-item active" id="step-btn-1">1. Card Selection</div>
+                <div class="step-item" id="step-btn-2">2. Personal & Income</div>
+                <div class="step-item" id="step-btn-3">3. Review</div>
+            </div>
+
+            <form id="ccForm">
+                <!-- STEP 1 -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group">
+                        <label>Monthly Income (₹)</label>
+                        <input type="number" id="cc_inc" required oninput="calcEligibility()">
+                        <small class="text-muted">Eligibility depends on income.</small>
+                    </div>
+
+                    <div class="form-group mt-lg">
+                        <label>Select Card Type</label>
+                        <div class="radio-card-grid mt-sm">
+                            <label class="radio-card-label" id="lbl_silver">
+                                <input type="radio" name="cc_type" value="Silver" onchange="updatePreview()" checked>
+                                <div class="radio-card-content" style="background:#1e293b;color:white;border:none;"><h4>SILVER</h4></div>
+                            </label>
+                            <label class="radio-card-label" id="lbl_gold">
+                                <input type="radio" name="cc_type" value="Gold" onchange="updatePreview()">
+                                <div class="radio-card-content" style="background:#713f12;color:white;border:none;"><h4>GOLD</h4></div>
+                            </label>
+                            <label class="radio-card-label" id="lbl_plat">
+                                <input type="radio" name="cc_type" value="Platinum" onchange="updatePreview()">
+                                <div class="radio-card-content" style="background:#0a0a0a;color:white;border:none;"><h4>PLATINUM</h4></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- CSS Card Preview -->
+                    <div id="card_preview" style="width:320px;height:200px;border-radius:15px;margin:20px auto;padding:20px;color:white;position:relative;background:#1e293b;box-shadow:0 10px 20px rgba(0,0,0,0.2);transition:all 0.3s;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
+                            <strong style="color:#C9A84C;font-family:Georgia,serif;">Easy <span style="color:#FFD700;">pAy</span></strong>
+                            <span id="prev_badge" style="font-size:0.8rem;letter-spacing:1px;color:#94A3B8;">SILVER</span>
+                        </div>
+                        <div style="font-family:monospace;font-size:1.4rem;letter-spacing:3px;margin-bottom:15px;">●●●● ●●●● ●●●● ####</div>
+                        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+                            <div>
+                                <div style="font-size:0.6rem;opacity:0.8;">VALID THRU</div>
+                                <div style="font-family:monospace;">MM/YY</div>
+                                <div id="prev_name" style="margin-top:10px;text-transform:uppercase;font-size:0.9rem;letter-spacing:1px;">CARD HOLDER</div>
+                            </div>
+                            <div style="font-style:italic;font-weight:bold;font-size:1.2rem;">VISA</div>
+                        </div>
+                    </div>
+
+                    <div class="text-right mt-lg"><button type="button" class="btn btn-primary next-btn" onclick="nextStep(2)">Next &rarr;</button></div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="form-step" id="step2" style="display:none;">
+                    <div class="form-group"><label>Billing Address</label><textarea id="cc_addr" required></textarea></div>
+                    <div class="form-group">
+                        <label>Existing Credit Cards?</label>
+                        <select id="cc_ext_has" onchange="document.getElementById('ext_div').style.display=this.value==='Yes'?'block':'none';calcEligibility();">
+                            <option value="No">No</option><option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="ext_div" style="display:none;">
+                        <label>Total Existing Credit Limit (₹)</label>
+                        <input type="number" id="cc_ext_lim" value="0" oninput="calcEligibility()">
+                    </div>
+                    
+                    <div class="calc-box">
+                        <div class="calc-row text-center" style="display:block;"><span>Estimated Credit Limit:</span> <strong id="calc_lim" style="color:var(--accent);font-size:1.5rem;display:block;margin-top:10px;">₹0</strong></div>
+                    </div>
+
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(1)">&larr; Back</button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextStep(3)">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="form-step" id="step3" style="display:none;">
+                    <div class="calc-box">
+                        <h3 class="mb-sm">Review Summary</h3>
+                        <div class="calc-row"><span>Card Type:</span> <strong id="rev_type"></strong></div>
+                        <div class="calc-row"><span>Estimated Limit:</span> <strong id="rev_lim" style="color:var(--accent);"></strong></div>
+                    </div>
+                    <div class="form-group mt-md"><label style="font-weight:normal; display:flex; gap:10px;"><input type="checkbox" id="cc_agree" required><span>I declare all information is correct.</span></label></div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(2)">&larr; Back</button>
+                        <button type="submit" class="btn btn-accent" id="submitBtn">Apply for Card</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script>
+requireLogin('Credit Card', 'apply-credit-card.html');
+const user = getUser();
+if(user) {
+    document.getElementById('prev_name').textContent = user.name;
+}
+
+let estLim = 0;
+function calcEligibility() {
+    const inc = Number(document.getElementById('cc_inc').value) || 0;
+    
+    // Eligibility UI
+    const rG = document.getElementById('lbl_gold');
+    const rP = document.getElementById('lbl_plat');
+    
+    if(inc < 20000) {
+        rG.style.opacity = '0.3'; rG.style.pointerEvents = 'none';
+        rP.style.opacity = '0.3'; rP.style.pointerEvents = 'none';
+        document.querySelector('input[value="Silver"]').checked = true;
+    } else if(inc <= 50000) {
+        rG.style.opacity = '1'; rG.style.pointerEvents = 'auto';
+        rP.style.opacity = '0.3'; rP.style.pointerEvents = 'none';
+        if(document.querySelector('input[name="cc_type"]:checked').value === 'Platinum') {
+            document.querySelector('input[value="Gold"]').checked = true;
+        }
+    } else {
+        rG.style.opacity = '1'; rG.style.pointerEvents = 'auto';
+        rP.style.opacity = '1'; rP.style.pointerEvents = 'auto';
+    }
+    updatePreview();
+
+    // Limit Calc
+    const cType = document.querySelector('input[name="cc_type"]:checked').value;
+    const extHas = document.getElementById('cc_ext_has').value;
+    const extLim = extHas === 'Yes' ? (Number(document.getElementById('cc_ext_lim').value) || 0) : 0;
+    
+    let base = inc * 3;
+    if(cType === 'Gold') base = inc * 5;
+    if(cType === 'Platinum') base = inc * 8;
+    
+    let avail = base - extLim;
+    const capped = { Silver: 150000, Gold: 500000, Platinum: 1500000 };
+    estLim = Math.max(0, Math.min(avail, capped[cType]));
+    
+    document.getElementById('calc_lim').textContent = '₹' + estLim.toLocaleString('en-IN');
+}
+
+function updatePreview() {
+    const t = document.querySelector('input[name="cc_type"]:checked').value;
+    const p = document.getElementById('card_preview');
+    const b = document.getElementById('prev_badge');
+    if(t === 'Silver') { p.style.background = '#1e293b'; b.textContent = 'SILVER'; b.style.color = '#94A3B8'; }
+    if(t === 'Gold') { p.style.background = '#713f12'; b.textContent = 'GOLD'; b.style.color = '#FFD700'; }
+    if(t === 'Platinum') { p.style.background = '#0a0a0a'; b.textContent = 'PLATINUM'; b.style.color = '#d4d4d4'; }
+}
+
+function nextStep(step) {
+    if(step === 2) {
+        if(!document.getElementById('cc_inc').value) return alert('Enter income');
+    }
+    if(step === 3) {
+        document.getElementById('rev_type').textContent = document.querySelector('input[name="cc_type"]:checked').value;
+        document.getElementById('rev_lim').textContent = '₹' + estLim.toLocaleString('en-IN');
+    }
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+function prevStep(step) {
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+document.getElementById('ccForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!document.getElementById('cc_agree').checked) return alert('Please agree');
+    document.getElementById('submitBtn').disabled = true;
+    
+    const ccRef = generateRef('CC');
+    const last4 = Math.floor(1000 + Math.random() * 9000);
+    const expiry = `${String(new Date().getMonth()+1).padStart(2,'0')}/${new Date().getFullYear()+3 - 2000}`;
+    
+    saveApplication('card', {
+        ccRef,
+        cardType: document.querySelector('input[name="cc_type"]:checked').value,
+        creditLimit: estLim,
+        last4, expiry,
+        status: 'Pending'
+    });
+    
+    setTimeout(() => { window.location.href = `card-success.html?ref=${ccRef}&type=${document.querySelector('input[name="cc_type"]:checked').value}`; }, 1500);
+});
+updatePreview();
+</script>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
+
+<script src="js/theme.js"></script>
+</body></html>

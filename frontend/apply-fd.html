@@ -3,313 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Fixed Deposit | BAMS</title>
+    <title>Apply Fixed Deposit | Easy pAy</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <style>
-        .breadcrumb { padding: 15px 0; font-size: 14px; color: var(--text-muted); }
-        .breadcrumb a { color: var(--primary); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .live-calculator { background: #E8F4FD; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary); margin-top: 20px; }
-        .calc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
-        .calc-item { background: #fff; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .calc-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-top: 5px; }
-        .calc-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .summary-card { background: var(--bg-main); padding: 20px; border-radius: 8px; border: 1px solid #eee; margin-bottom: 20px; }
-        .summary-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-    </style>
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="8" fill="#0A2342"/>
-                <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
-                <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
-                <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
-                <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
-              </svg>
-              <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
-            </a>
-            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
-  <span id="theme-icon">🌙</span>
-  <span id="theme-label">Dark</span>
-</button>
-            <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
-                <a href="login.html" class="btn btn-outline-nav">Login</a>
-                <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
             </div>
-        </div>
-    </header>
-
-    <main class="section-padding" style="min-height: 80vh;">
-        <div class="container container-narrow">
-            <div class="breadcrumb">
-                <a href="index.html">Home</a> &rarr; <a href="services.html">Services</a> &rarr; Fixed Deposit
-            </div>
-            <div class="card registration-card">
-                <div class="text-center mb-lg">
-                    <h1 class="section-title">Open a Fixed Deposit</h1>
-                    <p class="text-muted">Grow your savings with guaranteed returns.</p>
-                </div>
-
-                <div class="progress-bar-container">
-                    <p class="text-center mb-md" style="font-weight: 600; color: var(--primary);">Step <span id="currentStepText">1</span> of 2</p>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="progressBar" style="background-color: var(--accent); width: 0%;"></div>
-                        <div class="progress-steps">
-                            <div class="step active" data-step="1">1</div>
-                            <div class="step" data-step="2">2</div>
-                        </div>
-                    </div>
-                </div>
-
-                <form id="applyForm" class="multi-step-form">
-                    <!-- Step 1: Configuration -->
-                    <div class="form-step active" id="step1">
-                        <h2 class="form-step-title">Step 1: FD Configuration</h2>
-                        <div class="form-group">
-                            <label>Principal Amount (₹)</label>
-                            <input type="number" id="principal" min="1000" value="10000" required>
-                        </div>
-                        <div class="form-group mt-md">
-                            <label>Tenure: <span id="tenureLabel" style="color:var(--primary); font-weight:bold;">1 Year</span></label>
-                            <input type="range" id="tenure" min="1" max="120" value="12" style="width:100%; accent-color: var(--accent);">
-                        </div>
-                        <div class="form-group mt-md">
-                            <label>Interest Payout</label>
-                            <div style="display: flex; gap: 15px; margin-top: 5px;">
-                                <label><input type="radio" name="payout" value="Monthly"> Monthly</label>
-                                <label><input type="radio" name="payout" value="Quarterly"> Quarterly</label>
-                                <label><input type="radio" name="payout" value="On Maturity" checked> On Maturity</label>
-                            </div>
-                        </div>
-                        <div class="form-group mt-md">
-                            <label style="font-weight: 600; display: flex; align-items: center; gap: 10px;">
-                                <input type="checkbox" id="seniorToggle" style="width:20px;height:20px;accent-color:var(--primary);">
-                                Senior Citizen (+0.5% extra rate)
-                            </label>
-                        </div>
-                        
-                        <!-- Live Calculator -->
-                        <div class="live-calculator">
-                            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 5px;">Live Returns Calculator</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-muted);">Estimates are based on current rates.</p>
-                            <div class="calc-grid">
-                                <div class="calc-item">
-                                    <div class="calc-label">Interest Rate</div>
-                                    <div class="calc-value" id="calcRate">6.5%</div>
-                                </div>
-                                <div class="calc-item">
-                                    <div class="calc-label">Interest Earned</div>
-                                    <div class="calc-value" id="calcInterest">₹650</div>
-                                </div>
-                                <div class="calc-item">
-                                    <div class="calc-label">Maturity Amount</div>
-                                    <div class="calc-value" id="calcMaturity">₹10,650</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Review & Submit -->
-                    <div class="form-step" id="step2">
-                        <h2 class="form-step-title">Step 2: Review FD Details</h2>
-                        <div class="summary-card" id="summaryCard"></div>
-                        <div class="form-group" style="margin-top: 20px;">
-                            <label style="font-weight: 400; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" required> I agree to the <a href="policies.html" class="text-link">Terms & Conditions</a>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Buttons -->
-                    <div class="form-navigation mt-xl">
-                        <button type="button" class="btn btn-outline" id="prevBtn" style="visibility: hidden;">Back</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-                        <button type="submit" class="btn btn-accent" id="submitBtn" style="display: none;">Confirm Booking</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card">
-            <div class="modal-icon">✅</div>
-            <h2 class="mb-md">FD Booked Successfully!</h2>
-            <p class="text-muted mb-lg">Your Fixed Deposit has been initiated.</p>
-            <div style="background: var(--bg-main); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
-                <p style="font-size: 0.9rem; margin-bottom: 5px;">FD Reference Number:</p>
-                <strong style="font-size: 1.5rem; color: var(--primary);" id="fdRefNumber">FD2026XXXX</strong>
-            </div>
-            <p style="font-size: 0.9rem; color: var(--accent);">Redirecting to dashboard...</p>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
         </div>
     </div>
+</header>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div style="margin-bottom: 10px;">
-                <a href="index.html" style="color:white; margin:0 10px; text-decoration:none;">Home</a> |
-                <a href="services.html" style="color:white; margin:0 10px; text-decoration:none;">Services</a> |
-                <a href="about.html" style="color:white; margin:0 10px; text-decoration:none;">About</a> |
-                <a href="contact.html" style="color:white; margin:0 10px; text-decoration:none;">Contact</a> |
-                <a href="faq.html" style="color:white; margin:0 10px; text-decoration:none;">FAQ</a> |
-                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Privacy Policy</a> |
-                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Terms & Conditions</a>
-            </div>
-            <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
-            <a href="admin/login.html" style="font-size:11px;color:#555;opacity:0.4;text-decoration:none;">Admin</a>
+<main class="section-padding bg-light">
+    <div class="container container-narrow">
+        <div id="auth-bar" style="background:var(--bg-main); padding:15px; border-radius:8px; margin-bottom:20px; font-weight:bold; color:var(--text-main); border:1px solid var(--border-color); display:flex; justify-content:space-between; flex-wrap:wrap;">
+            <span>Account: <span id="bar_acc" style="color:var(--primary);"></span></span>
+            <span>Holder: <span id="bar_name"></span></span>
+            <span>Balance: <span id="bar_bal" style="color:var(--accent);"></span></span>
         </div>
-    </footer>
 
-    <script>
-        const form = document.getElementById('applyForm');
-        const steps = document.querySelectorAll('.form-step');
-        const progressSteps = document.querySelectorAll('.step');
-        const progressBar = document.getElementById('progressBar');
-        const currentStepText = document.getElementById('currentStepText');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const submitBtn = document.getElementById('submitBtn');
-        let currentStep = 0;
-
-        // Calculator Logic
-        const principalEl = document.getElementById('principal');
-        const tenureEl = document.getElementById('tenure');
-        const tenureLabel = document.getElementById('tenureLabel');
-        const seniorToggle = document.getElementById('seniorToggle');
-        const calcRate = document.getElementById('calcRate');
-        const calcInterest = document.getElementById('calcInterest');
-        const calcMaturity = document.getElementById('calcMaturity');
-
-        function formatCurrency(num) { return '₹' + num.toLocaleString('en-IN', {maximumFractionDigits:0}); }
-
-        function updateCalculator() {
-            let months = parseInt(tenureEl.value);
-            let label = months < 12 ? months + ' Months' : (months/12).toFixed(1).replace('.0','') + ' Years';
-            if(months < 1) { label = '7 Days'; months = 0.25; }
-            tenureLabel.textContent = label;
-
-            let principal = parseFloat(principalEl.value) || 0;
-            let baseRate = 5.0;
-            if(months >= 12) baseRate = 6.5;
-            if(months >= 36) baseRate = 7.0;
-            if(seniorToggle.checked) baseRate += 0.5;
-
-            let interest = principal * (baseRate/100) * (months/12);
-            let maturity = principal + interest;
-
-            calcRate.textContent = baseRate.toFixed(1) + '%';
-            calcInterest.textContent = formatCurrency(interest);
-            calcMaturity.textContent = formatCurrency(maturity);
-        }
-
-        principalEl.addEventListener('input', updateCalculator);
-        tenureEl.addEventListener('input', updateCalculator);
-        seniorToggle.addEventListener('change', updateCalculator);
-        updateCalculator();
-
-        function checkValidation() {
-            const inputs = steps[currentStep].querySelectorAll('input, select');
-            let valid = true;
-            inputs.forEach(input => {
-                if(!input.checkValidity()) {
-                    input.reportValidity();
-                    valid = false;
-                }
-            });
-            return valid;
-        }
-
-        function populateSummary() {
-            const principal = principalEl.value;
-            const tenure = tenureLabel.textContent;
-            const payout = document.querySelector('input[name="payout"]:checked').value;
-            const rate = calcRate.textContent;
-            const maturity = calcMaturity.textContent;
+        <div class="card" id="application-form-card">
+            <h2 class="text-center mb-md">Open Fixed Deposit</h2>
             
-            document.getElementById('summaryCard').innerHTML = `
-                <div class="summary-item"><span>Principal Amount:</span> <strong>₹${parseFloat(principal).toLocaleString('en-IN')}</strong></div>
-                <div class="summary-item"><span>Tenure:</span> <strong>${tenure}</strong></div>
-                <div class="summary-item"><span>Interest Rate:</span> <strong>${rate}</strong></div>
-                <div class="summary-item"><span>Payout:</span> <strong>${payout}</strong></div>
-                <div class="summary-item" style="border-bottom:none;"><span>Est. Maturity:</span> <strong style="color:var(--primary);">${maturity}</strong></div>
-            `;
-        }
+            <div class="step-bar mb-xl">
+                <div class="step-item active" id="step-btn-1">1. FD Configuration</div>
+                <div class="step-item" id="step-btn-2">2. Review & Confirm</div>
+            </div>
 
-        function updateForm() {
-            steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
-            progressSteps.forEach((step, index) => step.classList.toggle('active', index <= currentStep));
-            progressBar.style.width = ((currentStep / (steps.length - 1)) * 100) + '%';
-            currentStepText.textContent = currentStep + 1;
+            <form id="fdForm">
+                <!-- STEP 1 -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group">
+                        <label>FD Amount (₹)</label>
+                        <input type="number" id="fd_amount" min="1000" required oninput="calcPreview()">
+                        <small id="bal-error" style="color:red;display:none;">Insufficient balance.</small>
+                    </div>
 
-            prevBtn.style.visibility = (currentStep === 0) ? 'hidden' : 'visible';
-            if (currentStep === steps.length - 1) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'inline-block';
-                populateSummary();
-            } else {
-                nextBtn.style.display = 'inline-block';
-                submitBtn.style.display = 'none';
-            }
-        }
+                    <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+                        <label style="margin:0;">Are you a Senior Citizen?</label>
+                        <select id="fd_senior" onchange="calcPreview()" style="width:100px;">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
 
-        nextBtn.addEventListener('click', () => {
-            if (checkValidation()) {
-                currentStep++;
-                updateForm();
-            }
-        });
+                    <div class="form-group mt-lg">
+                        <label>FD Tenure</label>
+                        <div class="radio-card-grid mt-sm">
+                            <label class="radio-card-label"><input type="radio" name="fd_tenure" value="6" onchange="calcPreview()" checked><div class="radio-card-content"><h4 style="color:var(--primary);">6 Months</h4><p class="text-muted" style="font-size:0.8rem;">6.50% / 7.00%</p></div></label>
+                            <label class="radio-card-label"><input type="radio" name="fd_tenure" value="12" onchange="calcPreview()"><div class="radio-card-content"><h4 style="color:var(--primary);">1 Year</h4><p class="text-muted" style="font-size:0.8rem;">7.00% / 7.50%</p></div></label>
+                            <label class="radio-card-label"><input type="radio" name="fd_tenure" value="24" onchange="calcPreview()"><div class="radio-card-content"><h4 style="color:var(--primary);">2 Years</h4><p class="text-muted" style="font-size:0.8rem;">7.25% / 7.75%</p></div></label>
+                            <label class="radio-card-label"><input type="radio" name="fd_tenure" value="36" onchange="calcPreview()"><div class="radio-card-content"><h4 style="color:var(--primary);">3 Years</h4><p class="text-muted" style="font-size:0.8rem;">7.50% / 8.00%</p></div></label>
+                            <label class="radio-card-label"><input type="radio" name="fd_tenure" value="60" onchange="calcPreview()"><div class="radio-card-content"><h4 style="color:var(--primary);">5 Years</h4><p class="text-muted" style="font-size:0.8rem;">7.50% / 8.00%</p></div></label>
+                        </div>
+                    </div>
 
-        prevBtn.addEventListener('click', () => {
-            currentStep--;
-            updateForm();
-        });
+                    <div class="form-group">
+                        <label>Interest Payout Mode</label>
+                        <div style="display:flex;gap:15px;margin-top:10px;">
+                            <label><input type="radio" name="fd_payout" value="maturity" onchange="calcPreview()" checked> At Maturity (Reinvested)</label>
+                            <label><input type="radio" name="fd_payout" value="monthly" onchange="calcPreview()"> Monthly Payout</label>
+                        </div>
+                    </div>
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if(!checkValidation()) return;
-            
-            const randomDigits = Math.floor(1000 + Math.random() * 9000);
-            const refNo = `FD2026${randomDigits}`;
+                    <div class="calc-box">
+                        <h3 class="mb-sm text-center">FD Calculation Preview</h3>
+                        <div class="calc-row"><span>Principal Amount:</span> <strong id="calc_prin">₹0</strong></div>
+                        <div class="calc-row"><span>Interest Rate:</span> <strong id="calc_rate">0.00% p.a</strong></div>
+                        <div class="calc-row"><span>Interest Earned:</span> <strong id="calc_int" style="color:green;">₹0</strong></div>
+                        <hr style="border-color:var(--accent);">
+                        <div class="calc-row" style="font-size:1.2rem; margin-top:10px;"><span>Maturity Amount:</span> <strong id="calc_mat" style="color:var(--accent);">₹0</strong></div>
+                        <div class="calc-row" style="margin-top:5px;"><span>Maturity Date:</span> <strong id="calc_date"></strong></div>
+                    </div>
 
-            const applicationData = {
-                type: 'Fixed Deposit',
-                reference: refNo,
-                amount: principalEl.value,
-                tenure: tenureLabel.textContent,
-                rate: calcRate.textContent,
-                maturity: calcMaturity.textContent,
-                dateApplied: new Date().toISOString(),
-                status: 'Pending'
-            };
-            
-            const user = JSON.parse(localStorage.getItem('bams_user'));
-            const applicant = user ? user.name : 'Guest User';
-            
-            const apps = JSON.parse(localStorage.getItem('bams_fd_apps') || '[]');
-            apps.push({...applicationData, applicant: applicant});
-            localStorage.setItem('bams_fd_apps', JSON.stringify(apps));
-            
-            document.getElementById('fdRefNumber').textContent = refNo;
-            document.getElementById('successModal').style.display = 'flex';
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 3000);
-        });
+                    <div class="text-right mt-lg"><button type="button" class="btn btn-primary next-btn" onclick="nextStep(2)">Review FD &rarr;</button></div>
+                </div>
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-            if (user) {
-                const navAuth = document.querySelector('.nav-auth-buttons');
-                if (navAuth) {
-                    navAuth.innerHTML = `<a href="dashboard.html" class="btn btn-outline-nav">Dashboard</a>`;
-                }
-            }
-        });
-    </script>
+                <!-- STEP 2 -->
+                <div class="form-step" id="step2" style="display:none;">
+                    <div class="calc-box" style="border-color:var(--primary);">
+                        <h3 class="mb-sm">Review & Confirm</h3>
+                        <div class="calc-row"><span>Debiting Account:</span> <strong id="rev_acc"></strong></div>
+                        <div class="calc-row"><span>FD Amount:</span> <strong id="rev_amt" style="color:red;"></strong></div>
+                        <div class="calc-row"><span>Tenure:</span> <strong id="rev_tenure"></strong></div>
+                        <div class="calc-row"><span>Rate:</span> <strong id="rev_rate"></strong></div>
+                        <div class="calc-row"><span>Payout Mode:</span> <strong id="rev_payout"></strong></div>
+                        <div class="calc-row"><span>Maturity Amount:</span> <strong id="rev_mat" style="color:var(--accent);"></strong></div>
+                    </div>
+                    
+                    <div style="background:#FFFBEB; border:1px solid #FCD34D; color:#92400E; padding:15px; border-radius:8px; margin-top:20px; font-size:0.95rem;">
+                        <strong id="deduct_notice"></strong>
+                    </div>
+
+                    <div class="form-group mt-md">
+                        <label style="font-weight:normal; display:flex; gap:10px;">
+                            <input type="checkbox" id="fd_agree" required>
+                            <span>I confirm the FD details and authorize the bank to debit my savings account.</span>
+                        </label>
+                    </div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(1)">&larr; Back</button>
+                        <button type="submit" class="btn btn-accent" id="submitBtn">Create Fixed Deposit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script>
+requireLogin('Fixed Deposit', 'apply-fd.html');
+const user = getUser();
+if(user) {
+    document.getElementById('bar_acc').textContent = user.accountNumber;
+    document.getElementById('bar_name').textContent = user.name;
+    document.getElementById('bar_bal').textContent = '₹' + Number(user.balance).toLocaleString();
+    document.getElementById('rev_acc').textContent = user.accountNumber;
+}
+
+let currentCalculation = {};
+
+function calcPreview() {
+    const amount = Number(document.getElementById('fd_amount').value);
+    const err = document.getElementById('bal-error');
+    if(user && amount > Number(user.balance)) {
+        err.style.display = 'block';
+        err.textContent = `Insufficient balance. Your balance is ₹${user.balance}`;
+    } else { err.style.display = 'none'; }
+
+    const months = Number(document.querySelector('input[name="fd_tenure"]:checked').value);
+    const isSenior = document.getElementById('fd_senior').value === 'Yes';
+    const payout = document.querySelector('input[name="fd_payout"]:checked').value;
+    
+    let rate = 0;
+    if(months <= 6) rate = isSenior ? 7.00 : 6.50;
+    else if(months <= 12) rate = isSenior ? 7.50 : 7.00;
+    else if(months <= 24) rate = isSenior ? 7.75 : 7.25;
+    else rate = isSenior ? 8.00 : 7.50;
+
+    const r = rate / 100;
+    const years = months / 12;
+    let maturity, interest;
+    
+    if (payout === 'maturity') {
+        maturity = amount * Math.pow(1 + r/4, 4 * years); // quarterly compound
+    } else {
+        maturity = amount + (amount * r * years); // simple
+    }
+    interest = maturity - amount;
+    
+    const matDate = new Date();
+    matDate.setMonth(matDate.getMonth() + months);
+    
+    currentCalculation = {
+        amount, rate, months, payout,
+        maturity: maturity.toFixed(2), 
+        interest: interest.toFixed(2), 
+        maturityDate: matDate.toLocaleDateString('en-IN')
+    };
+
+    document.getElementById('calc_prin').textContent = '₹' + amount.toLocaleString();
+    document.getElementById('calc_rate').textContent = rate.toFixed(2) + '% p.a';
+    document.getElementById('calc_int').textContent = '₹' + Number(currentCalculation.interest).toLocaleString();
+    document.getElementById('calc_mat').textContent = '₹' + Number(currentCalculation.maturity).toLocaleString();
+    document.getElementById('calc_date').textContent = currentCalculation.maturityDate;
+}
+
+function nextStep(step) {
+    if(step === 2) {
+        if(!document.getElementById('fd_amount').value) return alert('Enter amount');
+        if(user && Number(document.getElementById('fd_amount').value) > Number(user.balance)) return;
+        
+        document.getElementById('rev_amt').textContent = '₹' + currentCalculation.amount.toLocaleString();
+        document.getElementById('rev_tenure').textContent = currentCalculation.months + ' Months';
+        document.getElementById('rev_rate').textContent = currentCalculation.rate.toFixed(2) + '% p.a';
+        document.getElementById('rev_payout').textContent = currentCalculation.payout === 'maturity' ? 'At Maturity' : 'Monthly';
+        document.getElementById('rev_mat').textContent = '₹' + Number(currentCalculation.maturity).toLocaleString();
+        document.getElementById('deduct_notice').textContent = `₹${currentCalculation.amount.toLocaleString()} will be debited from your savings account ${user.accountNumber}`;
+    }
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+function prevStep(step) {
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
+
+document.getElementById('fdForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!document.getElementById('fd_agree').checked) return alert('Please agree');
+    
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = 'Processing...';
+    
+    // Deduct balance
+    user.balance = Number(user.balance) - currentCalculation.amount;
+    localStorage.setItem('bams_user', JSON.stringify(user));
+
+    const fdRef = generateRef('FD');
+    saveApplication('fd', {
+        fdRef,
+        accNo: user.accountNumber,
+        amount: currentCalculation.amount,
+        tenure: currentCalculation.months,
+        rate: currentCalculation.rate,
+        maturityDate: currentCalculation.maturityDate,
+        maturityAmount: currentCalculation.maturity,
+        payout: currentCalculation.payout,
+        status: 'Active'
+    });
+    
+    setTimeout(() => {
+        window.location.href = `fd-success.html?ref=${fdRef}`;
+    }, 1500);
+});
+calcPreview();
+</script>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
+
 <script src="js/theme.js"></script>
-</body>
-</html>
+</body></html>

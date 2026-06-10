@@ -3,285 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Savings Account | BAMS</title>
+    <title>Apply Savings Account | Easy pAy</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <style>
-        .breadcrumb { padding: 15px 0; font-size: 14px; color: var(--text-muted); }
-        .breadcrumb a { color: var(--primary); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .summary-card { background: var(--bg-main); padding: 20px; border-radius: 8px; border: 1px solid #eee; margin-bottom: 20px; }
-        .summary-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-    </style>
+    <link rel="stylesheet" href="css/service-pages.css">
+    <script src="js/flow-guard.js"></script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="8" fill="#0A2342"/>
-                <rect x="6" y="20" width="5" height="10" fill="#C9A84C"/>
-                <rect x="13" y="14" width="5" height="16" fill="#C9A84C"/>
-                <rect x="20" y="8" width="5" height="22" fill="#C9A84C"/>
-                <rect x="6" y="18" width="22" height="2" fill="#F0C040"/>
-              </svg>
-              <span style="font-size:20px;font-weight:700;color:#0A2342;letter-spacing:1px;">BAMS</span>
-            </a>
-            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
-  <span id="theme-icon">🌙</span>
-  <span id="theme-label">Dark</span>
-</button>
-            <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
-                <a href="login.html" class="btn btn-outline-nav">Login</a>
-                <a href="register.html" class="btn btn-primary-nav">Open Account</a>
+<header class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+            <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
+                    <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
+                    <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
+                    <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
+                </svg>
             </div>
+            <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faq.html" class="nav-link">Help</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">Dark</span>
+        </button>
+        <div class="nav-auth-buttons" style="display:flex; gap:10px; align-items:center;">
+            <a href="login.html" class="btn btn-outline-nav">Login</a>
+            <a href="register.html" class="btn btn-primary-nav">Open Account</a>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main class="section-padding" style="min-height: 80vh;">
-        <div class="container container-narrow">
-            <div class="breadcrumb">
-                <a href="index.html">Home</a> &rarr; <a href="services.html">Services</a> &rarr; Savings Account
+<main class="section-padding bg-light">
+    <div class="container container-narrow">
+        <div id="login-warning" style="display:none; background: var(--bg-card); border: 2px solid var(--accent); padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
+            <h3 style="color: var(--primary);">You already have an account!</h3>
+            <p class="text-muted" style="margin: 10px 0;">If you want to open a Fixed Deposit or apply for a Loan, please visit your dashboard.</p>
+            <a href="dashboard.html" class="btn btn-accent">Go to Dashboard</a>
+        </div>
+
+        <div class="card" id="application-form-card">
+            <h2 class="text-center mb-md">Open Savings Account</h2>
+            
+            <div class="step-bar mb-xl">
+                <div class="step-item active" id="step-btn-1">1. Personal</div>
+                <div class="step-item" id="step-btn-2">2. KYC</div>
+                <div class="step-item" id="step-btn-3">3. Preferences</div>
+                <div class="step-item" id="step-btn-4">4. Review</div>
             </div>
-            <div class="card registration-card">
-                <div class="text-center mb-lg">
-                    <h1 class="section-title">Apply for Savings Account</h1>
-                    <p class="text-muted">Complete the steps below to open your account.</p>
-                </div>
 
-                <div class="progress-bar-container">
-                    <p class="text-center mb-md" style="font-weight: 600; color: var(--primary);">Step <span id="currentStepText">1</span> of 3</p>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="progressBar" style="background-color: var(--accent); width: 0%;"></div>
-                        <div class="progress-steps">
-                            <div class="step active" data-step="1">1</div>
-                            <div class="step" data-step="2">2</div>
-                            <div class="step" data-step="3">3</div>
-                        </div>
-                    </div>
-                </div>
-
-                <form id="applyForm" class="multi-step-form">
-                    <!-- Step 1: Account Preferences -->
-                    <div class="form-step active" id="step1">
-                        <h2 class="form-step-title">Step 1: Account Preferences</h2>
-                        <label>Minimum Balance Requirement</label>
-                        <div class="radio-cards mb-md">
-                            <label class="radio-card">
-                                <input type="radio" name="minBalance" value="Zero Balance" required>
-                                <div class="card-content"><strong>Zero Balance</strong></div>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="minBalance" value="₹1000" checked>
-                                <div class="card-content"><strong>₹1000</strong></div>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="minBalance" value="₹5000">
-                                <div class="card-content"><strong>₹5000</strong></div>
-                            </label>
+            <form id="savingsForm">
+                <!-- STEP 1 -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="sa_name" required></div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="sa_dob" required>
+                            <small id="dob-error" style="color:red;display:none;">Minimum age is 18 years</small>
                         </div>
                         <div class="form-group">
-                            <label>Preferred Branch</label>
-                            <select name="branch" id="branch" required>
-                                <option value="">Select a branch</option>
-                                <option value="Main Branch, City Center">Main Branch, City Center</option>
-                                <option value="North Park Branch">North Park Branch</option>
-                                <option value="South Avenue Branch">South Avenue Branch</option>
-                            </select>
-                        </div>
-                        <div class="form-group mt-md">
-                            <label>Debit Card Type</label>
-                            <div style="display: flex; gap: 15px; margin-top: 5px;">
-                                <label><input type="radio" name="debitCard" value="Classic" checked> Classic Card</label>
-                                <label><input type="radio" name="debitCard" value="Platinum"> Platinum Card</label>
+                            <label>Gender</label>
+                            <div style="display:flex;gap:15px;margin-top:10px;">
+                                <label><input type="radio" name="sa_gender" value="Male" checked> Male</label>
+                                <label><input type="radio" name="sa_gender" value="Female"> Female</label>
+                                <label><input type="radio" name="sa_gender" value="Other"> Other</label>
                             </div>
                         </div>
                     </div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Phone Number</label><input type="tel" id="sa_phone" pattern="[0-9]{10}" placeholder="10 digits" required></div>
+                        <div class="form-group"><label>Email Address</label><input type="email" id="sa_email" required></div>
+                    </div>
+                    <div class="form-group"><label>Address</label><textarea id="sa_address" rows="3" required></textarea></div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>State</label>
+                            <select id="sa_state" required>
+                                <option value="">Select State</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>City</label><input type="text" id="sa_city" required></div>
+                    </div>
+                    <div class="text-right mt-lg"><button type="button" class="btn btn-primary next-btn" onclick="nextStep(2)">Next &rarr;</button></div>
+                </div>
 
-                    <!-- Step 2: Nominee Details -->
-                    <div class="form-step" id="step2">
-                        <h2 class="form-step-title">Step 2: Nominee Details</h2>
+                <!-- STEP 2 -->
+                <div class="form-step" id="step2" style="display:none;">
+                    <div class="form-grid">
                         <div class="form-group">
-                            <label>Nominee Full Name</label>
-                            <input type="text" id="nomineeName" required>
+                            <label>Aadhaar Number</label>
+                            <input type="number" id="sa_aadhaar" placeholder="12 digits" required>
+                            <small id="aadhaar-error" style="color:red;display:none;">Must be exactly 12 digits</small>
                         </div>
                         <div class="form-group">
-                            <label>Relation</label>
-                            <select id="nomineeRelation" required>
-                                <option value="">Select Relation</option>
+                            <label>PAN Number</label>
+                            <input type="text" id="sa_pan" placeholder="ABCDE1234F" style="text-transform:uppercase;" required>
+                            <small id="pan-error" style="color:red;display:none;">Invalid format</small>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Occupation</label>
+                        <select id="sa_occ" required>
+                            <option value="Salaried">Salaried</option>
+                            <option value="Self-Employed">Self-Employed</option>
+                            <option value="Student">Student</option>
+                            <option value="Retired">Retired</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Nominee Name</label><input type="text" id="sa_nom_name" required></div>
+                        <div class="form-group"><label>Nominee Relation</label>
+                            <select id="sa_nom_rel" required>
                                 <option value="Spouse">Spouse</option>
                                 <option value="Parent">Parent</option>
                                 <option value="Child">Child</option>
                                 <option value="Sibling">Sibling</option>
+                                <option value="Friend">Friend</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Nominee DOB</label>
-                            <input type="date" id="nomineeDob" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Nominee Aadhaar (12 digits)</label>
-                            <input type="text" id="nomineeAadhaar" pattern="[0-9]{12}" title="Enter 12 digit Aadhaar number" required>
+                    </div>
+                    <div class="form-group"><label>Nominee DOB</label><input type="date" id="sa_nom_dob" required></div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(1)">&larr; Back</button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextStep(3)">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="form-step" id="step3" style="display:none;">
+                    <div class="form-group">
+                        <label>Initial Deposit Amount (₹)</label>
+                        <input type="number" id="sa_deposit" min="0" value="0" required>
+                        <small class="text-muted">Minimum ₹0 — zero balance account allowed</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Account Mode Preference</label>
+                        <div style="display:flex;gap:15px;margin-top:10px;">
+                            <label><input type="radio" name="sa_mode" value="Single" checked> Single</label>
+                            <label><input type="radio" name="sa_mode" value="Joint"> Joint</label>
                         </div>
                     </div>
-
-                    <!-- Step 3: Review & Confirm -->
-                    <div class="form-step" id="step3">
-                        <h2 class="form-step-title">Step 3: Review & Confirm</h2>
-                        <div class="summary-card" id="summaryCard"></div>
-                        <div class="form-group" style="margin-top: 20px;">
-                            <label style="font-weight: 400; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="agreeTerms" required> I agree to the <a href="policies.html" class="text-link">Terms & Conditions</a>
+                    <div class="form-group">
+                        <label>Preferred Branch</label>
+                        <select id="sa_branch">
+                            <option value="Online">Online / Digital Branch</option>
+                            <option value="Main Branch">Main Branch</option>
+                            <option value="City Branch">City Branch</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group mt-lg">
+                        <label>Select Debit Card Type</label>
+                        <div class="radio-card-grid mt-sm">
+                            <label class="radio-card-label">
+                                <input type="radio" name="sa_card" value="RuPay Classic" checked>
+                                <div class="radio-card-content">
+                                    <h4 style="color:var(--primary);">RuPay Classic</h4>
+                                    <p class="text-muted" style="font-size:0.8rem;margin:5px 0;">₹0 Annual Fee</p>
+                                    <p class="text-muted" style="font-size:0.8rem;">₹25,000/day limit</p>
+                                </div>
+                            </label>
+                            <label class="radio-card-label">
+                                <input type="radio" name="sa_card" value="RuPay Platinum">
+                                <div class="radio-card-content">
+                                    <h4 style="color:var(--primary);">RuPay Platinum</h4>
+                                    <p class="text-muted" style="font-size:0.8rem;margin:5px 0;">₹200/year Fee</p>
+                                    <p class="text-muted" style="font-size:0.8rem;">₹1,00,000/day limit</p>
+                                </div>
+                            </label>
+                            <label class="radio-card-label">
+                                <input type="radio" name="sa_card" value="Visa International">
+                                <div class="radio-card-content">
+                                    <h4 style="color:var(--primary);">Visa Intl</h4>
+                                    <p class="text-muted" style="font-size:0.8rem;margin:5px 0;">₹500/year Fee</p>
+                                    <p class="text-muted" style="font-size:0.8rem;">₹1,50,000/day limit</p>
+                                </div>
                             </label>
                         </div>
                     </div>
-
-                    <!-- Navigation Buttons -->
-                    <div class="form-navigation mt-xl">
-                        <button type="button" class="btn btn-outline" id="prevBtn" style="visibility: hidden;">Back</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-                        <button type="submit" class="btn btn-accent" id="submitBtn" style="display: none;">Submit Application</button>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(2)">&larr; Back</button>
+                        <button type="button" class="btn btn-primary next-btn" onclick="nextStep(4)">Review &rarr;</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </main>
+                </div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card">
-            <div class="modal-icon">✅</div>
-            <h2 class="mb-md">Application Submitted!</h2>
-            <p class="text-muted mb-lg">Your Savings Account application has been received successfully.</p>
-            <p style="font-size: 0.9rem; color: var(--accent);">Redirecting to dashboard...</p>
+                <!-- STEP 4 -->
+                <div class="form-step" id="step4" style="display:none;">
+                    <div class="calc-box">
+                        <h3 class="mb-sm">Application Summary</h3>
+                        <div class="calc-row"><span>Name:</span> <strong id="rev_name"></strong></div>
+                        <div class="calc-row"><span>Phone:</span> <strong id="rev_phone"></strong></div>
+                        <div class="calc-row"><span>Email:</span> <strong id="rev_email"></strong></div>
+                        <div class="calc-row"><span>City, State:</span> <strong id="rev_loc"></strong></div>
+                        <div class="calc-row"><span>PAN:</span> <strong id="rev_pan"></strong></div>
+                        <hr style="margin:10px 0;border-color:var(--border-color);">
+                        <div class="calc-row"><span>Initial Deposit:</span> <strong id="rev_dep" style="color:var(--accent);"></strong></div>
+                        <div class="calc-row"><span>Debit Card:</span> <strong id="rev_card"></strong></div>
+                        <div class="calc-row"><span>Nominee:</span> <strong id="rev_nom"></strong></div>
+                    </div>
+                    <div class="form-group mt-md">
+                        <label style="font-weight:normal; display:flex; gap:10px;">
+                            <input type="checkbox" id="sa_agree" required>
+                            <span>I confirm all details are correct and agree to Easy pAy Terms & Conditions</span>
+                        </label>
+                    </div>
+                    <div class="text-between mt-lg">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(3)">&larr; Back</button>
+                        <button type="submit" class="btn btn-accent" id="submitBtn">Create My Account</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</main>
+<script>
+if (getUser()) {
+    document.getElementById('login-warning').style.display = 'block';
+}
 
-    <footer class="footer">
-        <div class="container text-center">
-            <div style="margin-bottom: 10px;">
-                <a href="index.html" style="color:white; margin:0 10px; text-decoration:none;">Home</a> |
-                <a href="services.html" style="color:white; margin:0 10px; text-decoration:none;">Services</a> |
-                <a href="about.html" style="color:white; margin:0 10px; text-decoration:none;">About</a> |
-                <a href="contact.html" style="color:white; margin:0 10px; text-decoration:none;">Contact</a> |
-                <a href="faq.html" style="color:white; margin:0 10px; text-decoration:none;">FAQ</a> |
-                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Privacy Policy</a> |
-                <a href="policies.html" style="color:white; margin:0 10px; text-decoration:none;">Terms & Conditions</a>
-            </div>
-            <p>&copy; 2026 Banking Account Management System. All rights reserved.</p>
-            <a href="admin/login.html" style="font-size:11px;color:#555;opacity:0.4;text-decoration:none;">Admin</a>
-        </div>
-    </footer>
-
-    <script>
-        const form = document.getElementById('applyForm');
-        const steps = document.querySelectorAll('.form-step');
-        const progressSteps = document.querySelectorAll('.step');
-        const progressBar = document.getElementById('progressBar');
-        const currentStepText = document.getElementById('currentStepText');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const submitBtn = document.getElementById('submitBtn');
-        let currentStep = 0;
-
-        function checkValidation() {
-            const inputs = steps[currentStep].querySelectorAll('input, select');
-            let valid = true;
-            inputs.forEach(input => {
-                if(!input.checkValidity()) {
-                    input.reportValidity();
-                    valid = false;
-                }
-            });
-            return valid;
+function nextStep(step) {
+    if(step === 2) {
+        const dob = document.getElementById('sa_dob').value;
+        if(!dob) return alert('Please enter DOB');
+        const age = (new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000);
+        if(age < 18) {
+            document.getElementById('dob-error').style.display='block';
+            return;
         }
+        document.getElementById('dob-error').style.display='none';
+    }
+    if(step === 3) {
+        const aadhaar = document.getElementById('sa_aadhaar').value;
+        const pan = document.getElementById('sa_pan').value.toUpperCase();
+        let err = false;
+        if(!/^[2-9]{1}[0-9]{11}$/.test(aadhaar)) { document.getElementById('aadhaar-error').style.display='block'; err=true; } else { document.getElementById('aadhaar-error').style.display='none'; }
+        if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) { document.getElementById('pan-error').style.display='block'; err=true; } else { document.getElementById('pan-error').style.display='none'; }
+        if(err) return;
+    }
+    if(step === 4) {
+        document.getElementById('rev_name').textContent = document.getElementById('sa_name').value;
+        document.getElementById('rev_phone').textContent = document.getElementById('sa_phone').value;
+        document.getElementById('rev_email').textContent = document.getElementById('sa_email').value;
+        document.getElementById('rev_loc').textContent = document.getElementById('sa_city').value + ', ' + document.getElementById('sa_state').value;
+        document.getElementById('rev_pan').textContent = document.getElementById('sa_pan').value.toUpperCase();
+        document.getElementById('rev_dep').textContent = '₹' + document.getElementById('sa_deposit').value;
+        document.getElementById('rev_card').textContent = document.querySelector('input[name="sa_card"]:checked').value;
+        document.getElementById('rev_nom').textContent = document.getElementById('sa_nom_name').value + ' (' + document.getElementById('sa_nom_rel').value + ')';
+    }
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
 
-        function populateSummary() {
-            const minBalance = document.querySelector('input[name="minBalance"]:checked').value;
-            const branch = document.getElementById('branch').value;
-            const debitCard = document.querySelector('input[name="debitCard"]:checked').value;
-            const nomineeName = document.getElementById('nomineeName').value;
-            const nomineeRelation = document.getElementById('nomineeRelation').value;
-            const nomineeDob = document.getElementById('nomineeDob').value;
-            const nomineeAadhaar = document.getElementById('nomineeAadhaar').value;
-            
-            document.getElementById('summaryCard').innerHTML = `
-                <div class="summary-item"><span>Min Balance:</span> <strong>${minBalance}</strong></div>
-                <div class="summary-item"><span>Branch:</span> <strong>${branch}</strong></div>
-                <div class="summary-item"><span>Debit Card:</span> <strong>${debitCard}</strong></div>
-                <div class="summary-item"><span>Nominee:</span> <strong>${nomineeName} (${nomineeRelation})</strong></div>
-                <div class="summary-item"><span>Nominee DOB:</span> <strong>${nomineeDob}</strong></div>
-                <div class="summary-item" style="border-bottom:none;"><span>Nominee Aadhaar:</span> <strong>${nomineeAadhaar}</strong></div>
-            `;
-        }
+function prevStep(step) {
+    document.querySelectorAll('.form-step').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.step-item').forEach((el, idx) => el.classList.toggle('active', idx < step));
+    document.getElementById('step' + step).style.display = 'block';
+}
 
-        function updateForm() {
-            steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
-            progressSteps.forEach((step, index) => step.classList.toggle('active', index <= currentStep));
-            progressBar.style.width = ((currentStep / (steps.length - 1)) * 100) + '%';
-            currentStepText.textContent = currentStep + 1;
+document.getElementById('savingsForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!document.getElementById('sa_agree').checked) return alert('Please agree to T&C');
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = 'Processing...';
+    
+    const accNo = "EP" + new Date().getFullYear() + Math.floor(1000000 + Math.random() * 9000000);
+    const custId = "CID" + Math.floor(100000 + Math.random() * 900000);
+    const name = document.getElementById('sa_name').value;
+    const email = document.getElementById('sa_email').value;
+    const initialDeposit = document.getElementById('sa_deposit').value;
+    
+    localStorage.setItem('bams_user', JSON.stringify({
+        name: name, email: email, accountNumber: accNo, accountType: 'Savings', balance: initialDeposit, custId: custId
+    }));
+    
+    saveApplication('savings', {
+        accNo, custId, name, email,
+        pan: document.getElementById('sa_pan').value.toUpperCase(),
+        deposit: initialDeposit,
+        card: document.querySelector('input[name="sa_card"]:checked').value,
+        status: 'Approved'
+    });
+    
+    setTimeout(() => {
+        window.location.href = 'savings-success.html';
+    }, 1500);
+});
+</script>
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+        <p class="text-muted" style="margin-top:10px;font-size:0.9rem;">Providing secure and innovative banking solutions since 2026. Your trust is our foundation.</p>
+    </div>
+</footer>
 
-            prevBtn.style.visibility = (currentStep === 0) ? 'hidden' : 'visible';
-            if (currentStep === steps.length - 1) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'inline-block';
-                populateSummary();
-            } else {
-                nextBtn.style.display = 'inline-block';
-                submitBtn.style.display = 'none';
-            }
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (checkValidation()) {
-                currentStep++;
-                updateForm();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentStep--;
-            updateForm();
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if(!checkValidation()) return;
-            
-            const applicationData = {
-                type: 'Savings Account',
-                minBalance: document.querySelector('input[name="minBalance"]:checked').value,
-                branch: document.getElementById('branch').value,
-                nomineeName: document.getElementById('nomineeName').value,
-                dateApplied: new Date().toISOString(),
-                status: 'Pending'
-            };
-            
-            const user = JSON.parse(localStorage.getItem('bams_user'));
-            const email = user ? user.email : 'guest@example.com';
-            
-            // Wait, savings/current account creations are just handled as user properties in this scope, but for the sake of the prompt, we save it locally or to a common list
-            // Let's save it to a generic array for the admin to see if needed, or just simulate success
-            const apps = JSON.parse(localStorage.getItem('bams_savings_apps') || '[]');
-            apps.push({...applicationData, applicant: email});
-            localStorage.setItem('bams_savings_apps', JSON.stringify(apps));
-            
-            document.getElementById('successModal').style.display = 'flex';
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
-        });
-
-        // Add user session check logic to replace login buttons with User name (global logic)
-        window.addEventListener('DOMContentLoaded', () => {
-            const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-            if (user) {
-                const navAuth = document.querySelector('.nav-auth-buttons');
-                if (navAuth) {
-                    navAuth.innerHTML = `<a href="dashboard.html" class="btn btn-outline-nav">Dashboard</a>`;
-                }
-            }
-        });
-    </script>
 <script src="js/theme.js"></script>
-</body>
-</html>
+</body></html>

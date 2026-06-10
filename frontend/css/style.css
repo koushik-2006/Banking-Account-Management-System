@@ -1940,3 +1940,39 @@ table td { border-color: var(--border-color); color: var(--text-primary); }
 [data-theme="dark"] .btn-outline-nav { border-color: #C9A84C; color: #C9A84C; }
 [data-theme="dark"] .btn-outline-nav:hover { background: #C9A84C; color: #010409; }
 [data-theme="dark"] .breadcrumb { color: var(--text-secondary); }
+
+/* Message Box */
+.msg-box { padding: 12px 16px; border-radius: 8px; font-size: 14px; margin: 12px 0; display:none; }
+.msg-success { background: #D1FAE5; color: #065F46; border: 1px solid #34D399; }
+.msg-error { background: #FEE2E2; color: #991B1B; border: 1px solid #F87171; }
+.msg-info { background: #DBEAFE; color: #1E40AF; border: 1px solid #60A5FA; }
+
+/* Dark mode variants: */
+[data-theme="dark"] .msg-success { background: rgba(52,211,153,0.1); color: #4ADE80; border-color: #059669; }
+[data-theme="dark"] .msg-error { background: rgba(248,113,113,0.1); color: #FCA5A5; border-color: #DC2626; }
+[data-theme="dark"] .msg-info { background: rgba(96,165,250,0.1); color: #93C5FD; border-color: #2563EB; }
+
+
+/* --- Easy pAy Rebranding Overrides --- */
+.navbar, header.navbar { background: #0A0A0A !important; }
+[data-theme="dark"] .navbar { background: #000000 !important; }
+.nav-link { color: #8B949E; }
+.nav-link:hover, .nav-link.active { color: #C9A84C; }
+
+[data-theme="dark"] section[style*="background: #0A0A0A"],
+[data-theme="dark"] section[style*="background:#0A0A0A"] {
+  background: #000000 !important;
+}
+
+
+[data-theme="dark"] #branch-locator { background: #0D1117 !important; }
+[data-theme="dark"] #branch-list div { background: #161B22 !important; border-color: #30363D !important; }
+[data-theme="dark"] #branch-list div div[style*="color:#0A0A0A"] { color: #E6EDF3 !important; }
+
+@media (max-width: 768px) {
+  #branch-locator .container > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+  #branch-map { height: 300px !important; }
+}
+
