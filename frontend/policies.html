@@ -87,6 +87,19 @@
         </section>
     </main>
 
+    <div id="new-user-banner" style="display:none; background:#0A0A0A; border:1.5px solid #C9A84C; border-radius:14px; padding:28px 32px; margin:40px auto; max-width:600px; text-align:center;">
+      <div style="font-size:32px; margin-bottom:12px;">🎉</div>
+      <h3 style="color:#C9A84C; font-size:1.2rem; font-weight:700; margin-bottom:8px;">Account Created Successfully!</h3>
+      <p style="color:#8B949E; font-size:14px; margin-bottom:6px;">You have agreed to Easy pAy's Terms & Conditions.</p>
+      <p style="color:#E6EDF3; font-size:14px; margin-bottom:20px;">Your Account Number: <strong id="display-acc-no" style="color:#C9A84C; font-family:monospace; font-size:16px;"></strong></p>
+      <a id="go-to-login-btn" href="login.html" style="display:inline-block; background:#C9A84C; color:#0A0A0A; padding:12px 32px; border-radius:8px; font-weight:700; font-size:15px; text-decoration:none; transition:background 0.2s;"
+        onmouseover="this.style.background='#FFD700'"
+        onmouseout="this.style.background='#C9A84C'">
+        Next — Go to Login →
+      </a>
+      <p style="margin-top:12px; font-size:12px; color:#6B7280;">Save your account number before proceeding. You'll need it to log in.</p>
+    </div>
+
     <!-- Footer -->
     <footer class="footer py-5 mt-5">
         <div class="container text-center">
@@ -104,6 +117,15 @@
             }
         }
     </script>
+<script>
+  const newUser = JSON.parse(localStorage.getItem('easypay_pending_user') || 'null');
+  if (newUser && newUser.justRegistered) {
+    document.getElementById('new-user-banner').style.display = 'block';
+    document.getElementById('display-acc-no').textContent = newUser.accountNumber;
+    document.getElementById('go-to-login-btn').href = 'login.html';
+    localStorage.setItem('easypay_autologin', JSON.stringify(newUser));
+  }
+</script>
 <script src="js/theme.js"></script>
 </body>
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Easy pAy — Data Viewer</title>
+  <style>
+    body { font-family: monospace; background: #0D1117; color: #E6EDF3; padding: 20px; }
+    h1 { color: #C9A84C; margin-bottom: 20px; }
+    h2 { color: #C9A84C; font-size: 14px; margin: 24px 0 8px; border-bottom: 1px solid #30363D; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+    th { background: #161B22; color: #C9A84C; padding: 8px 12px; text-align: left; border: 1px solid #30363D; }
+    td { padding: 7px 12px; border: 1px solid #30363D; color: #E6EDF3; }
+    tr:nth-child(even) td { background: #161B22; }
+    .count { font-size: 11px; color: #8B949E; }
+    .status-active { color: #4ADE80; }
+    .status-pending { color: #FCD34D; }
+    .empty { color: #6B7280; font-style: italic; padding: 10px; }
+    .refresh-btn { background: #C9A84C; color: #0A0A0A; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-bottom: 20px; }
+  </style>
+    <script src="../js/api.js"></script>
+</head>
+<body>
+  <h1>🗄 Easy pAy — Local Data Viewer</h1>
+  <button class="refresh-btn" onclick="location.reload()">↻ Refresh</button>
+  <div id="viewer"></div>
+
+<script>
+const session = JSON.parse(localStorage.getItem('bams_admin_session') || 'null');
+if (!session || !session.loggedIn) { document.body.innerHTML = '<p style="color:red;padding:40px">Access Denied. <a href="login.html" style="color:#C9A84C">Admin Login</a></p>'; }
+
+function renderTable(title, data, columns) {
+  if (!data || data.length === 0) return '<h2>' + title + ' <span class="count">(0 records)</span></h2><p class="empty">No records found.</p>';
+  const headers = columns.map(c => '<th>' + c.label + '</th>').join('');
+  const rows = data.map(row => '<tr>' + columns.map(c => {
+    const val = row[c.key] || '—';
+    const cls = c.key === 'status' ? 'status-' + String(val).toLowerCase() : '';
+    return '<td class="' + cls + '">' + val + '</td>';
+  }).join('') + '</tr>').join('');
+  return '<h2>' + title + ' <span class="count">(' + data.length + ' records)</span></h2><table><thead><tr>' + headers + '</tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
+const users = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+const loans = JSON.parse(localStorage.getItem('easypay_loan_apps') || '[]');
+const fds = JSON.parse(localStorage.getItem('easypay_fd_apps') || '[]');
+const cards = JSON.parse(localStorage.getItem('easypay_card_apps') || '[]');
+const subs = (JSON.parse(localStorage.getItem('easypay_newsletter') || '[]')).map(e => ({email: e}));
+
+document.getElementById('viewer').innerHTML =
+  renderTable('👤 USERS TABLE', users, [{key:'name',label:'Name'},{key:'email',label:'Email'},{key:'accountNumber',label:'Account No'},{key:'accountType',label:'Type'},{key:'balance',label:'Balance'},{key:'status',label:'Status'},{key:'createdAt',label:'Created At'},{key:'loginType',label:'Login Via'}]) +
+  renderTable('💳 LOAN APPLICATIONS', loans, [{key:'loanRef',label:'Loan Ref'},{key:'name',label:'Name'},{key:'amount',label:'Amount'},{key:'loanType',label:'Type'},{key:'tenure',label:'Tenure'},{key:'emi',label:'EMI'},{key:'status',label:'Status'},{key:'appliedAt',label:'Date'}]) +
+  renderTable('🏦 FIXED DEPOSITS', fds, [{key:'fdRef',label:'FD Ref'},{key:'name',label:'Name'},{key:'amount',label:'Amount'},{key:'rate',label:'Rate'},{key:'tenure',label:'Tenure'},{key:'maturityDate',label:'Maturity'},{key:'status',label:'Status'}]) +
+  renderTable('💳 CARD APPLICATIONS', cards, [{key:'cardRef',label:'Card Ref'},{key:'name',label:'Name'},{key:'cardType',label:'Card'},{key:'creditLimit',label:'Limit'},{key:'status',label:'Status'},{key:'appliedAt',label:'Date'}]) +
+  renderTable('📧 NEWSLETTER SUBSCRIBERS', subs, [{key:'email',label:'Email'}]);
+</script>
+</body>
+</html>

@@ -1,4 +1,7 @@
-CREATE DATABASE IF NOT EXISTS bams_db;
+const fs = require('fs');
+const path = require('path');
+
+const bamsSchemaSql = `CREATE DATABASE IF NOT EXISTS bams_db;
 USE bams_db;
 
 CREATE TABLE users (
@@ -118,3 +121,8 @@ VALUES ('EP2026TEST01', 'Test User', 'test@easypay.com', '9876543210', '$2a$10$N
 -- Count total users:      SELECT COUNT(*) as total_users FROM users;
 -- Active users only:      SELECT * FROM users WHERE account_status = 'Active';
 -- Pending loans:          SELECT * FROM loan_applications WHERE status = 'Applied';
+`;
+
+// TASK 1
+fs.writeFileSync('database/bams_schema.sql', bamsSchemaSql);
+console.log('bams_schema.sql created.');
