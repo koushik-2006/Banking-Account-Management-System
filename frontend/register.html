@@ -249,7 +249,7 @@
 
             document.getElementById('accNumberDisplay').textContent = userData.accountNumber;
             document.getElementById('successModal').style.display = 'flex';
-            setTimeout(() => window.location.href = 'login.html', 5000);
+            setTimeout(() => window.location.href = 'dashboard.html', 5000);
           } catch(e) {
             showMsg('error', '✗ Google sign up failed. Please try again.');
           }
@@ -412,52 +412,47 @@ function clearValidationErrors() {
                       loginType: 'manual',
                       justRegistered: true,
                       createdAt: new Date().toISOString(),
-                      status: 'Pending'
+                      status: 'Pending',
+                      password: password
                     };
+                    localStorage.setItem('bams_user', JSON.stringify(userData));
                     
-          // Replaced by node script
-          const reqData = {
-              fullName: document.getElementById('fullName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
-              email: document.getElementById('email').value.trim(),
-              phone: document.getElementById('mobile').value.trim(),
-              password: document.getElementById('password').value,
-              gender: document.getElementById('gender') ? document.getElementById('gender').value : 'Not specified',
-              dateOfBirth: document.getElementById('dob').value,
-              address: document.getElementById('street').value + ', ' + document.getElementById('city').value + ' - ' + document.getElementById('pincode').value,
-              accountType: 'Savings',
-              initialDeposit: 0.00
-          };
-
-          const btn = document.querySelector('button[onclick="submitApplication()"]');
-          if(btn) { btn.disabled = true; btn.textContent = 'Processing...'; }
-
-          try {
-              const res = await EasyPayAPI.register(reqData);
-              if (res.success) {
-                  localStorage.setItem('easypay_pending_user', JSON.stringify({
-                      accNo: res.data.accountNumber,
-                      name: reqData.fullName,
-                      email: reqData.email
-                  }));
-                  window.location.href = 'policies.html';
-              } else {
-                  alert("Registration Failed: " + res.message);
-                  if(btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
-              }
-          } catch(err) {
-              alert("Server Error. Please make sure backend is running.");
-              if(btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
-          }
-          // End API logic
+                    const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+                    allUsers.push(userData);
+                    localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
+                    
+                    showSuccessModal(data.accountNumber, fullName);
                 } else {
                     showMsg('error', data.message);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Complete Registration';
                 }
             } catch (err) {
-                showMsg('error', 'Server connection failed. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Complete Registration';
+                // Mock successful registration for frontend-only testing
+                const mockAccNo = 'BAMS' + Math.floor(1000000000 + Math.random() * 9000000000);
+                const userData = {
+                    name: fullName,
+                    email: email,
+                    accountNumber: mockAccNo,
+                    accountType: accountType,
+                    balance: 0,
+                    phone: phone,
+                    loginType: 'manual',
+                    justRegistered: true,
+                    createdAt: new Date().toISOString(),
+                    status: 'Active'
+                };
+                
+                // Store in bams_user for session
+                localStorage.setItem('bams_user', JSON.stringify(userData));
+                
+                // Also add to all users for login
+                const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+                userData.password = password; // Store password locally for mock login validation
+                allUsers.push(userData);
+                localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
+                
+                showSuccessModal(mockAccNo, fullName);
             }
         });
 
@@ -471,7 +466,7 @@ function clearValidationErrors() {
         function showSuccessModal(accNo, name) {
             document.getElementById('accNumberDisplay').textContent = accNo;
             document.getElementById('successModal').style.display = 'flex';
-            setTimeout(() => window.location.href = 'login.html', 5000);
+            setTimeout(() => window.location.href = 'dashboard.html', 5000);
         }
 
         updateForm();

@@ -735,17 +735,6 @@
     </footer>
 
     <script src="js/app.js"></script>
-    <script>
-        const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-        if (user) {
-            const navAuth = document.querySelector('.nav-auth-buttons');
-            if(navAuth) {
-                navAuth.innerHTML =
-                    '<span style="font-size:13px;color:#C9A84C">👤 ' + user.name + '</span>' +
-                    '<a href="dashboard.html" class="btn-primary-nav">Dashboard</a>';
-            }
-        }
-    </script>
 <script src="js/theme.js"></script>
 
     <script>

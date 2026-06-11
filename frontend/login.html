@@ -173,59 +173,44 @@
             }
         });
 
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const btn = document.getElementById('login-btn');
-  const msg = document.getElementById('login-message');
-  btn.disabled = true; btn.textContent = 'Signing in...';
-  try {
-    const res = await EasyPayAPI.login({ accountNumber: document.getElementById('account-number').value.trim(), password: document.getElementById('password').value });
-    if (res.success) {
-      localStorage.setItem('bams_user', JSON.stringify(res.data));
-      msg.className = 'msg-box msg-success'; msg.textContent = '✓ ' + res.message; msg.style.display='block';
-      const redirect = localStorage.getItem('bams_redirect_after_login') || 'dashboard.html';
-      localStorage.removeItem('bams_redirect_after_login');
-      setTimeout(() => window.location.href = redirect, 1000);
-    } else {
-      msg.className = 'msg-box msg-error'; msg.textContent = '✗ ' + res.message; msg.style.display='block';
-      btn.disabled = false; btn.textContent = 'Login';
-    }
-  } catch {
-    msg.className = 'msg-box msg-error'; msg.textContent = '⚠ Cannot connect to server. Is Spring Boot running on port 8080?'; msg.style.display='block';
-    btn.disabled = false; btn.textContent = 'Login';
-  }
-});
-            const data = await res.json();
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const accNo = document.getElementById('account-number').value.trim();
+            const pass = document.getElementById('password').value;
+            const btn = document.getElementById('login-btn');
+            const msg = document.getElementById('login-message');
 
-            if (data.success) {
-              showMsg('success', '✓ ' + data.message);
-              localStorage.setItem('bams_user', JSON.stringify({
-                name: data.fullName,
-                email: data.email,
-                accountNumber: data.accountNumber,
-                accountType: data.accountType,
-                balance: data.balance,
-                token: data.token
-              }));
-              setTimeout(() => {
-                  const redirect = localStorage.getItem('redirect_after_login');
-                  if (redirect) {
-                      localStorage.removeItem('redirect_after_login');
-                      window.location.href = redirect;
-                  } else {
-                      window.location.href = 'dashboard.html';
-                  }
-              }, 1200);
-            } else {
-              showMsg('error', '✗ ' + data.message);
-              btn.disabled = false;
-              btn.textContent = 'Login';
-            }
-          } catch (err) {
-            showMsg('error', '⚠ Cannot connect to bank server. Make sure the backend is running on port 8080.');
-            btn.disabled = false;
-            btn.textContent = 'Login';
-          }
+            btn.disabled = true;
+            btn.textContent = 'Signing in...';
+
+            setTimeout(() => {
+                const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+                const registeredUser = allUsers.find(u => u.accountNumber === accNo);
+                
+                if (!registeredUser) {
+                    msg.className = 'msg-box msg-error';
+                    msg.textContent = 'Account Number not found.';
+                    msg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Login to My Account';
+                    return;
+                }
+                
+                if (registeredUser.password !== pass) {
+                    msg.className = 'msg-box msg-error';
+                    msg.textContent = 'Incorrect Password.';
+                    msg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Login to My Account';
+                    return;
+                }
+
+                localStorage.setItem('bams_user', JSON.stringify(registeredUser));
+                msg.className = 'msg-box msg-success';
+                msg.textContent = '✓ Login Successful! Redirecting...';
+                msg.style.display = 'block';
+                setTimeout(() => window.location.href = 'dashboard.html', 1000);
+            }, 800);
         });
 
         function showMsg(type, text) {
