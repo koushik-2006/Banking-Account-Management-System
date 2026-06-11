@@ -784,6 +784,9 @@ img {
     /* Gold focus ring */
 }
 
+.field-error { border-color: #EF4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.1) !important; }
+.field-success { border-color: #10B981 !important; }
+
 /* Branch Locator */
 .search-box {
     max-width: 500px;

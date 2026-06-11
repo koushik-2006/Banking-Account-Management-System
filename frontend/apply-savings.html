@@ -232,25 +232,76 @@ if (getUser()) {
     document.getElementById('login-warning').style.display = 'block';
 }
 
+function validateStep(stepNumber) {
+  const errors = [];
+
+  if (stepNumber === 1) {
+    const fullName = document.getElementById('sa_name')?.value.trim();
+    const dob = document.getElementById('sa_dob')?.value;
+    const phone = document.getElementById('sa_phone')?.value.trim();
+    const email = document.getElementById('sa_email')?.value.trim();
+    const address = document.getElementById('sa_address')?.value.trim();
+
+    if (!fullName || fullName.length < 3) errors.push('Full Name must be at least 3 characters');
+    if (!dob) {
+      errors.push('Date of Birth is required');
+    } else {
+      const age = Math.floor((new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000));
+      if (age < 18) errors.push('You must be at least 18 years old to open an account');
+    }
+    if (!phone || !/^[6-9]\d{9}$/.test(phone)) errors.push('Enter a valid 10-digit Indian mobile number');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Enter a valid email address');
+    if (!address || address.length < 10) errors.push('Please enter your complete address');
+  }
+
+  if (stepNumber === 2) {
+    const aadhaar = document.getElementById('sa_aadhaar')?.value.trim();
+    const pan = document.getElementById('sa_pan')?.value.trim().toUpperCase();
+    const occupation = document.getElementById('sa_occ')?.value;
+    const nominee = document.getElementById('sa_nom_name')?.value.trim();
+
+    if (!aadhaar || !/^[2-9]{1}[0-9]{11}$/.test(aadhaar)) errors.push('Enter a valid 12-digit Aadhaar number (must not start with 0 or 1)');
+    if (!pan || !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) errors.push('Enter a valid PAN number (format: ABCDE1234F)');
+    if (!occupation) errors.push('Please select your occupation');
+    if (!nominee || nominee.length < 3) errors.push('Nominee name is required');
+  }
+
+  if (stepNumber === 3) {
+    const debitCard = document.querySelector('input[name="sa_card"]:checked');
+    if (!debitCard) errors.push('Please select a Debit Card type');
+  }
+
+  if (errors.length > 0) {
+    showValidationErrors(errors);
+    return false;
+  }
+  clearValidationErrors();
+  return true;
+}
+
+function showValidationErrors(errors) {
+  let box = document.getElementById('validation-error-box');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'validation-error-box';
+    box.style.cssText = 'background:#FEE2E2;border:1px solid #F87171;border-radius:8px;padding:14px 16px;margin-bottom:16px;';
+    const activeStep = document.querySelector('.form-step.active');
+    if (activeStep) activeStep.prepend(box);
+  }
+  box.innerHTML = '<strong style="color:#991B1B;font-size:13px;">⚠ Please fix these before continuing:</strong><ul style="margin:8px 0 0 18px;padding:0;">' +
+    errors.map(e => '<li style="color:#B91C1C;font-size:13px;margin:4px 0;">' + e + '</li>').join('') + '</ul>';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function clearValidationErrors() {
+  const box = document.getElementById('validation-error-box');
+  if (box) box.remove();
+}
+
 function nextStep(step) {
-    if(step === 2) {
-        const dob = document.getElementById('sa_dob').value;
-        if(!dob) return alert('Please enter DOB');
-        const age = (new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000);
-        if(age < 18) {
-            document.getElementById('dob-error').style.display='block';
-            return;
-        }
-        document.getElementById('dob-error').style.display='none';
-    }
-    if(step === 3) {
-        const aadhaar = document.getElementById('sa_aadhaar').value;
-        const pan = document.getElementById('sa_pan').value.toUpperCase();
-        let err = false;
-        if(!/^[2-9]{1}[0-9]{11}$/.test(aadhaar)) { document.getElementById('aadhaar-error').style.display='block'; err=true; } else { document.getElementById('aadhaar-error').style.display='none'; }
-        if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) { document.getElementById('pan-error').style.display='block'; err=true; } else { document.getElementById('pan-error').style.display='none'; }
-        if(err) return;
-    }
+    const currentStep = step - 1;
+    if (!validateStep(currentStep)) return;
+
     if(step === 4) {
         document.getElementById('rev_name').textContent = document.getElementById('sa_name').value;
         document.getElementById('rev_phone').textContent = document.getElementById('sa_phone').value;
@@ -284,9 +335,23 @@ document.getElementById('savingsForm').addEventListener('submit', (e) => {
     const email = document.getElementById('sa_email').value;
     const initialDeposit = document.getElementById('sa_deposit').value;
     
-    localStorage.setItem('bams_user', JSON.stringify({
-        name: name, email: email, accountNumber: accNo, accountType: 'Savings', balance: initialDeposit, custId: custId
-    }));
+    const userData = {
+      name: name,
+      email: email,
+      accountNumber: accNo,
+      accountType: 'Savings',
+      balance: initialDeposit || 0,
+      phone: document.getElementById('sa_phone').value,
+      loginType: 'manual',
+      justRegistered: true,
+      createdAt: new Date().toISOString(),
+      status: 'Pending'
+    };
+    localStorage.setItem('easypay_pending_user', JSON.stringify(userData));
+    localStorage.setItem('bams_user', JSON.stringify(userData));
+    const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+    allUsers.push(userData);
+    localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
     
     saveApplication('savings', {
         accNo, custId, name, email,
@@ -296,9 +361,14 @@ document.getElementById('savingsForm').addEventListener('submit', (e) => {
         status: 'Approved'
     });
     
-    setTimeout(() => {
-        window.location.href = 'savings-success.html';
-    }, 1500);
+    window.location.href = 'policies.html';
+});
+
+document.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('input', function() {
+    this.classList.remove('field-error');
+    this.classList.add('field-success');
+  });
 });
 </script>
 <footer class="footer">

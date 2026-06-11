@@ -26,11 +26,11 @@
   <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
 </a>
             <nav class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="faq.html" class="nav-link">Help</a>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#faq" class="nav-link">Help</a>
             </nav>
             <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background:none;border:1.5px solid rgba(201,168,76,0.5);border-radius:20px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#C9A84C;font-size:13px;transition:all 0.2s">
   <span id="theme-icon">🌙</span>
@@ -44,7 +44,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero section-padding">
+    <section id="home" class="hero section-padding">
         <div class="container hero-grid">
             <div class="hero-content">
                 <h1 class="hero-title">Banking Made <span class="accent-underline">Simple & Secure</span></h1>
@@ -353,33 +353,369 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    
+    <section id="about" class="about-hero hero section-padding">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">Our <span class="text-secondary">Legacy</span> of Trust</h1>
+                <p class="hero-subtitle">Easy pAy has been at the forefront of financial innovation since 2026, delivering
+                    secure and accessible banking solutions to millions.</p>
+                <div class="hero-actions">
+                    <a href="#mission" class="btn btn-primary" onclick="document.getElementById('mission').scrollIntoView({behavior:'smooth'}); return false;">Our Mission</a>
+                    <a href="#team" class="btn btn-outline" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'}); return false;">Meet the team</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/laptop_mobile.png" alt="About Easy pAy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section id="mission" class="mission-vision section-padding">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="card mission-card">
+                    <div class="icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To empower individuals and businesses through innovative, secure, and accessible digital banking
+                        solutions that simplify financial management.</p>
+                </div>
+                <div class="card vision-card">
+                    <div class="icon">🚀</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the world's most trusted digital banking partner, recognized for our commitment to
+                        security, transparency, and customer-centricity.</p>
+                </div>
+                <div class="card values-card">
+                    <div class="icon">⭐</div>
+                    <h3>Core Values</h3>
+                    <p>Integrity, Innovation, Security, and Inclusion. We believe banking should be available to
+                        everyone, everywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bank History Timeline -->
+    <section class="history section-padding bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content">
+                        <h3>Foundation</h3>
+                        <p>Easy pAy was established with a vision to revolutionize the digital banking landscape.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">2027</div>
+                    <div class="timeline-content">
+                        <h3>Expansion</h3>
+                        <p>Reached 1 million active users and expanded operations to 10 countries.</p>
+                    </div>
+                </div>
+                <!-- Add more items as needed -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Leadership Team -->
+    <section id="team" class="team section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Legal & Leadership Team</h2>
+                <p class="section-subtitle">Meet the visionaries behind Easy pAy.</p>
+            </div>
+            <div class="team-grid">
+                <div class="card team-card">
+                    <div class="team-img-placeholder"></div>
+                    <h3>David Miller</h3>
+                    <p class="team-role">CEO & Founder</p>
+                </div>
+                <div class="card team-card">
+                    <div class="team-img-placeholder"></div>
+                    <h3>Sarah Chen</h3>
+                    <p class="team-role">CTO</p>
+                </div>
+                <div class="card team-card">
+                    <div class="team-img-placeholder"></div>
+                    <h3>Marcus Thorne</h3>
+                    <p class="team-role">Head of Security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section style="background: #0A0A0A; padding: 70px 0;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+
+    <div style="text-align: center; margin-bottom: 50px;">
+      <h2 style="font-size: 2rem; font-weight: 700; color: #C9A84C; margin-bottom: 10px;">Our Achievements</h2>
+      <div style="width: 50px; height: 3px; background: #C9A84C; margin: 0 auto 14px;"></div>
+      <p style="color: #8B949E; font-size: 1rem;">Recognition that reflects our commitment to excellence</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-radius: 14px; padding: 32px 24px; text-align: center; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#C9A84C'" onmouseout="this.style.borderColor='#30363D'">
+        <div style="font-size: 48px; margin-bottom: 16px;">🏆</div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #F0C040; margin-bottom: 8px;">Best Digital Bank 2026</h3>
+        <p style="font-size: 0.875rem; color: #8B949E; line-height: 1.6;">Awarded by the Indian Banking Excellence Awards for outstanding digital innovation and customer experience.</p>
+        <div style="margin-top: 14px; display: inline-block; background: rgba(201,168,76,0.1); color: #C9A84C; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(201,168,76,0.3);">2026 Award</div>
+      </div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-radius: 14px; padding: 32px 24px; text-align: center; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#C9A84C'" onmouseout="this.style.borderColor='#30363D'">
+        <div style="font-size: 48px; margin-bottom: 16px;">🏅</div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #F0C040; margin-bottom: 8px;">Customer Service Excellence</h3>
+        <p style="font-size: 0.875rem; color: #8B949E; line-height: 1.6;">Recognised for maintaining 98.5% customer satisfaction across all digital and branch touchpoints.</p>
+        <div style="margin-top: 14px; display: inline-block; background: rgba(201,168,76,0.1); color: #C9A84C; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(201,168,76,0.3);">CSAT 98.5%</div>
+      </div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-radius: 14px; padding: 32px 24px; text-align: center; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#C9A84C'" onmouseout="this.style.borderColor='#30363D'">
+        <div style="font-size: 48px; margin-bottom: 16px;">🎖️</div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #F0C040; margin-bottom: 8px;">Most Secure Platform</h3>
+        <p style="font-size: 0.875rem; color: #8B949E; line-height: 1.6;">Zero data breaches since launch. Certified with ISO 27001 and PCI-DSS Level 1 compliance.</p>
+        <div style="margin-top: 14px; display: inline-block; background: rgba(201,168,76,0.1); color: #C9A84C; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(201,168,76,0.3);">ISO 27001</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    
+
+    <section id="contact" class="contact-hero hero section-padding">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">We're Here to <span class="text-secondary">Help</span></h1>
+                <p class="hero-subtitle">Have questions? Reach out to our 24/7 support team or visit a branch near you.
+                </p>
+            </div>
+            <div class="hero-image">
+                <img src="images/cybersecurity_shield.png" alt="Contact Us" style="width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Support & Form Section -->
+    <section class="contact-details section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Reach us via email, phone, or visit our headquarters.</p>
+                    <ul class="info-list">
+                        <li><strong>📍 Address:</strong> 123 Banking Plaza, Financial District, NY 10001</li>
+                        <li><strong>📞 Phone:</strong> +1 (800) 123-Easy pAy</li>
+                        <li><strong>📧 Email:</strong> support@bams.com</li>
+                        <li><strong>🕒 Hours:</strong> 24/7 Digital Support | Mon-Fri 9AM-5PM Branches</li>
+                    </ul>
+                    <div class="social-links-contact">
+                        <!-- Socials -->
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="card contact-form-card">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="general">General Inquiry</option>
+                                <option value="account">Account Support</option>
+                                <option value="loan">Loan Application</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Locator -->
+<section style="padding: 70px 0; background: #F9FAFB;" id="branch-locator">
+  <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+
+    <div style="text-align: left; margin-bottom: 36px;">
+      <h2 style="font-size: 1.8rem; font-weight: 700; color: #0A0A0A; margin-bottom: 8px;">Branch Locator</h2>
+      <div style="width: 44px; height: 3px; background: #C9A84C; margin-bottom: 14px;"></div>
+      <p style="color: #6B7280; font-size: 0.95rem;">Find your nearest Easy pAy branch. Click any marker on the map for branch details.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <input type="text" id="branch-search" placeholder="Search by city name..." oninput="filterBranches(this.value)"
+        style="width: 100%; max-width: 420px; padding: 11px 16px; border: 1.5px solid #D1D5DB; border-radius: 8px; font-size: 14px; outline: none;"
+        onfocus="this.style.borderColor='#C9A84C'" onblur="this.style.borderColor='#D1D5DB'">
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 380px; gap: 24px; align-items: start;">
+
+      <div id="branch-map" style="height: 420px; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; z-index: 1; background: #E5E7EB;">
+        <iframe id="gmap-iframe" width="100%" height="100%" frameborder="0" style="border:0;" src="" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <div id="branch-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
+
+    </div>
+  </div>
+</section>
+
+    
+
+    <section id="faq" class="faq-hero hero section-padding">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">How Can We <span class="text-secondary">Help?</span></h1>
+                <p class="hero-subtitle">Search our help center or browse categories to find the answers you need.</p>
+                <div class="search-box">
+                    <input type="text" id="faqSearch" placeholder="Search for questions..." class="branch-input">
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/dev_workstation_1.png" alt="FAQ" style="width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Categories -->
+    <section class="faq-categories section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Browse by Category</h2>
+            </div>
+            <div class="categories-grid">
+                <div class="card category-btn" data-category="accounts">
+                    <div class="icon">🏦</div>
+                    <h3>Accounts</h3>
+                </div>
+                <div class="card category-btn" data-category="loans">
+                    <div class="icon">💰</div>
+                    <h3>Loans</h3>
+                </div>
+                <div class="card category-btn" data-category="transfers">
+                    <div class="icon">💸</div>
+                    <h3>Transfers</h3>
+                </div>
+                <div class="card category-btn" data-category="security">
+                    <div class="icon">🔒</div>
+                    <h3>Security</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content section-padding bg-light">
+        <div class="container">
+            <div id="faqResults" class="accordion">
+                <!-- FAQs will be here -->
+                <div class="accordion-item" data-category="accounts">
+                    <button class="accordion-header">
+                        <span>How do I open a new account?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>You can open a new account online by clicking the "Open Account" button in the navigation bar
+                            and following the instructions.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" data-category="loans">
+                    <button class="accordion-header">
+                        <span>What are the interest rates for personal loans?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Our personal loan interest rates start at 10.5% per annum, depending on your credit profile
+                            and tenure.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" data-category="security">
+                    <button class="accordion-header">
+                        <span>Is my data secure with Easy pAy?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, we use military-grade 256-bit AES encryption to protect your data and all transactions
+                            are monitored for suspicious activity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Ticket -->
+    <section class="help-ticket section-padding">
+        <div class="container">
+            <div class="card help-ticket-card">
+                <div class="text-center">
+                    <h2 class="section-title">Still Need Help?</h2>
+                    <p class="section-subtitle">Submit a help ticket and our team will get back to you within 24 hours.
+                    </p>
+                </div>
+                <form id="helpTicketForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="ticket-subject">Subject</label>
+                        <input type="text" id="ticket-subject" placeholder="Briefly describe your issue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-desc">Description</label>
+                        <textarea id="ticket-desc" rows="4" placeholder="Detailed explanation" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+<!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col-1">
-                    <a href="index.html" class="footer-logo">Easy pAy</a>
+                    <a href="#home" class="footer-logo">Easy pAy</a>
                     <p class="footer-desc">Providing secure and innovative banking solutions since 2026. Your trust is
                         our foundation.</p>
                 </div>
                 <div class="footer-col-2">
-                    <h4 class="footer-title">Our Services</h4>
+                    <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="savings-account.html">Savings Account</a></li>
-                        <li><a href="current-account.html">Current Account</a></li>
-                        <li><a href="fixed-deposit.html">Fixed Deposit</a></li>
-                        <li><a href="personal-loan.html">Personal Loan</a></li>
-                        <li><a href="home-loan.html">Home Loan</a></li>
-                        <li><a href="credit-card.html">Credit Card</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col-3">
                     <h4 class="footer-title">Support</h4>
                     <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#faq">Help Center</a></li>
                         <li><a href="policies.html">Privacy Policy</a></li>
                         <li><a href="policies.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Branch Locator</a></li>
+                        <li><a href="#branch-locator">Branch Locator</a></li>
                     </ul>
                 </div>
                 <div class="footer-col-4">
@@ -387,7 +723,7 @@
                     <p class="footer-desc">Subscribe for the latest updates and offers.</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Your Email" class="footer-input">
-                        <button type="button" class="btn btn-accent">Subscribe</button>
+                        <button type="button" class="btn btn-accent" onclick="if(this.previousElementSibling.value) { alert('Thank you for subscribing!'); this.previousElementSibling.value=''; } else { alert('Please enter your email.'); }">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -411,6 +747,188 @@
         }
     </script>
 <script src="js/theme.js"></script>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<script>
+        // Simple FAQ Search
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.accordion-item');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Accordion Toggle
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                const icon = header.querySelector('.icon');
+                icon.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+    </script>
+<script>
+const branches = [
+  { name: "Easy pAy — Main Branch",     city: "Chennai",    address: "123 Anna Salai, Chennai, Tamil Nadu 600002",   lat: 13.0827,  lng: 80.2707,  phone: "+91 44 2222 3333",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Coimbatore",       city: "Coimbatore", address: "45 Avinashi Road, Coimbatore, TN 641018",      lat: 11.0168,  lng: 76.9558,  phone: "+91 422 333 4444", hours: "Mon–Sat 9AM–4PM" },
+  { name: "Easy pAy — Bangalore",        city: "Bangalore",  address: "88 MG Road, Bengaluru, Karnataka 560001",     lat: 12.9716,  lng: 77.5946,  phone: "+91 80 4444 5555",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Mumbai",           city: "Mumbai",     address: "27 Nariman Point, Mumbai, MH 400021",         lat: 18.9256,  lng: 72.8242,  phone: "+91 22 5555 6666",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Delhi",            city: "Delhi",      address: "14 Connaught Place, New Delhi 110001",        lat: 28.6315,  lng: 77.2167,  phone: "+91 11 6666 7777",  hours: "Mon–Fri 9AM–5PM" },
+  { name: "Easy pAy — Hyderabad",        city: "Hyderabad",  address: "5 Banjara Hills Road, Hyderabad, TS 500034",  lat: 17.4126,  lng: 78.4483,  phone: "+91 40 7777 8888",  hours: "Mon–Sat 9AM–4PM" },
+];
+
+let allBranches = branches;
+
+function initMap() {
+  renderBranchList(branches);
+  if (branches.length > 0) {
+    focusBranch(0); // Show the first branch initially
+  }
+}
+
+function renderBranchList(list) {
+  const container = document.getElementById('branch-list');
+  container.innerHTML = list.map((b, i) => {
+    const originalIndex = branches.indexOf(b);
+    return '<div onclick="focusBranch(' + originalIndex + ')" style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s" onmouseover="this.style.borderColor=\\'#C9A84C\\'" onmouseout="this.style.borderColor=\\'#E5E7EB\\'">' +
+    '<div style="font-size:13px;font-weight:600;color:#0A0A0A;margin-bottom:4px">' + b.name + '</div>' +
+    '<div style="font-size:12px;color:#6B7280;margin-bottom:6px">' + b.address + '</div>' +
+    '<div style="display:flex;gap:12px">' +
+    '<span style="font-size:11px;color:#C9A84C;font-weight:500">📞 ' + b.phone + '</span>' +
+    '<span style="font-size:11px;color:#6B7280">🕐 ' + b.hours + '</span>' +
+    '</div></div>';
+  }).join('');
+}
+
+function focusBranch(i) {
+  const b = branches[i];
+  const iframe = document.getElementById('gmap-iframe');
+  // Use the exact lat and lng for precise Google Maps placement
+  iframe.src = `https://maps.google.com/maps?q=${b.lat},${b.lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+}
+
+function filterBranches(query) {
+  const q = query.toLowerCase();
+  const filtered = branches.filter(b =>
+    b.city.toLowerCase().includes(q) || b.name.toLowerCase().includes(q) || b.address.toLowerCase().includes(q)
+  );
+  renderBranchList(filtered);
+  if (filtered.length > 0) {
+    focusBranch(branches.indexOf(filtered[0]));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initMap);
+</script>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<script>
+        // Simple FAQ Search
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.accordion-item');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Accordion Toggle
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                const icon = header.querySelector('.icon');
+                icon.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+    </script>
+<script>
+const branches = [
+  { name: "Easy pAy — Main Branch",     city: "Chennai",    address: "123 Anna Salai, Chennai, Tamil Nadu 600002",   lat: 13.0827,  lng: 80.2707,  phone: "+91 44 2222 3333",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Coimbatore",       city: "Coimbatore", address: "45 Avinashi Road, Coimbatore, TN 641018",      lat: 11.0168,  lng: 76.9558,  phone: "+91 422 333 4444", hours: "Mon–Sat 9AM–4PM" },
+  { name: "Easy pAy — Bangalore",        city: "Bangalore",  address: "88 MG Road, Bengaluru, Karnataka 560001",     lat: 12.9716,  lng: 77.5946,  phone: "+91 80 4444 5555",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Mumbai",           city: "Mumbai",     address: "27 Nariman Point, Mumbai, MH 400021",         lat: 18.9256,  lng: 72.8242,  phone: "+91 22 5555 6666",  hours: "Mon–Sat 9AM–5PM" },
+  { name: "Easy pAy — Delhi",            city: "Delhi",      address: "14 Connaught Place, New Delhi 110001",        lat: 28.6315,  lng: 77.2167,  phone: "+91 11 6666 7777",  hours: "Mon–Fri 9AM–5PM" },
+  { name: "Easy pAy — Hyderabad",        city: "Hyderabad",  address: "5 Banjara Hills Road, Hyderabad, TS 500034",  lat: 17.4126,  lng: 78.4483,  phone: "+91 40 7777 8888",  hours: "Mon–Sat 9AM–4PM" },
+];
+
+let allBranches = branches;
+
+function initMap() {
+  renderBranchList(branches);
+  if (branches.length > 0) {
+    focusBranch(0); // Show the first branch initially
+  }
+}
+
+function renderBranchList(list) {
+  const container = document.getElementById('branch-list');
+  container.innerHTML = list.map((b, i) => {
+    const originalIndex = branches.indexOf(b);
+    return '<div onclick="focusBranch(' + originalIndex + ')" style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s" onmouseover="this.style.borderColor=\\'#C9A84C\\'" onmouseout="this.style.borderColor=\\'#E5E7EB\\'">' +
+    '<div style="font-size:13px;font-weight:600;color:#0A0A0A;margin-bottom:4px">' + b.name + '</div>' +
+    '<div style="font-size:12px;color:#6B7280;margin-bottom:6px">' + b.address + '</div>' +
+    '<div style="display:flex;gap:12px">' +
+    '<span style="font-size:11px;color:#C9A84C;font-weight:500">📞 ' + b.phone + '</span>' +
+    '<span style="font-size:11px;color:#6B7280">🕐 ' + b.hours + '</span>' +
+    '</div></div>';
+  }).join('');
+}
+
+function focusBranch(i) {
+  const b = branches[i];
+  const iframe = document.getElementById('gmap-iframe');
+  // Use the exact lat and lng for precise Google Maps placement
+  iframe.src = `https://maps.google.com/maps?q=${b.lat},${b.lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+}
+
+function filterBranches(query) {
+  const q = query.toLowerCase();
+  const filtered = branches.filter(b =>
+    b.city.toLowerCase().includes(q) || b.name.toLowerCase().includes(q) || b.address.toLowerCase().includes(q)
+  );
+  renderBranchList(filtered);
+  if (filtered.length > 0) {
+    focusBranch(branches.indexOf(filtered[0]));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initMap);
+</script>
 </body>
 
 </html>

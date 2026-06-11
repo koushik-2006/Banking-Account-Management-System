@@ -154,11 +154,26 @@
                     </div>
 
                     <!-- Google Sign-In -->
-                    <div class="divider"><span>OR</span></div>
-                    <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-callback="handleGoogleLogin"
-                        data-auto_prompt="false"></div>
-                    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
-                        data-text="signup_with" data-shape="rectangular" data-logo_alignment="left" data-width="100%">
+                    <div id="g_id_onload"
+                      data-client_id="913267144800-4q0nkkphql5mnb6k2i427h32r33f7e1l.apps.googleusercontent.com"
+                      data-callback="handleGoogleRegister"
+                      data-auto_prompt="false">
+                    </div>
+
+                    <div style="margin: 16px 0; display:flex; align-items:center; gap:10px;">
+                      <div style="flex:1; height:1px; background:#D1D5DB;"></div>
+                      <span style="font-size:12px; color:#9CA3AF;">OR CONTINUE WITH</span>
+                      <div style="flex:1; height:1px; background:#D1D5DB;"></div>
+                    </div>
+
+                    <div class="g_id_signin"
+                      data-type="standard"
+                      data-size="large"
+                      data-theme="outline"
+                      data-text="signup_with"
+                      data-shape="rectangular"
+                      data-logo_alignment="left"
+                      data-width="100%">
                     </div>
                     <br>
 
@@ -202,16 +217,41 @@
     <script src="js/app.js"></script>
     <script>
         // Google Sign-In Handler
-        function handleGoogleLogin(response) {
-            const payload = JSON.parse(atob(response.credential.split('.')[1]));
-            localStorage.setItem('bams_user', JSON.stringify({
-                name: payload.name,
-                email: payload.email,
-                picture: payload.picture,
-                loginType: 'google'
-            }));
-            localStorage.setItem('bams_token', 'google_verified_session');
-            window.location.href = 'dashboard.html';
+        function handleGoogleRegister(response) {
+          try {
+            const base64Url = response.credential.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const payload = JSON.parse(window.atob(base64));
+
+            const userData = {
+              name: payload.name,
+              email: payload.email,
+              picture: payload.picture,
+              accountNumber: 'EP2026' + Math.floor(1000000 + Math.random() * 9000000),
+              accountType: 'Savings',
+              balance: 0,
+              loginType: 'google',
+              token: response.credential
+            };
+
+            const existingUser = JSON.parse(localStorage.getItem('easypay_user_' + payload.email) || 'null');
+            if (existingUser) {
+              Object.assign(userData, existingUser);
+            } else {
+              localStorage.setItem('easypay_user_' + payload.email, JSON.stringify(userData));
+              const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+              allUsers.push({ name: userData.name, email: userData.email, accountNumber: userData.accountNumber, accountType: 'Savings', balance: 0, createdAt: new Date().toISOString(), loginType: 'google', status: 'Active' });
+              localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
+            }
+
+            localStorage.setItem('bams_user', JSON.stringify(userData));
+
+            document.getElementById('accNumberDisplay').textContent = userData.accountNumber;
+            document.getElementById('successModal').style.display = 'flex';
+            setTimeout(() => window.location.href = 'login.html', 5000);
+          } catch(e) {
+            showMsg('error', '✗ Google sign up failed. Please try again.');
+          }
         }
 
         // Multi-Step Form Logic
@@ -246,7 +286,62 @@
             }
         }
 
+function validateStep(stepNumber) {
+  const errors = [];
+
+  if (stepNumber === 0) { // Step 1
+    const fullName = document.getElementById('fullName')?.value.trim();
+    const dob = document.getElementById('dob')?.value;
+    const phone = document.getElementById('mobile')?.value.trim();
+    const email = document.getElementById('email')?.value.trim();
+
+    if (!fullName || fullName.length < 3) errors.push('Full Name must be at least 3 characters');
+    if (!dob) {
+      errors.push('Date of Birth is required');
+    } else {
+      const age = Math.floor((new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000));
+      if (age < 18) errors.push('You must be at least 18 years old to open an account');
+    }
+    if (!phone || !/^[6-9]\d{9}$/.test(phone.replace(/\D/g, ''))) errors.push('Enter a valid 10-digit Indian mobile number');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Enter a valid email address');
+  }
+
+  if (stepNumber === 1) { // Step 2
+    const nominee = document.getElementById('nomineeName')?.value.trim();
+    const relation = document.getElementById('nomineeRelation')?.value.trim();
+    if (!nominee || nominee.length < 3) errors.push('Nominee name is required');
+    if (!relation) errors.push('Nominee relationship is required');
+  }
+
+  if (errors.length > 0) {
+    showValidationErrors(errors);
+    return false;
+  }
+  clearValidationErrors();
+  return true;
+}
+
+function showValidationErrors(errors) {
+  let box = document.getElementById('validation-error-box');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'validation-error-box';
+    box.style.cssText = 'background:#FEE2E2;border:1px solid #F87171;border-radius:8px;padding:14px 16px;margin-bottom:16px;';
+    const activeStep = document.querySelector('.form-step.active');
+    if (activeStep) activeStep.prepend(box);
+  }
+  box.innerHTML = '<strong style="color:#991B1B;font-size:13px;">⚠ Please fix these before continuing:</strong><ul style="margin:8px 0 0 18px;padding:0;">' +
+    errors.map(e => '<li style="color:#B91C1C;font-size:13px;margin:4px 0;">' + e + '</li>').join('') + '</ul>';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function clearValidationErrors() {
+  const box = document.getElementById('validation-error-box');
+  if (box) box.remove();
+}
+
         nextBtn.addEventListener('click', () => {
+            if (!validateStep(currentStep)) return;
             if (currentStep < steps.length - 1) {
                 currentStep++;
                 updateForm();
@@ -306,9 +401,24 @@
                 });
                 const data = await res.json();
                 if (data.success) {
-                    document.getElementById('accNumberDisplay').textContent = data.accountNumber;
-                    document.getElementById('successModal').style.display = 'flex';
-                    setTimeout(() => window.location.href = 'login.html', 5000);
+                    const userData = {
+                      name: fullName,
+                      email: email,
+                      accountNumber: data.accountNumber,
+                      accountType: accountType,
+                      balance: 0,
+                      phone: phone,
+                      loginType: 'manual',
+                      justRegistered: true,
+                      createdAt: new Date().toISOString(),
+                      status: 'Pending'
+                    };
+                    localStorage.setItem('easypay_pending_user', JSON.stringify(userData));
+                    localStorage.setItem('bams_user', JSON.stringify(userData));
+                    const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+                    allUsers.push(userData);
+                    localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
+                    window.location.href = 'policies.html';
                 } else {
                     showMsg('error', data.message);
                     submitBtn.disabled = false;
@@ -335,6 +445,13 @@
         }
 
         updateForm();
+
+document.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('input', function() {
+    this.classList.remove('field-error');
+    this.classList.add('field-success');
+  });
+});
     </script>
 <script src="js/theme.js"></script>
 </body>
