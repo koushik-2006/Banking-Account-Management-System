@@ -61,7 +61,7 @@
                     <div class="calc-controls">
                         <div class="form-group">
                             <div class="flex-between">
-                                <label>Loan Amount ($)</label>
+                                <label>Loan Amount (₹)</label>
                                 <input type="number" id="amtInput" value="10000">
                             </div>
                             <input type="range" id="amtRange" min="1000" max="1000000" step="1000" value="10000"
@@ -87,16 +87,16 @@
                     <div class="calc-results">
                         <div class="card bg-primary-soft text-center">
                             <span class="text-muted">Monthly EMI</span>
-                            <h2 class="text-primary" id="emiResult">$214.94</h2>
+                            <h2 class="text-primary" id="emiResult">₹214.94</h2>
                         </div>
                         <div class="metrics-grid mt-lg">
                             <div class="card text-center" style="padding: var(--space-md);">
                                 <span class="text-muted">Principal</span>
-                                <h4 id="principalResult">$10,000</h4>
+                                <h4 id="principalResult">₹10,000</h4>
                             </div>
                             <div class="card text-center" style="padding: var(--space-md);">
                                 <span class="text-muted">Total Interest</span>
-                                <h4 id="interestResult">$2,896</h4>
+                                <h4 id="interestResult">₹2,896</h4>
                             </div>
                         </div>
                     </div>
@@ -143,9 +143,9 @@
             let totalPayable = emi * N;
             let totalInterest = totalPayable - P;
 
-            document.getElementById('emiResult').innerText = '$' + emi.toFixed(2);
-            document.getElementById('principalResult').innerText = '$' + P.toLocaleString();
-            document.getElementById('interestResult').innerText = '$' + Math.round(totalInterest).toLocaleString();
+            document.getElementById('emiResult').innerText = '₹' + emi.toFixed(2);
+            document.getElementById('principalResult').innerText = '₹' + P.toLocaleString();
+            document.getElementById('interestResult').innerText = '₹' + Math.round(totalInterest).toLocaleString();
 
             generateSchedule(P, R, emi);
         }
@@ -160,9 +160,9 @@
                 balance -= principal;
                 const row = `<tr>
                     <td>Month ${i}</td>
-                    <td>$${principal.toFixed(2)}</td>
-                    <td>$${interest.toFixed(2)}</td>
-                    <td>$${Math.max(0, balance).toFixed(2)}</td>
+                    <td>₹${principal.toFixed(2)}</td>
+                    <td>₹${interest.toFixed(2)}</td>
+                    <td>₹${Math.max(0, balance).toFixed(2)}</td>
                 </tr>`;
                 tbody.insertAdjacentHTML('beforeend', row);
             }
