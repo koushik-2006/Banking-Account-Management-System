@@ -17,17 +17,22 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-  <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
-      <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
-      <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
-      <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
-    </svg>
-  </div>
-  <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
-</a>
+            <a href="index.html" class="logo-container"
+                style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <div
+                    style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A" />
+                        <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A" />
+                        <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A" />
+                        <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4" />
+                    </svg>
+                </div>
+                <span
+                    style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy
+                    <span style="color:#FFD700;">pAy</span></span>
+            </a>
         </div>
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="sidebar-link active"><span class="icon">📊</span> Dashboard</a>
@@ -41,7 +46,8 @@
             <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> Profile</a>
             <a href="notifications.html" class="sidebar-link"><span class="icon">🔔</span> Notifications <span
                     class="badge" id="notifBadge">3</span></a>
-            <a href="#" onclick="localStorage.removeItem('bams_user'); window.location.href='index.html';" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
+            <a href="#" onclick="localStorage.removeItem('bams_user'); window.location.href='index.html';"
+                class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>
         </nav>
     </aside>
 
@@ -66,169 +72,178 @@
 
         <!-- Dashboard Content -->
         <div class="dashboard-content">
-            
-<!-- Quick Apply Section -->
-<div class="card" style="margin-top:20px;">
-    <h3 class="card-title">Apply for Services</h3>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin-top:15px;">
-        <a href="apply-fd.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">💎</div> Fixed Deposit
-        </a>
-        <a href="apply-personal-loan.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">💰</div> Personal Loan
-        </a>
-        <a href="apply-home-loan.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">🏠</div> Home Loan
-        </a>
-        <a href="apply-credit-card.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">💳</div> Credit Card
-        </a>
-        <a href="transfer.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">🔄</div> Transfer
-        </a>
-        <a href="transactions.html" style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
-            <div style="font-size:1.5rem; margin-bottom:5px;">📊</div> Statement
-        </a>
-    </div>
-</div>
 
-        <div class="dashboard-content">
-            <!-- Metric Cards -->
-            <div class="metrics-grid">
-                <div class="card metric-card">
-                    <div class="metric-info">
-                        <span class="metric-label">Total Balance</span>
-                        <h2 class="metric-value">₹12,450.00</h2>
-                        <span class="metric-change text-success">↑ 12% vs last month</span>
-                    </div>
-                    <div class="metric-icon bg-primary-soft">💰</div>
-                </div>
-                <div class="card metric-card">
-                    <div class="metric-info">
-                        <span class="metric-label">Monthly Deposits</span>
-                        <h2 class="metric-value">₹3,200.00</h2>
-                        <span class="metric-change text-success">↑ 5% vs last month</span>
-                    </div>
-                    <div class="metric-icon bg-teal-soft">📥</div>
-                </div>
-                <div class="card metric-card">
-                    <div class="metric-info">
-                        <span class="metric-label">Monthly Spending</span>
-                        <h2 class="metric-value">₹1,850.40</h2>
-                        <span class="metric-change text-danger">↓ 2% vs last month</span>
-                    </div>
-                    <div class="metric-icon bg-secondary-soft">📤</div>
-                </div>
-                <div class="card metric-card">
-                    <div class="metric-info">
-                        <span class="metric-label">Active Loans</span>
-                        <h2 class="metric-value">0</h2>
-                        <span class="metric-change text-muted">No active loans</span>
-                    </div>
-                    <div class="metric-icon bg-accent-soft">🏦</div>
+            <!-- Quick Apply Section -->
+            <div class="card" style="margin-top:20px;">
+                <h3 class="card-title">Apply for Services</h3>
+                <div
+                    style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin-top:15px;">
+                    <a href="apply-fd.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">💎</div> Fixed Deposit
+                    </a>
+                    <a href="apply-personal-loan.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">💰</div> Personal Loan
+                    </a>
+                    <a href="apply-home-loan.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">🏠</div> Home Loan
+                    </a>
+                    <a href="apply-credit-card.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">💳</div> Credit Card
+                    </a>
+                    <a href="transfer.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">🔄</div> Transfer
+                    </a>
+                    <a href="transactions.html"
+                        style="text-decoration:none; background:var(--bg-main); padding:15px; border-radius:8px; border:1px solid var(--border-color); text-align:center; color:var(--text-main); font-weight:bold; transition:0.2s;">
+                        <div style="font-size:1.5rem; margin-bottom:5px;">📊</div> Statement
+                    </a>
                 </div>
             </div>
 
-            <!-- Charts and Activity -->
-            <div class="dashboard-grid">
-                <!-- Spending Chart -->
-                <div class="card chart-card">
-                    <h3 class="card-title">Spending Analytics</h3>
-                    <div class="chart-container">
-                        <canvas id="spendingChart"></canvas>
+            <div class="dashboard-content">
+                <!-- Metric Cards -->
+                <div class="metrics-grid">
+                    <div class="card metric-card">
+                        <div class="metric-info">
+                            <span class="metric-label">Total Balance</span>
+                            <h2 class="metric-value">₹12,450.00</h2>
+                            <span class="metric-change text-success">↑ 12% vs last month</span>
+                        </div>
+                        <div class="metric-icon bg-primary-soft">💰</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-info">
+                            <span class="metric-label">Monthly Deposits</span>
+                            <h2 class="metric-value">₹3,200.00</h2>
+                            <span class="metric-change text-success">↑ 5% vs last month</span>
+                        </div>
+                        <div class="metric-icon bg-teal-soft">📥</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-info">
+                            <span class="metric-label">Monthly Spending</span>
+                            <h2 class="metric-value">₹1,850.40</h2>
+                            <span class="metric-change text-danger">↓ 2% vs last month</span>
+                        </div>
+                        <div class="metric-icon bg-secondary-soft">📤</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-info">
+                            <span class="metric-label">Active Loans</span>
+                            <h2 class="metric-value">0</h2>
+                            <span class="metric-change text-muted">No active loans</span>
+                        </div>
+                        <div class="metric-icon bg-accent-soft">🏦</div>
                     </div>
                 </div>
 
-                <!-- Recent Transactions -->
-                <div class="card activity-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Recent Transactions</h3>
-                        <a href="transactions.html" class="text-link">View All</a>
+                <!-- Charts and Activity -->
+                <div class="dashboard-grid">
+                    <!-- Spending Chart -->
+                    <div class="card chart-card">
+                        <h3 class="card-title">Spending Analytics</h3>
+                        <div class="chart-container">
+                            <canvas id="spendingChart"></canvas>
+                        </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="activity-table">
-                            <thead>
-                                <tr>
-                                    <th>Recipient/Source</th>
-                                    <th>Date</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Amazon Prime</td>
-                                    <td>05 Jun 2026</td>
-                                    <td class="amount-out">-₹14.99</td>
-                                    <td><span class="status-pill success">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Salary Credit</td>
-                                    <td>01 Jun 2026</td>
-                                    <td class="amount-in">+₹5,000.00</td>
-                                    <td><span class="status-pill success">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Electric Bill</td>
-                                    <td>28 May 2026</td>
-                                    <td class="amount-out">-₹120.50</td>
-                                    <td><span class="status-pill warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Netflix</td>
-                                    <td>25 May 2026</td>
-                                    <td class="amount-out">-₹19.99</td>
-                                    <td><span class="status-pill success">Completed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-                <!-- Mobile App Promo -->
-                <div class="card" style="padding:0; overflow:hidden;">
-                    <img src="images/glowing_phone_hand.png" alt="Mobile App" style="width:100%; height:200px; object-fit:cover;">
-                    <div style="padding:20px;">
-                        <h3 class="card-title">Download Easy pAy App</h3>
-                        <p style="color:var(--text-muted); font-size:14px; margin-bottom:15px;">Experience seamless banking on the go. Get real-time notifications and instant transfers.</p>
-                        <button class="btn btn-primary" style="width:100%;">Download Now</button>
+                    <!-- Recent Transactions -->
+                    <div class="card activity-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Recent Transactions</h3>
+                            <a href="transactions.html" class="text-link">View All</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>Recipient/Source</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Amazon Prime</td>
+                                        <td>05 Jun 2026</td>
+                                        <td class="amount-out">-₹14.99</td>
+                                        <td><span class="status-pill success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salary Credit</td>
+                                        <td>01 Jun 2026</td>
+                                        <td class="amount-in">+₹5,000.00</td>
+                                        <td><span class="status-pill success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electric Bill</td>
+                                        <td>28 May 2026</td>
+                                        <td class="amount-out">-₹120.50</td>
+                                        <td><span class="status-pill warning">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Netflix</td>
+                                        <td>25 May 2026</td>
+                                        <td class="amount-out">-₹19.99</td>
+                                        <td><span class="status-pill success">Completed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Mobile App Promo -->
+                    <div class="card" style="padding:0; overflow:hidden;">
+                        <img src="images/glowing_phone_hand.png" alt="Mobile App"
+                            style="width:100%; height:200px; object-fit:cover;">
+                        <div style="padding:20px;">
+                            <h3 class="card-title">Download Easy pAy App</h3>
+                            <p style="color:var(--text-muted); font-size:14px; margin-bottom:15px;">Experience seamless
+                                banking on the go. Get real-time notifications and instant transfers.</p>
+                            <button class="btn btn-primary" style="width:100%;">Download Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <script>
 
-function loadUserSession() {
-  const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-  if (!user) {
-    window.location.href = 'login.html';
-    return;
-  }
-  const firstName = user.name ? user.name.split(' ')[0] : 'User';
-  const welcomeEls = document.querySelectorAll('.user-welcome-name, .sidebar-user-name, #welcome-name');
-  welcomeEls.forEach(el => el.textContent = firstName);
-  const fullNameEls = document.querySelectorAll('.user-full-name, #user-full-name');
-  fullNameEls.forEach(el => {
-    if (el.tagName === 'INPUT') el.value = user.name || 'Account Holder';
-    else el.textContent = user.name || 'Account Holder';
-  });
-  const emailEls = document.querySelectorAll('.user-email, #user-email');
-  emailEls.forEach(el => {
-    if (el.tagName === 'INPUT') el.value = user.email || '';
-    else el.textContent = user.email || '';
-  });
-  if (user.picture) {
-    const avatarEls = document.querySelectorAll('.user-avatar, #user-avatar');
-    avatarEls.forEach(el => { if(el.tagName === 'IMG') el.src = user.picture; });
-  }
-  const accountNo = user.accountNumber || 'BAMS2026' + Math.floor(1000 + Math.random()*9000);
-  const accEls = document.querySelectorAll('.user-account-no, #user-account-no');
-  accEls.forEach(el => el.textContent = accountNo);
-}
-loadUserSession();
-</script>
+        function loadUserSession() {
+            const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const firstName = user.name ? user.name.split(' ')[0] : 'User';
+            const welcomeEls = document.querySelectorAll('.user-welcome-name, .sidebar-user-name, #welcome-name');
+            welcomeEls.forEach(el => el.textContent = firstName);
+            const fullNameEls = document.querySelectorAll('.user-full-name, #user-full-name');
+            fullNameEls.forEach(el => {
+                if (el.tagName === 'INPUT') el.value = user.name || 'Account Holder';
+                else el.textContent = user.name || 'Account Holder';
+            });
+            const emailEls = document.querySelectorAll('.user-email, #user-email');
+            emailEls.forEach(el => {
+                if (el.tagName === 'INPUT') el.value = user.email || '';
+                else el.textContent = user.email || '';
+            });
+            if (user.picture) {
+                const avatarEls = document.querySelectorAll('.user-avatar, #user-avatar');
+                avatarEls.forEach(el => { if (el.tagName === 'IMG') el.src = user.picture; });
+            }
+            const accountNo = user.accountNumber || 'BAMS2026' + Math.floor(1000 + Math.random() * 9000);
+            const accEls = document.querySelectorAll('.user-account-no, #user-account-no');
+            accEls.forEach(el => el.textContent = accountNo);
+        }
+        loadUserSession();
+    </script>
     <script src="js/auth-guard.js"></script>
     <script src="js/app.js"></script>
     <script>
@@ -271,20 +286,20 @@ loadUserSession();
             }
         });
     </script>
-<script src="js/theme.js"></script>
-<script>
-function loadDashboard() {
-    const user = JSON.parse(localStorage.getItem('bams_user'));
+    <script src="js/theme.js"></script>
+    <script>
+        function loadDashboard() {
+            const user = JSON.parse(localStorage.getItem('bams_user'));
 
-    if (!user) {
-        window.location.href = 'login.html';
-        return;
-    }
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
 
-    console.log('User Logged In:', user);
-}
-loadDashboard();
-</script>
+            console.log('User Logged In:', user);
+        }
+        loadDashboard();
+    </script>
 </body>
 
 </html>
