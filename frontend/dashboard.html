@@ -273,20 +273,15 @@ loadUserSession();
     </script>
 <script src="js/theme.js"></script>
 <script>
-async function loadDashboard() {
-  const profile = await EasyPayAPI.getProfile();
-  if (!profile.success) { window.location.href = 'login.html'; return; }
-  const u = profile.data;
-  document.querySelectorAll('[data-user="firstName"]').forEach(el => el.textContent = u.fullName.split(' ')[0]);
-  document.querySelectorAll('[data-user="balance"]').forEach(el => el.textContent = '₹' + Number(u.balance).toLocaleString('en-IN', {minimumFractionDigits:2}));
-  document.querySelectorAll('[data-user="accountNumber"]').forEach(el => el.textContent = u.accountNumber);
-  document.querySelectorAll('[data-user="accountType"]').forEach(el => el.textContent = u.accountType + ' Account');
-  const txRes = await EasyPayAPI.getTransactions();
-  if (txRes.success) {
-      if (typeof renderTransactionTable === 'function') {
-          renderTransactionTable(txRes.data);
-      }
-  }
+function loadDashboard() {
+    const user = JSON.parse(localStorage.getItem('bams_user'));
+
+    if (!user) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    console.log('User Logged In:', user);
 }
 loadDashboard();
 </script>

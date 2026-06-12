@@ -198,22 +198,14 @@
       );
 
       if (!registeredUser) {
-        msg.style.display = 'block';
-        msg.className = 'msg-box msg-error';
-        msg.textContent = 'Account Number not found.';
-
-        btn.disabled = false;
-        btn.textContent = 'Login to My Account';
+        alert('Account Number not found');
+        window.location.href = 'login.html';
         return;
       }
 
       if (registeredUser.password !== pass) {
-        msg.style.display = 'block';
-        msg.className = 'msg-box msg-error';
-        msg.textContent = 'Incorrect Password.';
-
-        btn.disabled = false;
-        btn.textContent = 'Login to My Account';
+        alert('Incorrect Password');
+        window.location.href = 'login.html';
         return;
       }
 

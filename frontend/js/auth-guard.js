@@ -2,7 +2,7 @@ const BASE_URL = 'http://localhost:8080/api';
 
 async function initDashboard() {
   const user = JSON.parse(localStorage.getItem('bams_user') || 'null');
-  if (!user || !user.token) {
+  if (!user) {
     window.location.href = 'login.html';
     return;
   }
