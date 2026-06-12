@@ -2,238 +2,235 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Easy pAy</title>
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <!-- Google Identity Services -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="js/api.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Easy pAy</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/api.js"></script>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-container" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-  <div style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A"/>
-      <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A"/>
-      <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A"/>
-      <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4"/>
-    </svg>
-  </div>
-  <span style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy <span style="color:#FFD700;">pAy</span></span>
-</a>
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-container"
+        style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div
+          style="width:38px;height:38px;border-radius:9px;background:#C9A84C;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <rect x="2" y="14" width="4" height="6" rx="1" fill="#0A0A0A" />
+            <rect x="9" y="9" width="4" height="11" rx="1" fill="#0A0A0A" />
+            <rect x="16" y="4" width="4" height="16" rx="1" fill="#0A0A0A" />
+            <rect x="2" y="13" width="18" height="1.5" rx="0.5" fill="#0A0A0A" opacity="0.4" />
+          </svg>
         </div>
-    </header>
-
-    <main class="auth-page section-padding">
-        <div class="container container-narrow">
-            <div class="card login-card">
-                <div class="text-center mb-lg">
-                    <h1 class="section-title">Welcome Back</h1>
-                    <p class="text-muted">Enter your credentials to access your secure account.</p>
-                </div>
-
-                <form id="login-form" class="contact-form">
-                    <div id="login-message"></div>
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input type="text" id="account-number" placeholder="e.g. BAMS2026012345" pattern="Easy pAy[0-9]{10}" />
-                        <small style="color:var(--text-secondary)">Your account number was given during registration</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="password-group">
-                            <input type="password" id="password" name="password" required>
-                            <div class="strength-meter" id="strengthMeter"></div>
-                        </div>
-                        <div class="auth-links">
-                            <label><input type="checkbox"> Remember Me</label>
-                            <a href="forgot-password.html" id="forgotPassword">Forgot Password?</a>
-                        </div>
-                    </div>
-            </div>
-
-            <!-- Google Sign-In -->
-            <div id="g_id_onload"
-              data-client_id="913267144800-4q0nkkphql5mnb6k2i427h32r33f7e1l.apps.googleusercontent.com"
-              data-callback="handleGoogleLogin"
-              data-auto_prompt="false">
-            </div>
-
-            <div style="margin: 16px 0; display:flex; align-items:center; gap:10px;">
-              <div style="flex:1; height:1px; background:#D1D5DB;"></div>
-              <span style="font-size:12px; color:#9CA3AF;">OR CONTINUE WITH</span>
-              <div style="flex:1; height:1px; background:#D1D5DB;"></div>
-            </div>
-
-            <div class="g_id_signin"
-              data-type="standard"
-              data-size="large"
-              data-theme="outline"
-              data-text="signin_with"
-              data-shape="rectangular"
-              data-logo_alignment="left"
-              data-width="100%">
-            </div>
-            <br>
-
-            <button type="submit" id="login-btn" class="btn btn-primary btn-full">Login to My Account</button>
-            <div class="text-center mt-xl">
-                <p>Don't have an account? <a href="register.html" class="text-link">Open one today</a></p>
-            </div>
-            </form>
-        </div>
-        </div>
-    </main>
-
-    <!-- Forgot Password Modal (Simplified) -->
-    <div id="forgotModal" class="modal" style="display: none;">
-        <!-- Modal content... -->
+        <span
+          style="font-size:21px;font-weight:700;font-family:'Georgia',serif;letter-spacing:0.5px;color:#C9A84C;line-height:1;">Easy
+          <span style="color:#FFD700;">pAy</span></span>
+      </a>
     </div>
+  </header>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+  <main class="auth-page section-padding">
+    <div class="container container-narrow">
+      <div class="card login-card">
+        <div class="text-center mb-lg">
+          <h1 class="section-title">Welcome Back</h1>
+          <p class="text-muted">Enter your credentials to access your secure account.</p>
         </div>
-    </footer>
 
-    <script src="js/app.js"></script>
-    <script>
-        (function checkAutoLogin() {
-          const autoUser = JSON.parse(localStorage.getItem('easypay_autologin') || 'null');
-          if (autoUser) {
-            localStorage.setItem('bams_user', JSON.stringify(autoUser));
-            localStorage.removeItem('easypay_autologin');
-            localStorage.removeItem('easypay_pending_user');
-            window.location.href = 'dashboard.html';
-            return;
-          }
-        })();
+        <form id="login-form" class="contact-form">
+          <div id="login-message"></div>
+          <div class="form-group">
+            <label>Account Number</label>
+            <input type="text" id="account-number" placeholder="e.g. BAMS2026012345" pattern="Easy pAy[0-9]{10}" />
+            <small style="color:var(--text-secondary)">Your account number was given during registration</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-group">
+              <input type="password" id="password" name="password" required>
+              <div class="strength-meter" id="strengthMeter"></div>
+            </div>
+            <div class="auth-links">
+              <label><input type="checkbox"> Remember Me</label>
+              <a href="forgot-password.html" id="forgotPassword">Forgot Password?</a>
+            </div>
+          </div>
+      </div>
 
-        // Google Sign-In Handler
-        function handleGoogleLogin(response) {
-          try {
-            const base64Url = response.credential.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            const payload = JSON.parse(window.atob(base64));
+      <!-- Google Sign-In -->
+      <div id="g_id_onload" data-client_id="913267144800-4q0nkkphql5mnb6k2i427h32r33f7e1l.apps.googleusercontent.com"
+        data-callback="handleGoogleLogin" data-auto_prompt="false">
+      </div>
 
-            const userData = {
-              name: payload.name,
-              email: payload.email,
-              picture: payload.picture,
-              accountNumber: 'EP2026' + Math.floor(1000000 + Math.random() * 9000000),
-              accountType: 'Savings',
-              balance: 0,
-              loginType: 'google',
-              token: response.credential
-            };
+      <div style="margin: 16px 0; display:flex; align-items:center; gap:10px;">
+        <div style="flex:1; height:1px; background:#D1D5DB;"></div>
+        <span style="font-size:12px; color:#9CA3AF;">OR CONTINUE WITH</span>
+        <div style="flex:1; height:1px; background:#D1D5DB;"></div>
+      </div>
 
-            const existingUser = JSON.parse(localStorage.getItem('easypay_user_' + payload.email) || 'null');
-            if (existingUser) {
-              Object.assign(userData, existingUser);
-            } else {
-              localStorage.setItem('easypay_user_' + payload.email, JSON.stringify(userData));
-              const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
-              allUsers.push({ name: userData.name, email: userData.email, accountNumber: userData.accountNumber, accountType: 'Savings', balance: 0, createdAt: new Date().toISOString(), loginType: 'google', status: 'Active' });
-              localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
-            }
+      <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with"
+        data-shape="rectangular" data-logo_alignment="left" data-width="100%">
+      </div>
+      <br>
 
-            localStorage.setItem('bams_user', JSON.stringify(userData));
+      <button type="submit" id="login-btn" class="btn btn-primary btn-full">Login to My Account</button>
+      <div class="text-center mt-xl">
+        <p>Don't have an account? <a href="register.html" class="text-link">Open one today</a></p>
+      </div>
+      </form>
+    </div>
+    </div>
+  </main>
 
-            document.getElementById('login-message').style.display = 'block';
-            document.getElementById('login-message').className = 'msg-box msg-success';
-            document.getElementById('login-message').textContent = '✓ Google Login successful! Welcome, ' + payload.given_name + '!';
+  <!-- Forgot Password Modal (Simplified) -->
+  <div id="forgotModal" class="modal" style="display: none;">
+    <!-- Modal content... -->
+  </div>
 
-            const redirect = localStorage.getItem('bams_redirect_after_login') || 'dashboard.html';
-            localStorage.removeItem('bams_redirect_after_login');
-            setTimeout(() => window.location.href = redirect, 1200);
-          } catch(e) {
-            document.getElementById('login-message').style.display = 'block';
-            document.getElementById('login-message').className = 'msg-box msg-error';
-            document.getElementById('login-message').textContent = '✗ Google login failed. Please try again.';
-          }
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2026 Easy pAy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    (function checkAutoLogin() {
+      const autoUser = JSON.parse(localStorage.getItem('easypay_autologin') || 'null');
+      if (autoUser) {
+        localStorage.setItem('bams_user', JSON.stringify(autoUser));
+        localStorage.removeItem('easypay_autologin');
+        localStorage.removeItem('easypay_pending_user');
+        window.location.href = 'dashboard.html';
+        return;
+      }
+    })();
+
+    // Google Sign-In Handler
+    function handleGoogleLogin(response) {
+      try {
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(window.atob(base64));
+
+        const userData = {
+          name: payload.name,
+          email: payload.email,
+          picture: payload.picture,
+          accountNumber: 'EP2026' + Math.floor(1000000 + Math.random() * 9000000),
+          accountType: 'Savings',
+          balance: 0,
+          loginType: 'google',
+          token: response.credential
+        };
+
+        const existingUser = JSON.parse(localStorage.getItem('easypay_user_' + payload.email) || 'null');
+        if (existingUser) {
+          Object.assign(userData, existingUser);
+        } else {
+          localStorage.setItem('easypay_user_' + payload.email, JSON.stringify(userData));
+          const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+          allUsers.push({ name: userData.name, email: userData.email, accountNumber: userData.accountNumber, accountType: 'Savings', balance: 0, createdAt: new Date().toISOString(), loginType: 'google', status: 'Active' });
+          localStorage.setItem('easypay_all_users', JSON.stringify(allUsers));
         }
 
-        // Password Strength Logic
-        const passwordInput = document.getElementById('password');
-        const strengthMeter = document.getElementById('strengthMeter');
+        localStorage.setItem('bams_user', JSON.stringify(userData));
 
-        passwordInput.addEventListener('input', () => {
-            const val = passwordInput.value;
-            strengthMeter.className = 'strength-meter';
-            if (val.length > 0) {
-                if (val.length < 6) strengthMeter.classList.add('strength-weak');
-                else if (val.length < 10) strengthMeter.classList.add('strength-medium');
-                else strengthMeter.classList.add('strength-strong');
-            }
-        });
+        document.getElementById('login-message').style.display = 'block';
+        document.getElementById('login-message').className = 'msg-box msg-success';
+        document.getElementById('login-message').textContent = '✓ Google Login successful! Welcome, ' + payload.given_name + '!';
 
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const accNo = document.getElementById('account-number').value.trim();
-            const pass = document.getElementById('password').value;
-            const btn = document.getElementById('login-btn');
-            const msg = document.getElementById('login-message');
+        const redirect = localStorage.getItem('bams_redirect_after_login') || 'dashboard.html';
+        localStorage.removeItem('bams_redirect_after_login');
+        setTimeout(() => window.location.href = redirect, 1200);
+      } catch (e) {
+        document.getElementById('login-message').style.display = 'block';
+        document.getElementById('login-message').className = 'msg-box msg-error';
+        document.getElementById('login-message').textContent = '✗ Google login failed. Please try again.';
+      }
+    }
 
-            btn.disabled = true;
-            btn.textContent = 'Signing in...';
+    // Password Strength Logic
+    const passwordInput = document.getElementById('password');
+    const strengthMeter = document.getElementById('strengthMeter');
 
-            setTimeout(() => {
-                const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
-                const registeredUser = allUsers.find(u => u.accountNumber === accNo);
-                
-                if (!registeredUser) {
-                    msg.className = 'msg-box msg-error';
-                    msg.textContent = 'Account Number not found.';
-                    msg.style.display = 'block';
-                    btn.disabled = false;
-                    btn.textContent = 'Login to My Account';
-                    return;
-                }
-                
-                if (registeredUser.password !== pass) {
-                    msg.className = 'msg-box msg-error';
-                    msg.textContent = 'Incorrect Password.';
-                    msg.style.display = 'block';
-                    btn.disabled = false;
-                    btn.textContent = 'Login to My Account';
-                    return;
-                }
+    passwordInput.addEventListener('input', () => {
+      const val = passwordInput.value;
+      strengthMeter.className = 'strength-meter';
+      if (val.length > 0) {
+        if (val.length < 6) strengthMeter.classList.add('strength-weak');
+        else if (val.length < 10) strengthMeter.classList.add('strength-medium');
+        else strengthMeter.classList.add('strength-strong');
+      }
+    });
 
-                localStorage.setItem('bams_user', JSON.stringify(registeredUser));
-                msg.className = 'msg-box msg-success';
-                msg.textContent = '✓ Login Successful! Redirecting...';
-                msg.style.display = 'block';
-                setTimeout(() => window.location.href = 'dashboard.html', 1000);
-            }, 800);
-        });
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const accNo = document.getElementById('account-number').value.trim();
+      const pass = document.getElementById('password').value;
+      const btn = document.getElementById('login-btn');
+      const msg = document.getElementById('login-message');
 
-        function showMsg(type, text) {
-          const box = document.getElementById('login-message');
-          box.textContent = text;
-          box.style.display = 'block';
-          box.className = 'msg-box msg-' + type;
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+
+      setTimeout(() => {
+        const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
+        const registeredUser = allUsers.find(u => u.accountNumber === accNo);
+
+        if (!registeredUser) {
+          msg.className = 'msg-box msg-error';
+          msg.textContent = 'Account Number not found.';
+          msg.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Login to My Account';
+          return;
         }
 
-        document.getElementById('forgotPassword').addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = prompt('Enter your registered email address:');
-            if (email) {
-                alert('OTP sent to ' + email + '. (Simulation)');
-                const otp = prompt('Enter 4-digit OTP:');
-                if (otp) {
-                    const newPass = prompt('Enter new password:');
-                    if (newPass) alert('Password updated successfully!');
-                }
-            }
-        });
-    </script>
-<script src="js/theme.js"></script>
+        if (registeredUser.password !== pass) {
+          msg.className = 'msg-box msg-error';
+          msg.textContent = 'Incorrect Password.';
+          msg.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Login to My Account';
+          return;
+        }
+
+        localStorage.setItem('bams_user', JSON.stringify(registeredUser));
+        msg.className = 'msg-box msg-success';
+        msg.textContent = '✓ Login Successful! Redirecting...';
+        msg.style.display = 'block';
+        setTimeout(() => window.location.href = 'dashboard.html', 1000);
+      }, 800);
+    });
+
+    function showMsg(type, text) {
+      const box = document.getElementById('login-message');
+      box.textContent = text;
+      box.style.display = 'block';
+      box.className = 'msg-box msg-' + type;
+    }
+
+    document.getElementById('forgotPassword').addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = prompt('Enter your registered email address:');
+      if (email) {
+        alert('OTP sent to ' + email + '. (Simulation)');
+        const otp = prompt('Enter 4-digit OTP:');
+        if (otp) {
+          const newPass = prompt('Enter new password:');
+          if (newPass) alert('Password updated successfully!');
+        }
+      }
+    });
+  </script>
+  <script src="js/theme.js"></script>
 </body>
 
 </html>
