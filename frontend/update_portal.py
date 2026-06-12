@@ -45,7 +45,7 @@ for file in portal_files:
         content = content.replace('<script src="js/app.js"></script>', '<script>\n' + script_to_add + '</script>\n    <script src="js/app.js"></script>')
 
     # 2. Replace Logout button (fixed redirect logic to index.html instead of ../index.html because these are already in the root frontend directory alongside index.html)
-    content = re.sub(r'<a href="login\.html" class="sidebar-link[^>]*>.*?Logout</a>', r'<a href="#" onclick="localStorage.removeItem(\'bams_user\');window.location.href=\'index.html\'" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>', content)
+    content = re.sub(r'<a href="login\.html" class="sidebar-link[^>]*>.*?Logout</a>', r'<a href="#" onclick="localStorage.removeItem('bams_user'); window.location.href='index.html';" class="sidebar-link logout-link"><span class="icon">🚪</span> Logout</a>', content)
 
     # 3. Welcome back Koushik
     content = re.sub(r'Welcome back, <span id="userName">Koushik</span>', r'Welcome back, <span class="user-welcome-name"></span>', content)
