@@ -47,8 +47,15 @@
           <div id="login-message"></div>
           <div class="form-group">
             <label>Account Number</label>
-            <input type="text" id="account-number" placeholder="e.g. BAMS2026012345" pattern="Easy pAy[0-9]{10}" />
-            <small style="color:var(--text-secondary)">Your account number was given during registration</small>
+            <input
+              type="text"
+              id="account-number"
+              placeholder="Enter your Account Number"
+              required
+            />
+            <small style="color:var(--text-secondary)">
+              Enter the account number generated during registration
+            </small>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -172,6 +179,7 @@
 
     document.getElementById('login-form').addEventListener('submit', (e) => {
       e.preventDefault();
+
       const accNo = document.getElementById('account-number').value.trim();
       const pass = document.getElementById('password').value;
       const btn = document.getElementById('login-btn');
@@ -180,34 +188,46 @@
       btn.disabled = true;
       btn.textContent = 'Signing in...';
 
-      setTimeout(() => {
-        const allUsers = JSON.parse(localStorage.getItem('easypay_all_users') || '[]');
-        const registeredUser = allUsers.find(u => u.accountNumber === accNo);
+      const allUsers = JSON.parse(
+        localStorage.getItem('easypay_all_users') || '[]'
+      );
 
-        if (!registeredUser) {
-          msg.className = 'msg-box msg-error';
-          msg.textContent = 'Account Number not found.';
-          msg.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Login to My Account';
-          return;
-        }
+      const registeredUser = allUsers.find(
+        user => user.accountNumber === accNo
+      );
 
-        if (registeredUser.password !== pass) {
-          msg.className = 'msg-box msg-error';
-          msg.textContent = 'Incorrect Password.';
-          msg.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Login to My Account';
-          return;
-        }
-
-        localStorage.setItem('bams_user', JSON.stringify(registeredUser));
-        msg.className = 'msg-box msg-success';
-        msg.textContent = '✓ Login Successful! Redirecting...';
+      if (!registeredUser) {
         msg.style.display = 'block';
-        setTimeout(() => window.location.href = 'dashboard.html', 1000);
-      }, 800);
+        msg.className = 'msg-box msg-error';
+        msg.textContent = 'Account Number not found.';
+
+        btn.disabled = false;
+        btn.textContent = 'Login to My Account';
+        return;
+      }
+
+      if (registeredUser.password !== pass) {
+        msg.style.display = 'block';
+        msg.className = 'msg-box msg-error';
+        msg.textContent = 'Incorrect Password.';
+
+        btn.disabled = false;
+        btn.textContent = 'Login to My Account';
+        return;
+      }
+
+      localStorage.setItem(
+        'bams_user',
+        JSON.stringify(registeredUser)
+      );
+
+      msg.style.display = 'block';
+      msg.className = 'msg-box msg-success';
+      msg.textContent = '✓ Login Successful! Redirecting...';
+
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 1000);
     });
 
     function showMsg(type, text) {
